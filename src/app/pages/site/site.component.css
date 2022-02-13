@@ -1,0 +1,24 @@
+/* site */
+.btn-register {
+    color:white;
+    z-index: 9999;
+}
+
+.invide {
+    height: 30%;
+    padding: 5em 2em 7em;
+}
+
+.invide h2 {
+    font-size: 35px;
+}
+/* end site */
+
+/* cards */
+.card {
+    /* min-width: 300px !important; */
+    min-width: 15vw !important;
+    min-height: 18vw !important;
+    /* max-height: 20vw !important; */
+}
+/* end cards */
