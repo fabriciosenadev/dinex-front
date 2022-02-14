@@ -18,7 +18,7 @@
 .card {
     /* min-width: 300px !important; */
     min-width: 15vw !important;
-    max-width: 30vw !important;
+    /* max-width: 30vw !important; */
     min-height: 18vh !important;
     /* max-height: 20vh !important; */
 }
