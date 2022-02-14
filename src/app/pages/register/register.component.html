@@ -1,0 +1,134 @@
+<!-- BODY -->
+<div class="container-fluid">
+
+    <!-- REGISTER -->
+    <div class="row py-5 bg-section-gray section-height">
+        <div class="col-md"></div>
+        <div class="col-md-6">
+
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <h1 class="text-center">Cadastre-se</h1>
+                </div>
+            </div>
+
+            <div class="row mx-2">
+                <!-- start form -->
+                <div class="rounded bg-white p-3 my-4 mb-5">
+
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+                        <div class="form-row my-4">
+
+                            <div class="form-group col-md">
+                                <label for="inputName">Nome completo</label>
+                                <input type="text" formControlName="fullName" class="form-control">
+                            </div>
+
+                            <!-- start validation -->
+                            <div *ngIf="formData['fullName'].invalid && (formData['fullName'].dirty || formData['fullName'].touched)"
+                                class="alert">
+
+                                <small *ngIf="formData['fullName'].errors?.['required']" class="text-danger">
+                                    Informe seu nome completo.
+                                </small>
+                                <small *ngIf="formData['fullName'].errors?.['minlength']" class="text-danger">
+                                    Informe seu nome completo.
+                                </small>
+
+                            </div>
+                            <!-- end validation -->
+                        </div>
+
+                        <div class="form-row my-4">
+
+                            <div class="form-group col-md">
+                                <label for="inputEmail">E-mail</label>
+                                <input type="text" formControlName="email" class="form-control" autocomplete="username">
+                            </div>
+
+                            <!-- start validation -->
+                            <div *ngIf="formData['email'].invalid && (formData['email'].dirty || formData['email'].touched)"
+                                class="alert">
+
+                                <small *ngIf="formData['email'].errors?.['required']" class="text-danger">
+                                    Informe seu melhor E-mail.
+                                </small>
+                                <small *ngIf="formData['email'].errors?.['email']" class="text-danger">
+                                    Informe seu melhor E-mail.
+                                </small>
+
+                            </div>
+                            <!-- end validation -->
+                        </div>
+
+                        <div class="form-row my-4">
+
+                            <div class="form-group col-md">
+                                <label for="inputPassword">Senha (minimo 8 caracteres)</label>
+                                <input type="password" formControlName="password" class="form-control"
+                                    autocomplete="new-password">
+                            </div>
+
+                            <!-- start validation -->
+                            <div *ngIf="formData['password'].invalid && (formData['password'].dirty || formData['password'].touched)"
+                                class="alert">
+
+                                <small *ngIf="formData['password'].errors?.['required']" class="text-danger">
+                                    Informe sua senha.
+                                </small>
+                                <small *ngIf="formData['password'].errors?.['minlength']" class="text-danger">
+                                    Sua senha deve ter no mínimo 8 caracteres.
+                                </small>
+
+                            </div>
+                            <!-- end validation -->
+                        </div>
+
+                        <div class="form-row my-4">
+
+                            <div class="form-group col-md">
+                                <label for="inputVerify">Repita a senha</label>
+                                <input type="password" formControlName="confirmPassword" class="form-control"
+                                    autocomplete="new-password">
+                            </div>
+
+                            <!-- start validation -->
+                            <div *ngIf="formData['confirmPassword'].invalid && (formData['confirmPassword'].dirty || formData['confirmPassword'].touched)"
+                                class="alert">
+
+                                <small *ngIf="formData['confirmPassword'].errors?.['required']"  class="text-danger">
+                                    Informe novamente sua senha.
+                                </small>
+                                <small *ngIf="formData['confirmPassword'].errors?.['minlength']"  class="text-danger">
+                                    Sua senha deve ter no mínimo 8 caracteres.
+                                </small>
+                                <small *ngIf="formData['confirmPassword'].errors?.['matching']" class="text-danger">
+                                    Senhas estão diferentes.
+                                </small>
+
+                            </div>
+                            <!-- end validation -->
+
+                        </div>
+
+                        <button type="submit" [disabled]="!registerForm.valid" class="btn bg-success text-white btn-hover form-control my-4">
+                            <span *ngIf="!loading">
+                                Cadastrar
+                            </span>
+                            <span *ngIf="loading"></span>
+                        </button>
+
+                    </form>
+
+                </div>
+                <!-- end form -->
+            </div>
+
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <!-- END REGISTER -->
+
+</div>
+<!-- END BODY -->
