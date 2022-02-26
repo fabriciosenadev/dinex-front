@@ -15,7 +15,7 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 export class RegisterComponent implements OnInit {
 
   loading: boolean = false;
-  
+
   userRegister: UserRegister = {
     fullName: '',
     email: '',
@@ -50,14 +50,14 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm);
   }
 
-  handleRegisterForm() {
+  handleRegisterForm(): void {
     this.registerForm = new FormGroup({
       fullName: new FormControl(
         this.userRegister.fullName,
         [
           Validators.required,
           Validators.minLength(10),
-          
+
         ]
       ),
       email: new FormControl(
@@ -81,13 +81,32 @@ export class RegisterComponent implements OnInit {
           Validators.minLength(8)
         ]
       )
-    },{
-      validators:[ Validation.match('password', 'confirmPassword') ]
+    }, {
+      validators: [Validation.match('password', 'confirmPassword')]
     });
   }
 
   onSubmit() {
-    // console.log(this.registerForm);
-   }
+    if (this.registerForm.valid) {
+      this.disableButton();
+      console.log(this.registerForm);
+      this.loading = true;
+      this.userRegister = this.registerForm.value;
+      
+      this.userService.create(this.userRegister).subscribe(
+        (response) => {
+          console.log(response);
+          this.loading = false;
+
+          // need prepare more actions after register
+        }
+      );
+    }
+  }
+
+  disableButton(): void {
+    let button = document.getElementById('btn-register');
+    button?.setAttribute('disabled', 'true');
+  }
 
 }
