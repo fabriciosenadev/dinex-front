@@ -32,9 +32,8 @@ export class UserService {
 
   create(userRegister: UserRegister): Observable<User> {
     let route = `${this.apiUrl}/users`;
-    console.log(userRegister);
     
-    return this.http.post<UserRegister>(route, userRegister);
+    return this.http.post<User>(route, userRegister);
   }
 
   // requestActivationCode(email: string): Observable<any> {}
