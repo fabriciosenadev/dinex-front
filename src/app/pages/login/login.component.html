@@ -14,6 +14,17 @@
 
             <div class="row mx-2">
 
+                <div class="rounded bg-white p-3 my-4 mb-5">
+
+                    <app-login-form (loginUser)="onSubmit($event)"></app-login-form>
+
+                    <div *ngIf="true" class="row my-2">
+                        <div class="col-md text-center">
+                            <a routerLink="/forgot" class="text-center">Esqueceu sua senha?</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
