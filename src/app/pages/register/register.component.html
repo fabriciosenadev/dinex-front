@@ -97,10 +97,10 @@
                             <div *ngIf="formData['confirmPassword'].invalid && (formData['confirmPassword'].dirty || formData['confirmPassword'].touched)"
                                 class="alert">
 
-                                <small *ngIf="formData['confirmPassword'].errors?.['required']"  class="text-danger">
+                                <small *ngIf="formData['confirmPassword'].errors?.['required']" class="text-danger">
                                     Informe novamente sua senha.
                                 </small>
-                                <small *ngIf="formData['confirmPassword'].errors?.['minlength']"  class="text-danger">
+                                <small *ngIf="formData['confirmPassword'].errors?.['minlength']" class="text-danger">
                                     Sua senha deve ter no mínimo 8 caracteres.
                                 </small>
                                 <small *ngIf="formData['confirmPassword'].errors?.['matching']" class="text-danger">
@@ -112,11 +112,16 @@
 
                         </div>
 
-                        <button type="submit" [disabled]="!registerForm.valid" class="btn bg-success text-white btn-hover form-control my-4">
+                        <button type="submit" [disabled]="!registerForm.valid" id="btn-register"
+                            class="btn bg-success text-white btn-hover form-control my-4">
                             <span *ngIf="!loading">
                                 Cadastrar
                             </span>
-                            <span *ngIf="loading"></span>
+                            <span *ngIf="loading">
+                                <div class="spinner-border text-light" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </span>
                         </button>
 
                     </form>
