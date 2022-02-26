@@ -41,10 +41,8 @@ export class RegisterComponent implements OnInit {
     this.userRegister.email = this.userEmailRegister;
   }
 
-  onSubmit(registerUserFormData: any) {
-    this.userRegister = registerUserFormData;
-
-    this.userService.create(this.userRegister).subscribe(
+  onSubmit(registerUserFormData: UserRegister) {
+    this.userService.create(registerUserFormData).subscribe(
       (newUser) => {
         if(newUser?.id) {
           this.router.navigate(['/login']);
