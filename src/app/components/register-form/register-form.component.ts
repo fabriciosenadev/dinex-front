@@ -80,8 +80,8 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.loading = true;
     if (this.registerForm.valid) {
+      this.loading = true;
       BtnAttribute.disabled('btn-register', 'true');
       this.registerNewUser.emit(this.registerForm.value);
     }
