@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
-import Validation from 'src/app/shared/helpers/validator';
 
 import { UserRegister } from 'src/app/shared/models/user/user-register.model';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
@@ -14,7 +13,7 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  loading: boolean = false;
+  activateAccount: boolean = false;
 
   userRegister: UserRegister = {
     fullName: '',
@@ -23,14 +22,8 @@ export class RegisterComponent implements OnInit {
     confirmPassword: ''
   };
 
-  registerForm: FormGroup = new FormGroup({});
-
   get userEmailRegister() {
     return this.userService.userRegister.email;
-  }
-
-  get formData() {
-    return this.registerForm.controls;
   }
 
   set headerOption(value: headerOptionsEnum) {
@@ -40,73 +33,28 @@ export class RegisterComponent implements OnInit {
   constructor(
     private userService: UserService,
     private headerService: HeaderService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.headerOption = headerOptionsEnum.site;
     this.userRegister.email = this.userEmailRegister;
-
-    this.handleRegisterForm();
-    console.log(this.registerForm);
   }
 
-  handleRegisterForm(): void {
-    this.registerForm = new FormGroup({
-      fullName: new FormControl(
-        this.userRegister.fullName,
-        [
-          Validators.required,
-          Validators.minLength(10),
+  onSubmit(registerUserFormData: any) {
+    this.userRegister = registerUserFormData;
 
-        ]
-      ),
-      email: new FormControl(
-        this.userRegister.email,
-        [
-          Validators.required,
-          Validators.email,
-        ]
-      ),
-      password: new FormControl(
-        this.userRegister.password,
-        [
-          Validators.required,
-          Validators.minLength(8),
-        ]
-      ),
-      confirmPassword: new FormControl(
-        this.userRegister.confirmPassword,
-        [
-          Validators.required,
-          Validators.minLength(8)
-        ]
-      )
-    }, {
-      validators: [Validation.match('password', 'confirmPassword')]
-    });
-  }
-
-  onSubmit() {
-    if (this.registerForm.valid) {
-      this.disableButton();
-      console.log(this.registerForm);
-      this.loading = true;
-      this.userRegister = this.registerForm.value;
-      
-      this.userService.create(this.userRegister).subscribe(
-        (response) => {
-          console.log(response);
-          this.loading = false;
-
-          // need prepare more actions after register
+    this.userService.create(this.userRegister).subscribe(
+      (newUser) => {
+        if(newUser?.id) {
+          this.router.navigate(['/login']);
         }
-      );
-    }
+      }
+    );
   }
 
-  disableButton(): void {
-    let button = document.getElementById('btn-register');
-    button?.setAttribute('disabled', 'true');
+  showActivateAccount(): void {
+    this.activateAccount = true;
   }
 
 }
