@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import Validation from 'src/app/shared/helpers/validator';
 
 import { UserRegister } from 'src/app/shared/models/user/user-register.model';
+import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
@@ -31,11 +33,17 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls;
   }
 
+  set headerOption(value: headerOptionsEnum) {
+    this.headerService.headerOption = value;
+  }
+
   constructor(
     private userService: UserService,
+    private headerService: HeaderService,
   ) { }
 
   ngOnInit(): void {
+    this.headerOption = headerOptionsEnum.site;
     this.userRegister.email = this.userEmailRegister;
 
     this.handleRegisterForm();
