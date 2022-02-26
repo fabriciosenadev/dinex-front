@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import BtnAttribute from 'src/app/shared/helpers/btn-attribute';
 import Validation from 'src/app/shared/helpers/validator';
 import { UserRegister } from 'src/app/shared/models/user/user-register.model';
 import { UserService } from 'src/app/shared/services/user/user.service';
@@ -81,14 +82,8 @@ export class RegisterFormComponent implements OnInit {
   onSubmit(): void {
     this.loading = true;
     if (this.registerForm.valid) {
-      this.disableButton();
+      BtnAttribute.disabled('btn-register', 'true');
       this.registerNewUser.emit(this.registerForm.value);
     }
   }
-
-  disableButton(): void {
-    let button = document.getElementById('btn-register');
-    button?.setAttribute('disabled', 'true');
-  }
-
 }
