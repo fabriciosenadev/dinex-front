@@ -85,5 +85,12 @@ export class RegisterFormComponent implements OnInit {
       BtnAttribute.disabled('btn-register', 'true');
       this.registerNewUser.emit(this.registerForm.value);
     }
+
+    this.resetForm();
+  }
+
+  resetForm(): void {
+    this.registerForm.reset();
+    this.loading = false;
   }
 }
