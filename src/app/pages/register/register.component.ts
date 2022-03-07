@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
+import { successMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
 
 import { UserRegister } from 'src/app/shared/models/user/user-register.model';
+
 import { HeaderService } from 'src/app/shared/services/header/header.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
@@ -34,6 +37,7 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private headerService: HeaderService,
     private router: Router,
+    private notify: NotificationService,
   ) { }
 
   ngOnInit(): void {
@@ -45,14 +49,33 @@ export class RegisterComponent implements OnInit {
     this.userService.create(registerUserFormData).subscribe(
       (newUser) => {
         if(newUser?.id) {
-          this.router.navigate(['/login']);
+          let successTitle = 'Sucesso';
+          this.notify.success(successTitle, successMessagesEnum.register);
+
+          // TODO: need to implement activation account
+          //this.router.navigate(['/login']);
+
         }
+      }, (error) => {
+        let errors = error.error.errors;
+        this.handleErrors(errors);
       }
     );
+      
   }
 
   showActivateAccount(): void {
     this.activateAccount = true;
   }
 
+  handleErrors(errors: any): void {
+    let errorTitle = 'Erro ao cadastrar';
+
+    if(errors?.Email)
+    {
+      errors.Email.forEach( (msg: string) => {
+        this.notify.error(errorTitle, msg);
+      });
+    }
+  }
 }
