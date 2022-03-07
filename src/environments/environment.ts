@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://api.dinheiroexato.com.br/v1"
+  apiUrl: "http://api.dinheiroexato.com.br/v1",
+  durationShowNotification: 5000,
 };
 
 /*
