@@ -1,0 +1,38 @@
+<form [formGroup]="activationForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-row my-4">
+
+        <div class="form-group col-md">
+            <label for="inputPassword">Codigo de ativacao</label>
+            <input type="password" formControlName="password" class="form-control"
+                autocomplete="new-password">
+        </div>
+
+        <!-- start validation -->
+        <div *ngIf="formData['activationCode'].invalid && (formData['activationCode'].dirty || formData['password'].touched)"
+            class="alert">
+
+            <small *ngIf="formData['activationCode'].errors?.['required']" class="text-danger">
+                Informe o codigo de aticavao.
+            </small>
+            <small *ngIf="formData['activationCode'].errors?.['minlength']" class="text-danger">
+                Codigo de ativacao incorreto.
+            </small>
+
+        </div>
+        <!-- end validation -->
+    </div>
+
+    <button type="submit" [disabled]="!activationForm.valid" id="btn-activation"
+        class="btn bg-success text-white btn-hover form-control my-4">
+        <span *ngIf="!loading">
+            Ativar conta
+        </span>
+        <span *ngIf="loading">
+            <div class="spinner-border text-light" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </span>
+    </button>
+
+</form>
