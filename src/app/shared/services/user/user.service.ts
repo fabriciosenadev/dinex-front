@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 
 import { UserRegister } from '../../models/user/user-register.model';
 import { User } from '../../models/user/user.model';
+import { UserActivation } from '../../models/user/user-activation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,15 @@ export class UserService {
     return this.http.post<User>(route, userRegister);
   }
 
-  // requestActivationCode(email: string): Observable<any> {}
+  requestActivationCode(activation: UserActivation): Observable<any> {
+    let route =`${this.apiUrl}/activations/send-code`;
+
+    return this.http.post(route, activation);
+  }
+
+  activateUser(activation: UserActivation): Observable<any> {
+    let route = `${this.apiUrl}/activations/activate-account`;
+
+    return this.http.post(route, activation);
+  }
 }
