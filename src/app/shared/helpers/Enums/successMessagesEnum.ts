@@ -1,6 +1,6 @@
 export enum successMessagesEnum {
     register = 'Cadastro realizado com sucesso!',
-    activate = 'Conta ativada com sucesso',
+    accountActivated = 'Conta ativada com sucesso',
     login = 'Login realizado com sucesso',
     // update = 'Dados atualizados com sucesso',
     // delete = 'Conta deletada com sucesso',
