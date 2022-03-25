@@ -42,6 +42,8 @@ export class ActivationAccountFormComponent implements OnInit {
       BtnAttribute.disabled('btn-activation', 'true');
       this.activationCode.emit(this.activationForm.value.activationCode);
     }
+
+    this.activationForm.reset();
   }
 
 }
