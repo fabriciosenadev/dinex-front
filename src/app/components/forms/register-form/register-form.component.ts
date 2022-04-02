@@ -93,6 +93,6 @@ export class RegisterFormComponent implements OnInit {
     setInterval(() => {
       this.registerForm.reset();
       this.loading = false;      
-    }, 5000);
+    }, 10000);
   }
 }
