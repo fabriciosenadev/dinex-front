@@ -73,8 +73,6 @@ export class RegisterComponent implements OnInit {
     this.userActivation.activationCode = event;
     this.userService.activateUser(this.userActivation).subscribe(
       (response) => {
-        console.log(response);
-
         this.notify.success('Conta ativada', successMessagesEnum.accountActivated);
         this.router.navigate(['/login']);
       }, (error) => {
@@ -89,7 +87,6 @@ export class RegisterComponent implements OnInit {
   requestActivationCode(activation: UserActivation) {
     this.userService.requestActivationCode(activation).subscribe(
       (response) => {
-        console.log(response);
         this.userActivation.email = activation.email;
         
         if (response?.message) {
