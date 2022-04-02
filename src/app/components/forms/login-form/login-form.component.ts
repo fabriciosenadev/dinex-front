@@ -50,6 +50,15 @@ export class LoginFormComponent implements OnInit {
       BtnAttribute.disabled('btn-login', 'true');
       this.loginUser.emit(this.loginForm.value);
     }
+
+    this.resetForm();
+  }
+
+  resetForm(): void {
+    setInterval(() => {
+      this.loginForm.reset();
+      this.loading = false;      
+    }, 5000);
   }
 
 }
