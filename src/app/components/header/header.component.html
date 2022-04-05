@@ -5,6 +5,10 @@
             *ngIf="headerOption === headerOptionsEnum.site || headerOption === headerOptionsEnum.login">
             <img alt="Brand" src="{{ assets('img/header-logo.png') }}" width="60px">
         </a>
+        <a class="navbar-brand text-white hover cursos-pointer" (click)="goHomeAction()"
+            *ngIf="headerOption === headerOptionsEnum.app">
+            <fa-icon [icon]="faHome"></fa-icon>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -15,7 +19,7 @@
                     <!-- <a class="nav-link text-white text-center hover" (click)="goHomeAction()">Home</a> -->
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right mt-1">
                 <li class="nav-item">
                     <a *ngIf="headerOption === headerOptionsEnum.site" (click)="goLoginAction()"
                         class="nav-link text-white text-center border rounded btn-hover py-2 px-3 cursos-pointer">Login</a>
@@ -25,7 +29,8 @@
                     
                     <a *ngIf="headerOption === headerOptionsEnum.app" (click)="goLogoutAction()"
                         class="nav-link text-white text-center border rounded btn-hover py-2 px-3 cursos-pointer">
-                        <strong>Sair</strong>
+                        <!-- <strong>Sair</strong> -->
+                        <fa-icon [icon]="faArrowRightFromBracket"></fa-icon>
                     </a>
                 </li>
             </ul>

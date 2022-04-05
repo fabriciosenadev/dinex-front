@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faHome, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { SessionService } from 'src/app/shared/services/session/session.service';
@@ -10,6 +11,10 @@ import { SessionService } from 'src/app/shared/services/session/session.service'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  //Icons
+  faHome = faHome;
+  faArrowRightFromBracket = faArrowRightFromBracket;
 
   headerOptionsEnum = headerOptionsEnum;
 
