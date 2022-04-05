@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
+import { SessionService } from 'src/app/shared/services/session/session.service';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private headerService: HeaderService,
+    private sessionService: SessionService,
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +40,11 @@ export class HeaderComponent implements OnInit {
 
   goRegisterAction() {
     this.router.navigate(['register']);
+  }
+
+  goLogoutAction() {
+    this.sessionService.endSession();
+    this.router.navigate(['login']);
   }
 
 }

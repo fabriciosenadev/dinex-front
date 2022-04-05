@@ -1,7 +1,8 @@
 <!-- HEADER -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid mx-4">
-        <a class="navbar-brand text-white hover cursos-pointer" (click)="goHomeAction()">
+        <a class="navbar-brand text-white hover cursos-pointer" (click)="goHomeAction()"
+            *ngIf="headerOption === headerOptionsEnum.site || headerOption === headerOptionsEnum.login">
             <img alt="Brand" src="{{ assets('img/header-logo.png') }}" width="60px">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -21,7 +22,11 @@
 
                     <a *ngIf="headerOption === headerOptionsEnum.login" (click)="goRegisterAction()"
                         class="nav-link text-white text-center border rounded btn-hover py-2 px-3 cursos-pointer">Cadastro</a>
-
+                    
+                    <a *ngIf="headerOption === headerOptionsEnum.app" (click)="goLogoutAction()"
+                        class="nav-link text-white text-center border rounded btn-hover py-2 px-3 cursos-pointer">
+                        <strong>Sair</strong>
+                    </a>
                 </li>
             </ul>
         </div>
