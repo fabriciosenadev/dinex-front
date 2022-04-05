@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { PlatformRoutingModule } from './platform-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { MainComponent } from './main/main.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 
@@ -18,7 +20,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ComponentsModule
+    ComponentsModule,
+    FontAwesomeModule,
   ]
 })
 export class PlatformModule { }
