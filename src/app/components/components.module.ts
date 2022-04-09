@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RegisterFormComponent } from './forms/register-form/register-form.component';
 import { LoginFormComponent } from './forms/login-form/login-form.component';
 import { ActivationAccountFormComponent } from './forms/activation-account-form/activation-account-form.component';
+import { SubMenuComponent } from './sub-menu/sub-menu.component';
 
 
 
@@ -17,14 +18,16 @@ import { ActivationAccountFormComponent } from './forms/activation-account-form/
     FooterComponent,
     RegisterFormComponent,
     LoginFormComponent,
-    ActivationAccountFormComponent
+    ActivationAccountFormComponent,
+    SubMenuComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     RegisterFormComponent,
     LoginFormComponent,
-    ActivationAccountFormComponent
+    ActivationAccountFormComponent,
+    SubMenuComponent
   ],
   imports: [
     CommonModule,
