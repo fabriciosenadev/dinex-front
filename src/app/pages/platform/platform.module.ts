@@ -6,13 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { MainComponent } from './main/main.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 
+import { MainComponent } from './main/main.component';
+import { LaunchComponent } from './launch/launch.component';
 
 @NgModule({
   declarations: [
-    MainComponent
+    MainComponent,
+    LaunchComponent
   ],
   imports: [
     CommonModule,
