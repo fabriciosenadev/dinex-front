@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
@@ -12,9 +11,6 @@ import { SessionService } from 'src/app/shared/services/session/session.service'
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
-  //Icons
-  faPencil = faPencil;
 
   set headerOption(value: headerOptionsEnum) {
     this.headerService.headerOption = value;
@@ -28,7 +24,7 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(!this.session.sessionIsActive()){
+    if (!this.session.sessionIsActive()) {
       this.notify.warning("Ops!!!", "Faça login para acessar a página.");
       this.session.forceLogin();
     }
