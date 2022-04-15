@@ -69,21 +69,6 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  activateUser(event: any) {
-    this.userActivation.activationCode = event;
-    this.userService.activateUser(this.userActivation).subscribe(
-      (response) => {
-        this.notify.success('Conta ativada', successMessagesEnum.accountActivated);
-        this.router.navigate(['/login']);
-      }, (error) => {
-        let errors = error.error.errors;
-        // this.handleErrors(errors);
-        console.error(error);
-        this.notify.error('Erro inesperado', "algo deu errado, tente novamente mais tarde");
-      }
-    );
-  }
-
   requestActivationCode(activation: UserActivation) {
     this.userService.requestActivationCode(activation).subscribe(
       (response) => {

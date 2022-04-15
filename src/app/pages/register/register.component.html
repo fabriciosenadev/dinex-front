@@ -31,7 +31,23 @@
 
                     <!-- start activation form -->
                     <ng-template #showActivate>
-                        <app-activation-account-form (activationCode)="activateUser($event)"></app-activation-account-form>
+
+                        <div class="row">
+                            <div class="col-md text-center">
+                                <p>
+                                    Voce recebera por e-mail um link para ativar sua conta que tem a validade de 2 horas.
+                                    <br><br>
+                                    Apos este periodo, o link de ativacao sera invalido.
+                                </p>
+                                <br>
+                                <p>
+                                    Caso voce tenha problemas para ativar sua conta, entre em contato com o suporte, usando o e-mail abaixo.
+                                    <br>
+                                    <a href="mailto:suporte@dinheiroexato.com.br">suporte@dinheiroexato.com.br</a>
+                                </p>
+                            </div>
+                        </div>
+                        
                     </ng-template>
                     <!-- end activation form -->
 

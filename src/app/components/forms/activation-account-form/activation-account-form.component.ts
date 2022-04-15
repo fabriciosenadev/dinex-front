@@ -8,7 +8,7 @@ import BtnAttribute from 'src/app/shared/helpers/btn-attribute';
   styleUrls: ['./activation-account-form.component.css']
 })
 export class ActivationAccountFormComponent implements OnInit {
-  @Output() activationCode: EventEmitter<string> = new EventEmitter();
+  @Output() registeredEmail: EventEmitter<string> = new EventEmitter();
 
   loading: boolean = false;
 
@@ -26,11 +26,11 @@ export class ActivationAccountFormComponent implements OnInit {
 
   handleActivationForm(): void {
     this.activationForm = new FormGroup({
-      activationCode: new FormControl(
+      email: new FormControl(
         '',
         [
           Validators.required,
-          Validators.minLength(6),
+          Validators.email,
         ],
       ),
     });
@@ -40,10 +40,11 @@ export class ActivationAccountFormComponent implements OnInit {
     if (this.activationForm.valid) {
       this.loading = true;
       BtnAttribute.disabled('btn-activation', 'true');
-      this.activationCode.emit(this.activationForm.value.activationCode);
+      this.registeredEmail.emit(this.activationForm.value.email);
     }
 
-    this.activationForm.reset();
+    setInterval(() => {
+      this.activationForm.reset();
+    }, 5000);
   }
-
 }

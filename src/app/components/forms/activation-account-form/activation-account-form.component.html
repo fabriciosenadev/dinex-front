@@ -3,20 +3,20 @@
     <div class="form-row my-4">
 
         <div class="form-group col-md">
-            <label for="inputPassword">Codigo de ativacao</label>
-            <input type="text" formControlName="activationCode" class="form-control"
+            <label for="inputPassword">Informe seu e-mail para validar a ativacao</label>
+            <input type="text" formControlName="email" class="form-control"
                 autocomplete="new-password">
         </div>
 
         <!-- start validation -->
-        <div *ngIf="formData['activationCode'].invalid && (formData['activationCode'].dirty || formData['activationCode'].touched)"
+        <div *ngIf="formData['email'].invalid && (formData['email'].dirty || formData['email'].touched)"
             class="alert">
 
-            <small *ngIf="formData['activationCode'].errors?.['required']" class="text-danger">
-                Informe o codigo de aticavao.
+            <small *ngIf="formData['email'].errors?.['required']" class="text-danger">
+                Informe o e-mail cadastrado.
             </small>
-            <small *ngIf="formData['activationCode'].errors?.['minlength']" class="text-danger">
-                Codigo de ativacao incorreto.
+            <small *ngIf="formData['email'].errors?.['email']" class="text-danger">
+                Informe o e-mail cadastrado.
             </small>
 
         </div>
@@ -37,12 +37,18 @@
 
 </form>
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-md text-center">
+        <p>
+            Voce recebera por e-mail um link para ativar sua conta que tem a validade de 2 horas.
+            <br><br>
+            Apos este periodo, o link de ativacao sera invalido.
+        </p>
+        <br>
         <p>
             Caso voce tenha problemas para ativar sua conta, entre em contato com o suporte, usando o e-mail abaixo.
             <br>
             <a href="mailto:suporte@dinheiroexato.com.br">suporte@dinheiroexato.com.br</a>
         </p>
     </div>
-</div>
+</div> -->

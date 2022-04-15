@@ -19,6 +19,10 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'activation',
+    loadChildren: () => import('./activation/activation.module').then(m => m.ActivationModule)
+  },
+  {
     path:'app',
     loadChildren: () => import('./platform/platform.module').then(m => m.PlatformModule)
   }

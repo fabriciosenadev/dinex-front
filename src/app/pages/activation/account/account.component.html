@@ -1,0 +1,31 @@
+<!-- BODY -->
+<div class="container-fluid">
+
+    <!-- ACTIVATION -->
+    <div class="row py-5 bg-section-gray section-height">
+        <div class="col-md"></div>
+        <div class="col-md-6">
+
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <h1 class="text-center">Ativacao de conta</h1>
+                </div>
+            </div>
+
+            <div class="row mx-2">
+                <div class="rounded bg-white p-3 my-4 mb-5">
+
+                    <app-activation-account-form (registeredEmail)="activateAccount($event)">
+                    </app-activation-account-form>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <!-- END ACTIVATION -->
+
+</div>
+<!-- END BODY -->
