@@ -43,7 +43,7 @@ export class UserService {
     return this.http.post(route, activation);
   }
 
-  activateUser(activation: UserActivation): Observable<any> {
+  activateAccount(activation: UserActivation): Observable<any> {
     let route = `${this.apiUrl}/activations/activate-account`;
 
     return this.http.post(route, activation);
