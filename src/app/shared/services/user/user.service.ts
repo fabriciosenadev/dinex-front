@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
 
 import { UserRegister } from '../../models/user/user-register.model';
 import { User } from '../../models/user/user.model';
-import { UserActivation } from '../../models/user/user-activation.model';
 
 @Injectable({
   providedIn: 'root'
