@@ -1,0 +1,163 @@
+<form>
+    <div class="form-row">
+
+        <div class="form-group mb-3">
+            <div class="col-sm">
+
+                <label for="launchType">
+                    Tipo de lançamento
+                </label>
+
+                <select id="dropLaunchType" name="launchType" class="form-control">
+                    <option value="" selected disabled hidden></option>
+                    <option value="in">Entrada</option>
+                    <option value="out">Saida</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <div class="col-sm">
+
+                <label for="inputDate">Data</label>
+                <input type="date" id="inputDate" name="date" class="form-control">
+
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <div class="col-sm">
+
+                <label for="inputCategory">
+                    Categoria
+                </label>
+                <select id="dropCategory" name="category" class="form-control">
+                    <option value=""></option>
+                    <!-- <option *ngFor="let item of categories.data" [ngValue]="item.id">
+                        {{item.category}}
+                    </option> -->
+                </select>
+
+            </div>
+            <div class="col-sm mt-1">
+
+                <a href="#" class="btn bg-success text-white btn-hover">Criar categorias</a>
+
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <div class="col-sm">
+
+                <label for="inputDescription">Descrição</label>
+                <input type="text" id="inputDescription" name="description" class="form-control">
+
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <div class="col-sm">
+
+                <label for="inputValue">Valor</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">R$</div>
+                    </div>
+                    <input name="value" placeholder="Ex: 1,57" class="form-control" id="inputValue" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <div class="col-sm">
+
+                <input type="checkbox" class="btn-check" id="btn-check-confirmed" autocomplete="off">
+                <label class="btn btn-outline-success" for="btn-check-confirmed">
+                    Marcar como efetivado
+                </label>
+
+                <a class="btn btn-secondary ms-1" data-bs-toggle="offcanvas" href="#confirmedDoubt" role="button"
+                    aria-controls="offcanvasExample">
+                    ?
+                </a>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <div class="col-sm">
+
+                <input type="checkbox" class="btn-check" id="btn-check-scheduling" autocomplete="off">
+                <label class="btn btn-outline-success" for="btn-check-scheduling">
+                    Agendar para o proximo mês
+                </label>
+
+                <a class="btn btn-secondary ms-1" data-bs-toggle="offcanvas" href="#schedulingDoubt" role="button"
+                    aria-controls="offcanvasExample">
+                    ?
+                </a>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <div class="col-sm">
+
+                <button type="submit" class="btn bg-success text-white btn-hover" id="btnCreateLaunch">
+                    Criar lançamento
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+</form>
+
+
+
+<!-- HELP CONFIRMED BTN-CHECK -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="confirmedDoubt" aria-labelledby="confirmedDoubtLabel">
+    <div class="offcanvas-header">
+        <h4 class="offcanvas-title" id="confirmedDoubtLabel">Marcar como efetivado</h4>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+
+            <h5>Como funciona ?</h5>
+            Esta funcionalidade informa se o lançamento foi recebido/pago de acordo com o que foi selecionado no
+            tipo de lançamento.
+
+            <br><br>
+            <hr><br>
+
+            <h5>Como eu sei se ativei?</h5>
+            Quando o opção estiver selecionada, o botao ficará preenchido com verde.
+
+        </div>
+    </div>
+</div>
+<!-- END HELP CONFIRMED BTN-CHECK -->
+
+<!-- HELP SCHEDULING BTN-CHECK -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="schedulingDoubt" aria-labelledby="schedulingDoubtLabel">
+    <div class="offcanvas-header">
+        <h4 class="offcanvas-title" id="schedulingDoubtLabel">Agendar para o proximo mês</h4>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+
+            <h5>Descrição:</h5>
+            Esta funcionalidade informa se o lançamento deve se repetir no proximo mês.
+
+            <br><br>
+            <hr><br>
+
+            <h5>Como funciona:</h5>
+            Quando o opção estiver selecionada, o botao ficará preenchido com verde.
+
+        </div>
+    </div>
+</div>
+<!-- END HELP SCHEDULING BTN-CHECK -->
