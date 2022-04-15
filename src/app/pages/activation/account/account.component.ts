@@ -51,7 +51,8 @@ export class AccountComponent implements OnInit {
         this.router.navigate(['/login']);
       }, (error) => {
         console.error(error);
-        this.notify.error('Erro inesperado', "verifique se o link está correto e tente novamente.");
+        this.router.navigate(['/']);
+        this.notify.error('Erro para ativar', "link incorreto ou invalido.");
       });
   }
 
