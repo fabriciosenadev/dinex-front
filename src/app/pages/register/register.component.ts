@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { successMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
 
-import { UserActivation } from 'src/app/shared/models/user/user-activation.model';
+import { ActivateAccount } from 'src/app/shared/models/activation/activate-account.model';
 import { UserRegister } from 'src/app/shared/models/user/user-register.model';
 
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
+import { ActivationService } from 'src/app/shared/services/activation/activation.service';
 
 @Component({
   selector: 'app-register',
@@ -29,11 +30,6 @@ export class RegisterComponent implements OnInit {
     confirmPassword: ''
   };
 
-  userActivation: UserActivation = {
-    email: '',
-    activationCode: ''
-  };
-
   get userEmailRegister() {
     return this.userService.userRegister.email;
   }
@@ -47,6 +43,7 @@ export class RegisterComponent implements OnInit {
     private headerService: HeaderService,
     private router: Router,
     private notify: NotificationService,
+    private activationService: ActivationService,
   ) { }
 
   ngOnInit(): void {
@@ -69,11 +66,9 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  requestActivationCode(activation: UserActivation) {
-    this.userService.requestActivationCode(activation).subscribe(
-      (response) => {
-        this.userActivation.email = activation.email;
-        
+  requestActivationCode(activation: ActivateAccount) {
+    this.activationService.requestActivationCode(activation).subscribe(
+      (response) => {        
         if (response?.message) {
           this.pageTitle = 'Ative sua conta';
           this.activateAccount = true;

@@ -36,16 +36,4 @@ export class UserService {
     
     return this.http.post<User>(route, userRegister);
   }
-
-  requestActivationCode(activation: UserActivation): Observable<any> {
-    let route =`${this.apiUrl}/activations/send-code`;
-
-    return this.http.post(route, activation);
-  }
-
-  activateAccount(activation: UserActivation): Observable<any> {
-    let route = `${this.apiUrl}/activations/activate-account`;
-
-    return this.http.post(route, activation);
-  }
 }
