@@ -1,4 +1,4 @@
 export interface UserActivation {
     email: string;
-    activationCode?: string;
+    activationCode?: string | null;
 }
