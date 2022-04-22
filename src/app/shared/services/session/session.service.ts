@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserLogin } from '../../models/user/user-login.model';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class SessionService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private notify: NotificationService,
     ) { }
 
     login(userLogin: UserLogin): Observable<any> {
@@ -23,20 +25,27 @@ export class SessionService {
       return this.http.post<any>(route, userLogin);
     }
 
-    sessionIsActive(): boolean {
+    private sessionIsActive(): boolean {
       return localStorage.getItem('representationData') ? true : false;
     }
 
-    forceLogin(): void {
+    private forceLogin(): void {
       this.endSession();
       this.router.navigate(['/login']);
     }
 
-    startSession(token: string): void {
+    public startSession(token: string): void {
       localStorage.setItem('representationData', token);
     }
 
-    endSession(): void {
+    public endSession(): void {
       localStorage.removeItem('representationData');
+    }
+
+    public validateSession(): void {
+      if (!this.sessionIsActive()) {
+        this.notify.warning("Ops!!!", "Faça login para acessar a página.");
+        this.forceLogin();
+      }
     }
 }

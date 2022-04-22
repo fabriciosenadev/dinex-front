@@ -24,10 +24,7 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (!this.session.sessionIsActive()) {
-      this.notify.warning("Ops!!!", "Faça login para acessar a página.");
-      this.session.forceLogin();
-    }
+    this.session.validateSession();
 
     this.headerOption = headerOptionsEnum.app;
   }
