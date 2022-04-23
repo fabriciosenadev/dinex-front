@@ -34,4 +34,10 @@ export class LaunchComponent implements OnInit {
     this.headerOption = headerOptionsEnum.app;
   }
 
+  openCategoryPage(isRequiredOpenPage: boolean) {
+    if (isRequiredOpenPage) {
+      this.router.navigate(['app/category']);
+    }
+  }
+
 }

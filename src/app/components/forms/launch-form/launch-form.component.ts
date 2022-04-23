@@ -10,6 +10,7 @@ import { faInfo } from '@fortawesome/free-solid-svg-icons';
 export class LaunchFormComponent implements OnInit {
 
   @Output() newLaunch: EventEmitter<any> = new EventEmitter();
+  @Output() openCategoryPage: EventEmitter<boolean> = new EventEmitter(false);
 
   // Icons
   faInfo = faInfo;
@@ -79,5 +80,9 @@ export class LaunchFormComponent implements OnInit {
     bodyConfirmedHelp += '<h5>Como eu sei se ativei?</h5>';
     bodyConfirmedHelp += 'Quando o opção estiver selecionada, o botao ficará preenchido com verde.';
     return bodyConfirmedHelp;
+  }
+
+  goToCategoryPage(): void {
+    this.openCategoryPage.emit(true);
   }
 }
