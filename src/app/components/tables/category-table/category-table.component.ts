@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Category } from 'src/app/shared/models/category/category.model';
 
 @Component({
@@ -10,7 +10,7 @@ import { Category } from 'src/app/shared/models/category/category.model';
 export class CategoryTableComponent implements OnInit {
 
     //Icons
-    faTrash = faTrash;
+    faTrash = faTrashCan;
 
   @Input() categories: Category[] = [];
   @Output() onDeleteCategory: EventEmitter<Category> = new EventEmitter();
