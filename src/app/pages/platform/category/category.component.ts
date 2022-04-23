@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { categoryApplicableEnum } from 'src/app/shared/helpers/Enums/categoryApplicableEnum';
+import { CategoryEventTypeEnum } from 'src/app/shared/helpers/Enums/categoryEventTypeEnum';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { CategoryRegister } from 'src/app/shared/models/category/category-register.model';
 import { Category } from 'src/app/shared/models/category/category.model';
@@ -63,10 +64,10 @@ export class CategoryComponent implements OnInit {
   }
 
   handleEvent(event: any) {
-    if(event.type === 'delete') {
+    if(event.type === CategoryEventTypeEnum.delete) {
       this.onDelete(event.category);
     }
-    else if(event.type === 'reactive') {
+    else if(event.type === CategoryEventTypeEnum.reactive) {
       this.onReactive(event.category);
     }
   }

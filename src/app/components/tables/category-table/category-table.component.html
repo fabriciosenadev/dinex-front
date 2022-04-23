@@ -19,14 +19,14 @@
             </td>
             <td>
                 <div *ngIf="!isDeleted; else showDeleted">
-                    <span (click)="handleEvent(category, 'delete')" class="cursor-pointer" data-bs-toggle="tooltip"
+                    <span (click)="handleEvent(category, categoryEventTypeEnum.delete)" class="cursor-pointer" data-bs-toggle="tooltip"
                         data-bs-placement="top" title="Apagar categoria">
                         <fa-icon [icon]="faTrashCan"></fa-icon>
                     </span>
                 </div>
 
                 <ng-template #showDeleted>
-                    <span (click)="handleEvent(category, 'reactive')" class="cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top"
+                    <span (click)="handleEvent(category, categoryEventTypeEnum.reactive)" class="cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top"
                         title="Reativar categoria">
                         <fa-icon [icon]="faArrowRotateLeft"></fa-icon>
                     </span>
