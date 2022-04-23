@@ -48,4 +48,9 @@ export class SessionService {
         this.forceLogin();
       }
     }
+
+    public getToken() {
+      let token = localStorage.getItem('representationData');
+      return 'Bearer ' + token;
+    }
 }
