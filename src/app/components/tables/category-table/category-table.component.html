@@ -1,0 +1,23 @@
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="text-center">Categoria</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let category of categories; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td class="text-center">{{ category.name }}</td>
+            <td>
+                <span (click)="onDelete(category)" class="cursor-pointer">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+
+</table>

@@ -11,6 +11,8 @@ import { LoginFormComponent } from './forms/login-form/login-form.component';
 import { ActivationAccountFormComponent } from './forms/activation-account-form/activation-account-form.component';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
 import { LaunchFormComponent } from './forms/launch-form/launch-form.component';
+import { CategoryFormComponent } from './forms/category-form/category-form.component';
+import { CategoryTableComponent } from './tables/category-table/category-table.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
@@ -30,7 +32,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     LoginFormComponent,
     ActivationAccountFormComponent,
     SubMenuComponent,
-    LaunchFormComponent
+    LaunchFormComponent,
+    CategoryFormComponent,
+    CategoryTableComponent
   ],
   exports: [
     HeaderComponent,
@@ -39,7 +43,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     LoginFormComponent,
     ActivationAccountFormComponent,
     SubMenuComponent,
-    LaunchFormComponent
+    LaunchFormComponent,
+    CategoryFormComponent,
+    CategoryTableComponent
   ],
   imports: [
     CommonModule,

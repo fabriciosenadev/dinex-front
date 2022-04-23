@@ -1,0 +1,55 @@
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-row my-4">
+
+        <div class="form-group col-md">
+            <label for="categoryName">Nome da categoria</label>
+            <input type="text" formControlName="name" class="form-control" id="categoryName">
+        </div>
+
+        <!-- start validation -->
+        <div *ngIf="formData['name'].invalid && (formData['name'].dirty || formData['name'].touched)"
+            class="alert">
+
+            <small *ngIf="formData['name'].errors?.['required']" class="text-danger">
+                Informe um nome para categoria.
+            </small>
+            <small *ngIf="formData['name'].errors?.['minLength']" class="text-danger">
+                Informe um nome maior.
+            </small>
+
+        </div>
+        <!-- end validation -->
+    </div>
+
+    <div class="form-row my-4">
+
+        <div class="form-group col-md">
+            <label for="applicable">Aplicável</label>
+            <select id="applicable" name="applicable" class="form-control"
+                formControlName="applicable">
+                <option value="in">Entrada</option>
+                <option value="out">Saída</option>
+            </select>
+        </div>
+
+        <!-- start validation -->
+        <div *ngIf="formData['applicable'].invalid && (formData['applicable'].dirty || formData['applicable'].touched)"
+            class="alert">
+
+            <small *ngIf="formData['applicable'].errors?.['required']" class="text-danger">
+                Selecione a aplicabilidade da categoria.
+            </small>
+
+        </div>
+        <!-- end validation -->
+    </div>
+
+    <button type="submit" [disabled]="!categoryForm.valid" id="btn-activation"
+        class="btn bg-success text-white btn-hover form-control my-4">
+        <span>
+            Criar categoria
+        </span>
+    </button>
+
+</form>

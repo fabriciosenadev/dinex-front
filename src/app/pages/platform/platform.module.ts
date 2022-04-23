@@ -10,11 +10,13 @@ import { ComponentsModule } from 'src/app/components/components.module';
 
 import { MainComponent } from './main/main.component';
 import { LaunchComponent } from './launch/launch.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
     MainComponent,
-    LaunchComponent
+    LaunchComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,
