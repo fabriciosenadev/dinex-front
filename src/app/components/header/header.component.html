@@ -22,13 +22,13 @@
             <ul class="nav navbar-nav navbar-right mt-1">
                 <li class="nav-item">
                     <a *ngIf="headerOption === headerOptionsEnum.site" (click)="goLoginAction()"
-                        class="nav-link text-white text-center border rounded btn-hover py-2 px-3 cursos-pointer">Login</a>
+                        class="nav-link text-white text-center border rounded btn-hover py-2 px-3 cursor-pointer">Login</a>
 
                     <a *ngIf="headerOption === headerOptionsEnum.login" (click)="goRegisterAction()"
-                        class="nav-link text-white text-center border rounded btn-hover py-2 px-3 cursos-pointer">Cadastro</a>
+                        class="nav-link text-white text-center border rounded btn-hover py-2 px-3 cursor-pointer">Cadastro</a>
                     
                     <a *ngIf="headerOption === headerOptionsEnum.app" (click)="goLogoutAction()"
-                        class="nav-link text-white text-center border rounded btn-hover py-2 px-3 cursos-pointer">
+                        class="nav-link text-white text-center border rounded btn-hover py-2 px-3 cursor-pointer">
                         <!-- <strong>Sair</strong> -->
                         <fa-icon [icon]="faArrowRightFromBracket"></fa-icon>
                     </a>
