@@ -4,6 +4,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col" class="text-center">Categoria</th>
+            <th scope="col" class="text-center" *ngIf="isDeleted">Tipo</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -12,11 +13,24 @@
         <tr *ngFor="let category of categories; let i = index">
             <th scope="row">{{ i + 1 }}</th>
             <td class="text-center">{{ category.name }}</td>
+            <td class="text-center" *ngIf="isDeleted">
+                <span *ngIf="category.applicable.toLowerCase() === categoryApplicableEnum.in">Entrada</span>
+                <span *ngIf="category.applicable.toLowerCase() === categoryApplicableEnum.out">Saida</span>
+            </td>
             <td>
-                <span (click)="onDelete(category)" class="cursor-pointer" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Apagar categoria">
-                    <fa-icon [icon]="faTrash"></fa-icon>
-                </span>
+                <div *ngIf="!isDeleted; else showDeleted">
+                    <span (click)="handleEvent(category, 'delete')" class="cursor-pointer" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Apagar categoria">
+                        <fa-icon [icon]="faTrashCan"></fa-icon>
+                    </span>
+                </div>
+
+                <ng-template #showDeleted>
+                    <span (click)="handleEvent(category, 'reactive')" class="cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Reativar categoria">
+                        <fa-icon [icon]="faArrowRotateLeft"></fa-icon>
+                    </span>
+                </ng-template>
             </td>
         </tr>
     </tbody>

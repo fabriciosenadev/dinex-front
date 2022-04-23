@@ -13,7 +13,7 @@ export class CategoryService {
 
   apiUrl = environment.apiUrl;
 
-  headers = { 
+  headers = {
     Authorization: this.session.getToken()
   }
 
@@ -22,27 +22,39 @@ export class CategoryService {
     private session: SessionService,
     ) { }
 
-  list() : Observable<Category[]> {
+  list(): Observable<Category[]> {
     let route = `${this.apiUrl}/categories`;
 
     return this.http.get<Category[]>(route, { headers: this.headers });
   }
 
-  get(id: number) : Observable<Category> {
+  listDeleted(): Observable<Category[]> {
+    let route = `${this.apiUrl}/categories/deleted`;
+
+    return this.http.get<Category[]>(route, { headers: this.headers });
+  }
+
+  get(id: number): Observable<Category> {
     let route = `${this.apiUrl}/categories/${id}`;
 
     return this.http.get<Category>(route, { headers: this.headers });
   }
 
-  create(category: CategoryRegister) : Observable<Category> {
+  create(category: CategoryRegister): Observable<Category> {
     let route = `${this.apiUrl}/categories`;
 
     return this.http.post<Category>(route, category, { headers: this.headers });
   }
 
-  delete(id: number) : Observable<Category> {
+  delete(id: number): Observable<Category> {
     let route = `${this.apiUrl}/categories/${id}`;
 
     return this.http.delete<Category>(route, { headers: this.headers });
+  }
+
+  reactive(id: number): Observable<Category> {
+    let route = `${this.apiUrl}/categories/${id}/reactive`;
+
+    return this.http.put<Category>(route, null, { headers: this.headers });
   }
 }

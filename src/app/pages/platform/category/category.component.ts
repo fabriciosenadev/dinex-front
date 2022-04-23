@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { categoryApplicableEnum } from 'src/app/shared/helpers/Enums/categoryApplicableEnum';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { CategoryRegister } from 'src/app/shared/models/category/category-register.model';
@@ -15,12 +13,14 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
+
   isToShowIn: boolean = true;
 
   categoriesIn: Category[] = [];
   categoriesOut: Category[] = [];
+  categoriesDeleted: Category[] = [];
 
-  deleteCategoryForm: FormGroup = new FormGroup({});
+  categoryApplicableEnum = categoryApplicableEnum;
 
   set headerOption(value: headerOptionsEnum) {
     this.headerService.headerOption = value;
@@ -36,6 +36,7 @@ export class CategoryComponent implements OnInit {
     this.headerOption = headerOptionsEnum.app;
 
     this.listCategories();
+    this.listDeletedCategories();
   }
 
   listCategories() {
@@ -48,6 +49,26 @@ export class CategoryComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  listDeletedCategories() {
+    this.categoryService.listDeleted().subscribe(
+      (categories: Category[]) => {
+        this.categoriesDeleted = categories;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  handleEvent(event: any) {
+    if(event.type === 'delete') {
+      this.onDelete(event.category);
+    }
+    else if(event.type === 'reactive') {
+      this.onReactive(event.category);
+    }
   }
 
   showIn() {
@@ -82,16 +103,12 @@ export class CategoryComponent implements OnInit {
       btnOut?.setAttribute('class', classOut + ' active');
   }
 
-  handleCategoryForm(): void {
-    this.deleteCategoryForm = new FormGroup({
-      id: new FormControl('', [])
-    });
-  }
-
   onCreate(category: CategoryRegister): void {
    this.categoryService.create(category).subscribe(
       (category: Category) => {
         this.listCategories();
+        this.listDeletedCategories();
+        
         let title = 'Sucesso';
         let message = 'Categoria criada com sucesso!';
         this.notify.success(title, message);
@@ -105,6 +122,8 @@ export class CategoryComponent implements OnInit {
     this.categoryService.delete(category.id).subscribe(
       (response) => {
         this.listCategories();
+        this.listDeletedCategories();
+
         let title = 'Sucesso';
         let message = 'Categoria excluída com sucesso!';
         this.notify.success(title, message);
@@ -114,5 +133,23 @@ export class CategoryComponent implements OnInit {
       }
     );
   }
+
+  onReactive(category: Category) {   
+    this.categoryService.reactive(category.id).subscribe(
+      (response) => {
+        this.listCategories();
+        this.listDeletedCategories();
+
+        let title = 'Sucesso';
+        let message = 'Categoria reativada com sucesso!';
+        this.notify.success(title, message);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+
 
 }
