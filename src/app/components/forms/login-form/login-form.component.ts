@@ -58,7 +58,11 @@ export class LoginFormComponent implements OnInit {
     setInterval(() => {
       this.loginForm.reset();
       this.loading = false;      
-    }, 5000);
+    }, 3500);
+  }
+
+  clearEmailSpace(): void {
+    this.loginForm.setValue({email: this.loginForm.value.email.trim(), password: this.loginForm.value.password });
   }
 
 }

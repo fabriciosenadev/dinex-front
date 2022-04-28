@@ -32,8 +32,13 @@ export class SiteComponent implements OnInit {
   }
 
   startUserRegister(): void {
+    this.clearEmailSpace();
     this.userEmail = this.email;
     this.router.navigate(['/register']);
+  }
+
+  clearEmailSpace(): void {
+    this.email = this.email.trim();
   }
 
 }

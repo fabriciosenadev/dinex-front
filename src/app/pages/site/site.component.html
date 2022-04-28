@@ -14,7 +14,7 @@
                 <form>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Digite seu e-mail."
-                            aria-label="Recipient's username" aria-describedby="btn-email" name="email" [(ngModel)]="email">
+                            aria-label="Recipient's username" aria-describedby="btn-email" name="email" [(ngModel)]="email" (input)="clearEmailSpace()">
 
                         <div class="input-group-append">
                             <button class="btn bg-success btn-hover btn-register" id="btn-email" (click)="startUserRegister()">

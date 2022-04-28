@@ -26,13 +26,12 @@
 
         <div class="form-group col-md">
             <label for="inputEmail">E-mail</label>
-            <input type="text" formControlName="email" class="form-control"
-                autocomplete="username">
+            <input type="text" formControlName="email" class="form-control" autocomplete="username"
+                (input)="clearEmailSpace()">
         </div>
 
         <!-- start validation -->
-        <div *ngIf="formData['email'].invalid && (formData['email'].dirty || formData['email'].touched)"
-            class="alert">
+        <div *ngIf="formData['email'].invalid && (formData['email'].dirty || formData['email'].touched)" class="alert">
 
             <small *ngIf="formData['email'].errors?.['required']" class="text-danger">
                 Informe seu melhor E-mail.
@@ -49,8 +48,7 @@
 
         <div class="form-group col-md">
             <label for="inputPassword">Senha (minimo 8 caracteres)</label>
-            <input type="password" formControlName="password" class="form-control"
-                autocomplete="new-password">
+            <input type="password" formControlName="password" class="form-control" autocomplete="new-password">
         </div>
 
         <!-- start validation -->
@@ -72,8 +70,7 @@
 
         <div class="form-group col-md">
             <label for="inputVerify">Repita a senha</label>
-            <input type="password" formControlName="confirmPassword" class="form-control"
-                autocomplete="new-password">
+            <input type="password" formControlName="confirmPassword" class="form-control" autocomplete="new-password">
         </div>
 
         <!-- start validation -->
@@ -83,8 +80,7 @@
             <small *ngIf="formData['confirmPassword'].errors?.['required']" class="text-danger">
                 Informe novamente sua senha.
             </small>
-            <small *ngIf="formData['confirmPassword'].errors?.['minlength']"
-                class="text-danger">
+            <small *ngIf="formData['confirmPassword'].errors?.['minlength']" class="text-danger">
                 Sua senha deve ter no mínimo 8 caracteres.
             </small>
             <small *ngIf="formData['confirmPassword'].errors?.['matching']" class="text-danger">

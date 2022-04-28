@@ -4,12 +4,12 @@
 
         <div class="form-group col-md">
             <label for="inputEmail">E-mail</label>
-            <input type="text" formControlName="email" class="form-control" autocomplete="username">
+            <input type="text" formControlName="email" class="form-control" autocomplete="username" id="username"
+                (input)="clearEmailSpace()">
         </div>
 
         <!-- start validation -->
-        <div *ngIf="formData['email'].invalid && (formData['email'].dirty || formData['email'].touched)"
-            class="alert">
+        <div *ngIf="formData['email'].invalid && (formData['email'].dirty || formData['email'].touched)" class="alert">
 
             <small *ngIf="formData['email'].errors?.['required']" class="text-danger">
                 Informe seu e-mail cadastrado.
@@ -26,8 +26,7 @@
 
         <div class="form-group col-md">
             <label for="inputPassword">Senha</label>
-            <input type="password" formControlName="password" class="form-control"
-                autocomplete="new-password">
+            <input type="password" formControlName="password" class="form-control" autocomplete="new-password">
         </div>
 
         <!-- start validation -->

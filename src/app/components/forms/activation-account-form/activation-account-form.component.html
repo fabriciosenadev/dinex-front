@@ -4,13 +4,12 @@
 
         <div class="form-group col-md">
             <label for="inputPassword">Informe seu e-mail para validar a ativacao</label>
-            <input type="text" formControlName="email" class="form-control"
-                autocomplete="new-password">
+            <input type="text" formControlName="email" class="form-control" autocomplete="username"
+                (input)="clearEmailSpace()">
         </div>
 
         <!-- start validation -->
-        <div *ngIf="formData['email'].invalid && (formData['email'].dirty || formData['email'].touched)"
-            class="alert">
+        <div *ngIf="formData['email'].invalid && (formData['email'].dirty || formData['email'].touched)" class="alert">
 
             <small *ngIf="formData['email'].errors?.['required']" class="text-danger">
                 Informe o e-mail cadastrado.

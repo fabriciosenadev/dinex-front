@@ -95,4 +95,13 @@ export class RegisterFormComponent implements OnInit {
       this.loading = false;      
     }, 10000);
   }
+
+  clearEmailSpace(): void {
+    this.registerForm.setValue({
+      fullName: this.registerForm.value.fullName,
+      email: this.registerForm.value.email.trim(),
+      password: this.registerForm.value.password,
+      confirmPassword: this.registerForm.value.confirmPassword
+    });
+  }
 }
