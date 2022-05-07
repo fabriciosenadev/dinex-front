@@ -44,6 +44,7 @@ export class CategoryFormComponent implements OnInit {
   onSubmit(): void {
     if (this.categoryForm.valid) {
       this.newCategory.emit(this.categoryForm.value);
+      this.categoryForm.reset();
     }
   }
 
