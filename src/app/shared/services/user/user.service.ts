@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 
 import { UserRegister } from '../../models/user/user-register.model';
 import { User } from '../../models/user/user.model';
+import { SessionService } from '../session/session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ import { User } from '../../models/user/user.model';
 export class UserService {
   
   apiUrl = environment.apiUrl;
+
+  headers = {
+    Authorization: this.session.getToken()
+  }
 
   private _userRegister = new BehaviorSubject<UserRegister>({
     fullName: '',
@@ -28,11 +33,21 @@ export class UserService {
     this._userRegister.next(userRegister);
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private session: SessionService,
+    ) { }
 
   create(userRegister: UserRegister): Observable<User> {
     let route = `${this.apiUrl}/users`;
     
     return this.http.post<User>(route, userRegister);
   }
+
+  get(): Observable<User> {
+    let route = `${this.apiUrl}/users`;
+
+    return this.http.get<User>(route, { headers: this.headers });
+  }
+
 }

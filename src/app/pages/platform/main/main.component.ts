@@ -4,6 +4,7 @@ import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnu
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { SessionService } from 'src/app/shared/services/session/session.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
   selector: 'app-main',
@@ -11,6 +12,8 @@ import { SessionService } from 'src/app/shared/services/session/session.service'
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+
+  userFirstName: string = '';
 
   set headerOption(value: headerOptionsEnum) {
     this.headerService.headerOption = value;
@@ -21,12 +24,27 @@ export class MainComponent implements OnInit {
     private notify: NotificationService,
     private router: Router,
     private headerService: HeaderService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
     this.session.validateSession();
 
     this.headerOption = headerOptionsEnum.app;
+    this.getUser();
+  }
+
+  getUser(): void {
+    this.userService.get().subscribe(
+      (user) => {
+        this.userFirstName = user.fullName.split(' ')[0];
+      },
+      (err) => {
+        let title = 'Error';
+        let message = 'Error ao obter usuario';
+        this.notify.error(title, message);
+      }
+    );
   }
 
 }
