@@ -17,7 +17,11 @@
             <div class="row mb-5 px-3">
                 <div class="rounded bg-white py-3 my-4">
 
-                    <app-launch-form (openCategoryPage)="openCategoryPage($event)"></app-launch-form>
+                    <app-launch-form 
+                        [categories]="categories"
+                        (openCategoryPage)="openCategoryPage($event)"
+                        (newLaunch)="createLaunch($event)">
+                    </app-launch-form>
 
                 </div>
 
