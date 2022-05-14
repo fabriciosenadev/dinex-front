@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="launchForm" (ngSubmit)="onSubmit()">
     <div class="form-row">
 
         <div class="form-group mb-3">
@@ -8,35 +8,66 @@
                     Tipo de lançamento
                 </label>
 
-                <select id="dropLaunchType" name="launchType" class="form-control">
+                <select id="dropLaunchType" name="launchType" class="form-control" formControlName="launchType"
+                    (change)="roleForm()">
                     <option value="" selected disabled hidden></option>
                     <option value="in">Entrada</option>
                     <option value="out">Saida</option>
                 </select>
 
             </div>
+
+            <!-- start validation -->
+            <div *ngIf="formData['launchType'].invalid && (formData['launchType'].dirty || formData['launchType'].touched)"
+                class="alert">
+
+                <small *ngIf="formData['launchType'].errors?.['required']" class="text-danger">
+                    Selecione um tipo de lançamento.
+                </small>
+
+            </div>
+            <!-- end validation -->
+
         </div>
 
         <div class="form-group mb-3">
             <div class="col-sm">
 
                 <label for="inputDate">Data</label>
-                <input type="date" id="inputDate" name="date" class="form-control">
+                <input type="date" id="inputDate" name="date" class="form-control" formControlName="date">
 
             </div>
+
+            <!-- start validation -->
+            <div *ngIf="formData['date'].invalid && (formData['date'].dirty || formData['date'].touched)" class="alert">
+
+                <small *ngIf="formData['date'].errors?.['required']" class="text-danger">
+                    Informe uma data.
+                </small>
+
+            </div>
+            <!-- end validation -->
         </div>
 
         <div class="form-group mb-3">
             <div class="col-sm">
 
-                <label for="inputCategory">
+                <label class="mb-1" for="inputCategory">
                     Categoria
                 </label>
-                <select id="dropCategory" name="category" class="form-control">
-                    <option value=""></option>
-                    <!-- <option *ngFor="let item of categories.data" [ngValue]="item.id">
-                        {{item.category}}
-                    </option> -->
+
+                <select id="dropCategory" name="categoryId" class="form-control" formControlName="categoryId">
+
+                    <option *ngIf="selectedCategories.length === 0" class="bg-success" value="" selected disabled
+                        hidden>
+                        Selecione primeiro o tipo de lançamento
+                    </option>
+                    <option *ngIf="selectedCategories.length === 0" value="" disabled>carregando...</option>
+                    <option *ngIf="selectedCategories.length > 0" value="" selected disabled hidden>
+                    </option>
+                    <option *ngFor="let category of selectedCategories" [ngValue]="category.id">
+                        {{category.name}}
+                    </option>
                 </select>
 
             </div>
@@ -45,13 +76,26 @@
                 <a class="btn bg-success text-white btn-hover" (click)="goToCategoryPage()">Criar categorias</a>
 
             </div>
+
+            <!-- start validation -->
+            <div *ngIf="formData['categoryId'].invalid && (formData['categoryId'].dirty || formData['categoryId'].touched)"
+                class="alert">
+
+                <small *ngIf="formData['categoryId'].errors?.['required']" class="text-danger">
+                    Selecione uma categoria.
+                </small>
+
+            </div>
+            <!-- end validation -->
+
         </div>
 
         <div class="form-group mb-3">
             <div class="col-sm">
 
                 <label for="inputDescription">Descrição</label>
-                <input type="text" id="inputDescription" name="description" class="form-control">
+                <input type="text" id="inputDescription" name="description" class="form-control"
+                    formControlName="description">
 
             </div>
         </div>
@@ -64,16 +108,77 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">R$</div>
                     </div>
-                    <input name="value" placeholder="Ex: 1,57" class="form-control" id="inputValue" />
+                    <input name="amount" placeholder="Ex: 1,57" class="form-control" id="inputAmount"
+                        formControlName="amount" currencyMask />
                 </div>
 
             </div>
+
+            <!-- start validation -->
+            <div *ngIf="formData['amount'].invalid && (formData['amount'].dirty || formData['amount'].touched)"
+                class="alert">
+
+                <small *ngIf="formData['amount'].errors?.['required']" class="text-danger">
+                    Informe a quantia do lançamento.
+                </small>
+                <small *ngIf="formData['amount'].errors?.['min']" class="text-danger">
+                    Informe a quantia maior que R$0,01.
+                </small>
+
+            </div>
+            <!-- end validation -->
+
         </div>
 
         <div class="form-group mb-3">
             <div class="col-sm">
 
-                <input type="checkbox" class="btn-check" id="btn-check-confirmed" autocomplete="off">
+                <label for="launchType">
+                    Tipo de pagamento
+                </label>
+
+                <select id="dropLaunchType" name="payMethod" class="form-control" formControlName="payMethod">
+                    <option *ngIf="!showPayMethods" class="bg-success" value="" selected disabled hidden>
+                        Selecione o tipo de lançamento saída
+                    </option>
+                    <option *ngIf="!showPayMethods" value="" disabled>carregando...</option>
+
+                    <option *ngIf="showPayMethods" value="{{ launchPayMethod.cash }}">Dinheiro</option>
+                    <option *ngIf="showPayMethods" value="{{ launchPayMethod.credit }}">Crédito</option>
+                    <option *ngIf="showPayMethods" value="{{ launchPayMethod.debit }}">Débito</option>
+                </select>
+
+                <!-- start validation -->
+                <div *ngIf="showPayMethods && (formData['payMethod'].dirty || formData['payMethod'].touched)"
+                    class="alert">
+
+                    <small *ngIf="showPayMethods && formData['payMethod'].value === ''" class="text-danger">
+                        Informe o tipo de pagamento.
+                    </small>
+
+                </div>
+                <!-- end validation -->
+
+            </div>
+
+            <!-- start validation -->
+            <div *ngIf="formData['launchType'].invalid && (formData['launchType'].dirty || formData['launchType'].touched)"
+                class="alert">
+
+                <small *ngIf="formData['launchType'].errors?.['required']" class="text-danger">
+                    Selecione um tipo de lançamento.
+                </small>
+
+            </div>
+            <!-- end validation -->
+
+        </div>
+
+        <div class="form-group mb-3">
+            <div class="col-sm">
+
+                <input type="checkbox" class="btn-check" id="btn-check-confirmed" autocomplete="off"
+                    formControlName="isConfirmed">
                 <label class="btn btn-outline-success" for="btn-check-confirmed">
                     Marcar como efetivado
                 </label>
@@ -88,7 +193,8 @@
         <div class="form-group mb-3">
             <div class="col-sm">
 
-                <input type="checkbox" class="btn-check" id="btn-check-scheduling" autocomplete="off">
+                <input type="checkbox" class="btn-check" id="btn-check-scheduling" autocomplete="off"
+                    formControlName="isScheduled">
                 <label class="btn btn-outline-success" for="btn-check-scheduling">
                     Agendar para o proximo mês
                 </label>
@@ -103,7 +209,9 @@
         <div class="form-group mb-3">
             <div class="col-sm">
 
-                <button type="submit" class="btn bg-success text-white btn-hover" id="btnCreateLaunch">
+                <button
+                    [disabled]="!launchForm.valid || showPayMethods && formData['payMethod'].value === ''"
+                    type="submit" class="btn bg-success text-white btn-hover" id="btnCreateLaunch">
                     Criar lançamento
                 </button>
 
