@@ -49,6 +49,6 @@ export class ActivationAccountFormComponent implements OnInit {
   }
 
   clearEmailSpace(): void {
-    this.activationForm.setValue({email: this.activationForm.value.email.trim(), password: this.activationForm.value.password });
+    this.activationForm.setValue({email: this.activationForm.value.email.trim() });
   }
 }
