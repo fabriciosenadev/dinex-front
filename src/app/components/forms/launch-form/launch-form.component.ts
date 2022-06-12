@@ -91,9 +91,11 @@ export class LaunchFormComponent implements OnInit {
   }
 
   onSubmit() {
+    let launchTypeIsOut = this.launchForm.value.launchType === 'out';
+
     let newLaunchRegister: LaunchAndPayMethodRegister = {
       launch: this.getLaunchRegister(),
-      payMethodFromLaunch: this.launchForm.value.payMethod ? this.getPayMethod() : null,
+      payMethodFromLaunch: this.launchForm.value.payMethod && launchTypeIsOut ? this.getPayMethod() : null,
     };
 
     this.newLaunch.emit(newLaunchRegister);
