@@ -13,10 +13,6 @@ export class CategoryService {
 
   apiUrl = environment.apiUrl;
 
-  headers = {
-    Authorization: this.session.getToken()
-  }
-
   constructor(
     private http: HttpClient,
     private session: SessionService,
