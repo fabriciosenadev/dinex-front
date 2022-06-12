@@ -31,7 +31,9 @@ export class MainComponent implements OnInit {
     this.session.validateSession();
 
     this.headerOption = headerOptionsEnum.app;
-    this.getUser();
+    setInterval(() => {
+      this.getUser();
+    }, 1000);
   }
 
   getUser(): void {
@@ -40,11 +42,16 @@ export class MainComponent implements OnInit {
         this.userFirstName = user.fullName.split(' ')[0];
       },
       (err) => {
+        console.log(err);
         let title = 'Error';
         let message = 'Error ao obter usuario';
         this.notify.error(title, message);
       }
     );
+  }
+
+  showResume() {
+
   }
 
 }
