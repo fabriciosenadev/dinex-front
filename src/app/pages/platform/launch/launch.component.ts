@@ -64,8 +64,9 @@ export class LaunchComponent implements OnInit {
 
   createLaunch(newLaunch: LaunchAndPayMethodRegister): void {
     this.launchService.create(newLaunch).subscribe(
-      (launch: LaunchAndPayMethod) => {        
-        this.notify.success('Sucesso','Lançamento criado!');
+      (result: LaunchAndPayMethod) => {
+        if (result.launch.id)
+          this.notify.success('Sucesso', 'Lançamento criado!');
       },
       (error) => {
         console.log(error);
