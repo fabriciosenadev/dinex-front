@@ -33,7 +33,7 @@ export class MainComponent implements OnInit {
     this.headerOption = headerOptionsEnum.app;
     setInterval(() => {
       this.getUser();
-    }, 1000);
+    }, 300);
   }
 
   getUser(): void {
