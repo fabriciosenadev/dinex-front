@@ -20,41 +20,85 @@ export class CategoryService {
   constructor(
     private http: HttpClient,
     private session: SessionService,
-    ) { }
+  ) { }
 
   list(): Observable<Category[]> {
     let route = `${this.apiUrl}/categories`;
 
-    return this.http.get<Category[]>(route, { headers: this.headers });
+    return this.http.get<Category[]>(
+      route,
+      {
+        headers: {
+          Authorization: this.session.getToken()
+        }
+      }
+    );
   }
 
   listDeleted(): Observable<Category[]> {
     let route = `${this.apiUrl}/categories/deleted`;
 
-    return this.http.get<Category[]>(route, { headers: this.headers });
+    return this.http.get<Category[]>(
+      route,
+      {
+        headers: {
+          Authorization: this.session.getToken()
+        }
+      }
+    );
   }
 
   get(id: number): Observable<Category> {
     let route = `${this.apiUrl}/categories/${id}`;
 
-    return this.http.get<Category>(route, { headers: this.headers });
+    return this.http.get<Category>(
+      route,
+      {
+        headers: {
+          Authorization: this.session.getToken()
+        }
+      }
+    );
   }
 
   create(category: CategoryRegister): Observable<Category> {
     let route = `${this.apiUrl}/categories`;
 
-    return this.http.post<Category>(route, category, { headers: this.headers });
+    return this.http.post<Category>(
+      route,
+      category,
+      {
+        headers: {
+          Authorization: this.session.getToken()
+        }
+      }
+    );
   }
 
   delete(id: number): Observable<Category> {
     let route = `${this.apiUrl}/categories/${id}`;
 
-    return this.http.delete<Category>(route, { headers: this.headers });
+    return this.http.delete<Category>(
+      route,
+      {
+        headers: {
+          Authorization: this.session.getToken()
+        }
+      }
+    );
   }
 
   reactive(id: number): Observable<Category> {
     let route = `${this.apiUrl}/categories/${id}/reactive`;
 
-    return this.http.put<Category>(route, null, { headers: this.headers });
+    return this.http.put<Category>(
+      route,
+      null,
+      {
+        headers: {
+          Authorization: this.session.getToken()
+        }
+      }
+    );
   }
 }

@@ -15,10 +15,6 @@ export class UserService {
   
   apiUrl = environment.apiUrl;
 
-  headers = {
-    Authorization: this.session.getToken()
-  }
-
   private _userRegister = new BehaviorSubject<UserRegister>({
     fullName: '',
     email: '',
@@ -46,8 +42,14 @@ export class UserService {
 
   get(): Observable<User> {
     let route = `${this.apiUrl}/users`;
-
-    return this.http.get<User>(route, { headers: this.headers });
+    return this.http.get<User>(
+        route, 
+        { 
+          headers: {
+            Authorization: this.session.getToken()
+          } 
+        }
+      );
   }
 
 }

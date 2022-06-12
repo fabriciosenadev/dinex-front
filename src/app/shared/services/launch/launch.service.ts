@@ -29,7 +29,9 @@ export class LaunchService {
       route,
       launchAndPayMethod,
       {
-        headers: this.headers
+        headers: {
+          Authorization: this.session.getToken()
+        }
       }
     );
   }
