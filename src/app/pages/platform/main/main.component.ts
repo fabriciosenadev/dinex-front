@@ -31,9 +31,9 @@ export class MainComponent implements OnInit {
     this.session.validateSession();
 
     this.headerOption = headerOptionsEnum.app;
-    setInterval(() => {
+    setTimeout(() => {
       this.getUser();
-    }, 50);
+    }, 100);
   }
 
   getUser(): void {

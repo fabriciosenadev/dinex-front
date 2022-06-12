@@ -43,7 +43,7 @@ export class ActivationAccountFormComponent implements OnInit {
       this.registeredEmail.emit(this.activationForm.value.email);
     }
 
-    setInterval(() => {
+    setTimeout(() => {
       this.activationForm.reset();
     }, 5000);
   }

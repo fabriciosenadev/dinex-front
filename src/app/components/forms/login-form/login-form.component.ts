@@ -55,7 +55,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   resetForm(): void {
-    setInterval(() => {
+    setTimeout(() => {
       this.loginForm.reset();
       this.loading = false;      
     }, 3500);
