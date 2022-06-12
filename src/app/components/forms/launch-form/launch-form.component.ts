@@ -99,6 +99,7 @@ export class LaunchFormComponent implements OnInit {
     };
 
     this.newLaunch.emit(newLaunchRegister);
+    this.launchForm.reset();
   }
 
   roleForm(): void {
