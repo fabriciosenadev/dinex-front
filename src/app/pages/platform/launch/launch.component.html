@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <div class="row mb-5 px-3">
+            <div class="row px-3">
                 <div class="rounded bg-white py-3 my-4">
 
                     <app-launch-form 
@@ -22,6 +22,18 @@
                         (openCategoryPage)="openCategoryPage($event)"
                         (newLaunch)="createLaunch($event)">
                     </app-launch-form>
+
+                </div>
+
+            </div>
+
+            <div class="row mb-2 px-3">
+                <div *ngIf="launches.length > 0" class="rounded bg-white py-3 my-4">
+
+                    <h4>Ultimos lançamentos</h4>
+
+                    <app-launch-table [launches]="launches">
+                    </app-launch-table>
 
                 </div>
 

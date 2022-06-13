@@ -1,0 +1,29 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Data</th>
+            <th scope="col">Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let launch of launches">
+            <th scope="row" [ngClass]="launch.applicable?.toLowerCase() === 'out' ? 'bg-red':'bg-green'">
+                <a (click)="viewLaunch(launch.id)" class="btn btn-sm">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                </a>
+            </th>
+            <td [ngClass]="launch.applicable?.toLowerCase() === 'out' ? 'bg-red':'bg-green'">
+                {{ launch.date | date:'shortDate':'UTC-3':'pt-BR' }}
+            </td>
+            <td [ngClass]="launch.applicable?.toLowerCase() === 'out' ? 'bg-red':'bg-green'">
+                {{ launch.amount | currency:'BRL' }}
+            </td>
+            <td [ngClass]="launch.applicable?.toLowerCase() === 'out' ? 'bg-red':'bg-green'">
+                <a (click)="deleteLaunch(launch.id)" class="btn btn-sm">
+                    <fa-icon [icon]="faTrashCan"></fa-icon>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

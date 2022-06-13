@@ -11,4 +11,5 @@ export interface Launch {
     createdAt: string;
     updatedAt: string | null;
     deletedAt: string | null;
+    applicable: string | null;
 }
