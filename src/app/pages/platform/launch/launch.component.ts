@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faPencil, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { Category } from 'src/app/shared/models/category/category.model';
 import { LaunchAndPayMethod } from 'src/app/shared/models/launch/launch-and-pay-method.model';
+import { Launch } from 'src/app/shared/models/launch/launch.model';
 import { LaunchAndPayMethodRegister } from 'src/app/shared/models/launch/register/launch-and-pay-method-register.model';
-import { launchRegister } from 'src/app/shared/models/launch/register/launch-register.model';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { LaunchService } from 'src/app/shared/services/launch/launch.service';
@@ -18,12 +17,10 @@ import { SessionService } from 'src/app/shared/services/session/session.service'
   styleUrls: ['./launch.component.css']
 })
 export class LaunchComponent implements OnInit {
-
-  //Icons
-  faPencil = faPencil;
-  faSearch = faSearch;
+  // TODO: migrar este componente para o módulo de lançamentos
 
   categories: Category[] = [];
+  launches: Launch[] = [];
 
   set headerOption(value: headerOptionsEnum) {
     this.headerService.headerOption = value;
@@ -44,6 +41,7 @@ export class LaunchComponent implements OnInit {
     this.headerOption = headerOptionsEnum.app;
 
     this.listCategories();
+    this.listLastLaunches();
   }
 
   openCategoryPage(isRequiredOpenPage: boolean): void {
@@ -65,8 +63,21 @@ export class LaunchComponent implements OnInit {
   createLaunch(newLaunch: LaunchAndPayMethodRegister): void {
     this.launchService.create(newLaunch).subscribe(
       (result: LaunchAndPayMethod) => {
-        if (result.launch.id)
+        if (result.launch.id) {
           this.notify.success('Sucesso', 'Lançamento criado!');
+          this.listLastLaunches();
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  listLastLaunches(): void {
+    this.launchService.listLastLaunches().subscribe(
+      (launches: Launch[]) => {
+        this.launches = launches;
       },
       (error) => {
         console.log(error);
