@@ -13,6 +13,7 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
 import { LaunchFormComponent } from './forms/launch-form/launch-form.component';
 import { CategoryFormComponent } from './forms/category-form/category-form.component';
 import { CategoryTableComponent } from './tables/category-table/category-table.component';
+import { LaunchTableComponent } from './tables/launch-table/launch-table.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
@@ -34,7 +35,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     SubMenuComponent,
     LaunchFormComponent,
     CategoryFormComponent,
-    CategoryTableComponent
+    CategoryTableComponent,
+    LaunchTableComponent
   ],
   exports: [
     HeaderComponent,
@@ -45,7 +47,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     SubMenuComponent,
     LaunchFormComponent,
     CategoryFormComponent,
-    CategoryTableComponent
+    CategoryTableComponent,
+    LaunchTableComponent
   ],
   imports: [
     CommonModule,
