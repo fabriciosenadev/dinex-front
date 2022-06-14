@@ -49,9 +49,4 @@ export class MainComponent implements OnInit {
       }
     );
   }
-
-  showResume() {
-
-  }
-
 }

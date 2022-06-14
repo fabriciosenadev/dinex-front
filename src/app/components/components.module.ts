@@ -14,6 +14,8 @@ import { LaunchFormComponent } from './forms/launch-form/launch-form.component';
 import { CategoryFormComponent } from './forms/category-form/category-form.component';
 import { CategoryTableComponent } from './tables/category-table/category-table.component';
 import { LaunchTableComponent } from './tables/launch-table/launch-table.component';
+import { MonthGridComponent } from './month/month-grid/month-grid.component';
+import { MonthCardComponent } from './month/month-card/month-card.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
@@ -36,7 +38,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     LaunchFormComponent,
     CategoryFormComponent,
     CategoryTableComponent,
-    LaunchTableComponent
+    LaunchTableComponent,
+    MonthGridComponent,
+    MonthCardComponent
   ],
   exports: [
     HeaderComponent,
@@ -48,7 +52,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     LaunchFormComponent,
     CategoryFormComponent,
     CategoryTableComponent,
-    LaunchTableComponent
+    LaunchTableComponent,
+    MonthGridComponent,
+    MonthCardComponent
   ],
   imports: [
     CommonModule,
