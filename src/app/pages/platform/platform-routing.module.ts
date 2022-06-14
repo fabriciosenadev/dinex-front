@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './category/category.component';
-import { LaunchComponent } from './launch/launch.component';
 import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
@@ -10,13 +9,13 @@ const routes: Routes = [
     component: MainComponent
   },
   {
-    path: 'launch',
-    component: LaunchComponent
-  },
-  {
     path: 'category',
     component: CategoryComponent
-  }
+  },
+  {
+    path: 'launching',
+    loadChildren: () => import('./launching/launching.module').then(m => m.LaunchingModule)
+  },
 ];
 
 @NgModule({

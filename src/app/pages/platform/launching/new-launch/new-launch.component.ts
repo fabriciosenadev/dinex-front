@@ -12,12 +12,11 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
 import { SessionService } from 'src/app/shared/services/session/session.service';
 
 @Component({
-  selector: 'app-launch',
-  templateUrl: './launch.component.html',
-  styleUrls: ['./launch.component.css']
+  selector: 'app-new-launch',
+  templateUrl: './new-launch.component.html',
+  styleUrls: ['./new-launch.component.css']
 })
-export class LaunchComponent implements OnInit {
-  // TODO: migrar este componente para o módulo de lançamentos
+export class NewLaunchComponent implements OnInit {
 
   categories: Category[] = [];
   launches: Launch[] = [];
@@ -84,5 +83,5 @@ export class LaunchComponent implements OnInit {
       }
     );
   }
-
+ 
 }

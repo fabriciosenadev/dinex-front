@@ -21,7 +21,7 @@ export class SubMenuComponent implements OnInit {
   }
 
   goToLaunch() {
-    this.router.navigate(['/app/launch']);
+    this.router.navigate(['/app/launching/new']);
   }
 
 }
