@@ -16,6 +16,8 @@ import { CategoryTableComponent } from './tables/category-table/category-table.c
 import { LaunchTableComponent } from './tables/launch-table/launch-table.component';
 import { MonthGridComponent } from './month/month-grid/month-grid.component';
 import { MonthCardComponent } from './month/month-card/month-card.component';
+import { TestModalComponent } from './test-modal/test-modal.component';
+import { defaultSimpleModalOptions, SimpleModalModule } from 'ngx-simple-modal';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
@@ -40,7 +42,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     CategoryTableComponent,
     LaunchTableComponent,
     MonthGridComponent,
-    MonthCardComponent
+    MonthCardComponent,
+    TestModalComponent
   ],
   exports: [
     HeaderComponent,
@@ -54,18 +57,24 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     CategoryTableComponent,
     LaunchTableComponent,
     MonthGridComponent,
-    MonthCardComponent
+    MonthCardComponent,
+    TestModalComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    SimpleModalModule
+  ],
+  //Don't forget to add the component to entryComponents section
+  entryComponents: [
+    TestModalComponent
   ],
   providers: [
-    { 
-      provide: CURRENCY_MASK_CONFIG, 
-      useValue: CustomCurrencyMaskConfig 
+    {
+      provide: CURRENCY_MASK_CONFIG,
+      useValue: CustomCurrencyMaskConfig
     },
   ]
 })

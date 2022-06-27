@@ -83,5 +83,13 @@ export class NewLaunchComponent implements OnInit {
       }
     );
   }
+
+  deleteLaunch(launch: Launch): void {
+
+  }
+
+  viewLaunch(launch: Launch): void {
+    
+  }
  
 }

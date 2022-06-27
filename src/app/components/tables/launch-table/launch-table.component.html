@@ -9,7 +9,7 @@
     <tbody>
         <tr *ngFor="let launch of launches">
             <th scope="row" [ngClass]="launch.applicable?.toLowerCase() === 'out' ? 'bg-red':'bg-green'">
-                <a (click)="viewLaunch(launch.id)" class="btn btn-sm">
+                <a (click)="viewLaunch(launch)" class="btn btn-sm">
                     <fa-icon [icon]="faEye"></fa-icon>
                 </a>
             </th>
@@ -20,7 +20,7 @@
                 {{ launch.amount | currency:'BRL' }}
             </td>
             <td [ngClass]="launch.applicable?.toLowerCase() === 'out' ? 'bg-red':'bg-green'">
-                <a (click)="deleteLaunch(launch.id)" class="btn btn-sm">
+                <a (click)="deleteLaunch(launch)" class="btn btn-sm">
                     <fa-icon [icon]="faTrashCan"></fa-icon>
                 </a>
             </td>

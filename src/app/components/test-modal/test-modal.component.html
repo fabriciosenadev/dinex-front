@@ -1,0 +1,86 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4>Detalhes do lançamento</h4>
+        <!-- <h4>{{title || 'Confirm'}}</h4> -->
+    </div>
+    <div class="modal-body">
+        <!-- <p>{{message || 'Are you sure?'}}</p> -->
+        <p>
+            <strong>&raquo;</strong> Tipo de lançamento:
+            {{ applicable == 'out' ? 'Saída' : 'Entrada' }}
+        </p>
+        <p>
+            <strong>&raquo;</strong> Data:
+            {{ date | date }}
+        </p>
+        <p>
+            <strong>&raquo;</strong> Status do
+            {{ applicable == 'out' ? 'pagamento' : 'recebimento' }}:
+            <span class="bg-success text-white rounded-pill" *ngIf="status.toLocaleLowerCase() === 'paid'"
+                style="padding: 0.2rem 0.3rem;">
+                Paguei
+            </span>
+            <span class="bg-success text-white rounded-pill" *ngIf="status.toLocaleLowerCase() === 'received'"
+                style="padding: 0.2rem 0.3rem;">
+                Recebi
+            </span>
+            <span class="bg-warning rounded-pill" *ngIf="status.toLocaleLowerCase() === 'pending'"
+                style="padding: 0.2rem 0.3rem;">
+                Pendente
+            </span>
+            <span class="border rounded">
+                Marcar como:
+                <button (click)="updateStatus()" class="btn m-3"
+                    >
+                <!-- <a (click)="updateStatus()" class="btn"
+                    style="margin-left:10px; padding: 0.4rem;cursor: pointer;"> -->
+                    
+                    <span class="bg-success text-white rounded-pill" style="padding: 0.2rem 0.3rem;"
+                        *ngIf="applicable === 'Out' && status.toLocaleLowerCase() === 'pending'">
+                        Paguei
+                    </span>
+                    <span class="bg-success text-white rounded-pill" style="padding: 0.2rem 0.3rem;"
+                        *ngIf="applicable === 'In' && status.toLocaleLowerCase() === 'pending'">
+                        Recebi
+                    </span>
+                    <span class="bg-warning rounded-pill" style="padding: 0.2rem 0.3rem;"
+                        *ngIf="status.toLocaleLowerCase() === 'paid' || status.toLocaleLowerCase() === 'received'">
+                        Pendente
+                    </span>
+                </button>
+            </span>
+        </p>
+        <!-- <p>
+            <strong>&raquo;</strong> Situação:
+            <span *ngIf="scheduling === 'scheduled'">
+                Agendado para o mês seguinte
+            </span>
+            <span *ngIf="scheduling === 'launched'">
+                Criado no mês seguinte
+            </span>
+            <span *ngIf="scheduling !== 'scheduled' && scheduling !== 'launched'">
+                Sem agendamento prévio
+            </span>
+        </p> -->
+        <p>
+            <strong>&raquo;</strong> Categoria:
+            {{ categoryName }}
+        </p>
+        <!-- <p *ngIf="pay_method != null">
+            <strong>&raquo;</strong> Forma de Pagamento:
+            {{ pay_method }}
+        </p> -->
+        <p>
+            <strong>&raquo;</strong> Valor:
+            {{ amount | currency: 'BRL' }}
+        </p>
+        <p>
+            <strong>&raquo;</strong> Descrição:
+            {{ description }}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" (click)="close()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="confirm()">OK</button>
+    </div>
+</div>

@@ -12,4 +12,5 @@ export interface Launch {
     updatedAt: string | null;
     deletedAt: string | null;
     applicable: string | null;
+    categoryName: string | null;
 }
