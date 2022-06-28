@@ -45,4 +45,17 @@ export class LaunchService {
       }
     );
   }
+
+  get(id: number): Observable<LaunchAndPayMethod> {
+    let route = `${this.apiUrl}/launches/${id}`;
+
+    return this.http.get<LaunchAndPayMethod>(
+      route,
+      {
+        headers: {
+          Authorization: this.session.getToken()
+        }
+      }
+    );
+  }
 }
