@@ -86,24 +86,32 @@ export class NewLaunchComponent implements OnInit {
   }
 
   deleteLaunch(launch: Launch): void {
-    console.log("deleteLaunch");
-
-    console.log(launch);
+    this.launchService.delete(launch.id).subscribe(
+      (result) => {
+        this.notify.success('Sucesso', 'Lançamento deleteado!'); 
+        this.listLastLaunches();       
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   updateStatusLaunch(launch: Launch): void {
-    console.log("updateStatusLaunch");
-
-    if (launch.status === launchStatus.pending) {
-      if (launch.applicable === 'In')
-        launch.status = launchStatus.paid;
-      else
-        launch.status = launchStatus.received;
+    let launchAndPayMethod: LaunchAndPayMethod = {
+      launch,
+      payMethodFromLaunch: null
     }
-    else {
-      launch.status = launchStatus.pending;
-    }
-    console.log(launch);
+    
+    this.launchService.updateStatus(launchAndPayMethod, true).subscribe(
+      (result) => {
+        this.notify.success('Sucesso', 'Status atualizado!'); 
+        this.listLastLaunches();       
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
 }

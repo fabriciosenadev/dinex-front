@@ -58,4 +58,35 @@ export class LaunchService {
       }
     );
   }
+
+  delete(id: number): Observable<null> {
+    let route = `${this.apiUrl}/launches/${id}`;
+
+    return this.http.delete<null>(
+      route,
+      {
+        headers: {
+          Authorization: this.session.getToken()
+        }
+      }
+    );
+  }
+
+  updateStatus(launchAndPayMethod: LaunchAndPayMethod, isJustStatus: boolean): Observable<Launch> {
+    let route = `${this.apiUrl}/launches/${launchAndPayMethod.launch.id}`;
+
+    return this.http.put<Launch>(
+      route,
+      launchAndPayMethod,
+      {
+        headers: {
+          Authorization: this.session.getToken()
+        },
+        params: {
+          isJustStatus
+        }
+      }
+    );
+  }
+
 }
