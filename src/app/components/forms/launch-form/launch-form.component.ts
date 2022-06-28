@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faInfo } from '@fortawesome/free-solid-svg-icons';
-import { LaunchPayMethod } from 'src/app/shared/helpers/Enums/launchPayMethodEnum';
-import { launchStatus } from 'src/app/shared/helpers/Enums/launchStatusEnum';
+import { LaunchPayMethod } from 'src/app/shared/models/launch/enums/launchPayMethodEnum';
+import { launchStatus } from 'src/app/shared/models/launch/enums/launchStatusEnum';
 import { Category } from 'src/app/shared/models/category/category.model';
 import { LaunchAndPayMethodRegister } from 'src/app/shared/models/launch/register/launch-and-pay-method-register.model';
 import { launchRegister } from 'src/app/shared/models/launch/register/launch-register.model';

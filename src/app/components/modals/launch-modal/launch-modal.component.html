@@ -1,33 +1,23 @@
 <div class="modal-content">
     <div class="modal-header">
         <h4>Detalhes do lançamento</h4>
-        <!-- <h4>{{title || 'Confirm'}}</h4> -->
     </div>
     <div class="modal-body">
-        <!-- <p>{{message || 'Are you sure?'}}</p> -->
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-md">
                 <strong>&raquo;</strong> Tipo de lançamento:
                 {{ applicable == 'Out' ? 'Saída' : 'Entrada' }}
             </div>
         </div>
-        <!-- <p>
-            <strong>&raquo;</strong> Tipo de lançamento:
-            {{ applicable == 'out' ? 'Saída' : 'Entrada' }}
-        </p> -->
 
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-md">
                 <strong>&raquo;</strong> Data:
                 {{ date | date }}
             </div>
         </div>
-        <!-- <p>
-            <strong>&raquo;</strong> Data:
-            {{ date | date }}
-        </p> -->
 
-        <div class="row">
+        <div class="row mb-2">
 
             <div class="col-md">
                 <strong>&raquo;</strong> Status do
@@ -45,44 +35,6 @@
 
         </div>
 
-        <!-- <p>
-            <strong>&raquo;</strong> Status do
-            {{ applicable == 'out' ? 'pagamento' : 'recebimento' }}:
-            <span class="bg-success text-white rounded-pill" *ngIf="status.toLocaleLowerCase() === 'paid'"
-                style="padding: 0.2rem 0.3rem;">
-                Paguei
-            </span>
-            <span class="bg-success text-white rounded-pill" *ngIf="status.toLocaleLowerCase() === 'received'"
-                style="padding: 0.2rem 0.3rem;">
-                Recebi
-            </span>
-            <span class="bg-warning rounded-pill" *ngIf="status.toLocaleLowerCase() === 'pending'"
-                style="padding: 0.2rem 0.3rem;">
-                Pendente
-            </span>
-            <span class="border rounded">
-                Marcar como:
-                <button (click)="updateStatus()" class="btn m-3"
-                    >
-                <a (click)="updateStatus()" class="btn"
-                    style="margin-left:10px; padding: 0.4rem;cursor: pointer;">
-                    
-                    <span class="bg-success text-white rounded-pill" style="padding: 0.2rem 0.3rem;"
-                        *ngIf="applicable === 'Out' && status.toLocaleLowerCase() === 'pending'">
-                        Paguei
-                    </span>
-                    <span class="bg-success text-white rounded-pill" style="padding: 0.2rem 0.3rem;"
-                        *ngIf="applicable === 'In' && status.toLocaleLowerCase() === 'pending'">
-                        Recebi
-                    </span>
-                    <span class="bg-warning rounded-pill" style="padding: 0.2rem 0.3rem;"
-                        *ngIf="status.toLocaleLowerCase() === 'paid' || status.toLocaleLowerCase() === 'received'">
-                        Pendente
-                    </span>
-                </button>
-            </span>
-        </p> -->
-
         <!-- scheduling region -->
         <!-- <p>
             <strong>&raquo;</strong> Situação:
@@ -97,36 +49,30 @@
             </span>
         </p> -->
 
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-md">
                 <strong>&raquo;</strong> Categoria:
                 {{ categoryName }}
             </div>
         </div>
-        <!-- <p>
-            <strong>&raquo;</strong> Categoria:
-            {{ categoryName }}
-        </p> -->
 
-        <!-- Paymethod region -->
-        <!-- <p *ngIf="pay_method != null">
-            <strong>&raquo;</strong> Forma de Pagamento:
-            {{ pay_method }}
-        </p> -->
+        <div class="row mb-2" *ngIf="applicable === 'Out'">
+            <div class="col-md">
+                <strong>&raquo;</strong> Forma de Pagamento:
+                <span *ngIf="payMethod === 'Credit'">Crédito</span>
+                <span *ngIf="payMethod === 'Debit'">Débito</span>
+                <span *ngIf="payMethod === 'Cash'">Dinheiro</span>
+            </div>
+        </div>
 
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-md">
                 <strong>&raquo;</strong> Valor:
                 {{ amount | currency: 'BRL' }}
             </div>
         </div>
 
-        <!-- <p>
-            <strong>&raquo;</strong> Valor:
-            {{ amount | currency: 'BRL' }}
-        </p> -->
-
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-md">
                 <strong>&raquo;</strong> Descrição:
                 {{ description }}
@@ -135,15 +81,12 @@
 
         <hr>
 
-        <div class="row justify-content-center">
+        <div class="row mb-2 justify-content-center">
             <div class="col-md">
 
                 Marcar como:
 
                 <button (click)="updateStatus()" class="btn">
-                    <!-- <a (click)="updateStatus()" class="btn"
-                        style="margin-left:10px; padding: 0.4rem;cursor: pointer;"> -->
-
                     <span class="bg-success text-white rounded-pill p-2"
                         *ngIf="applicable === 'Out' && status.toLocaleLowerCase() === 'pending'">
                         Paguei
@@ -158,14 +101,8 @@
                     </span>
                 </button>
 
-
             </div>
         </div>
-
-        <!-- <p>
-            <strong>&raquo;</strong> Descrição:
-            {{ description }}
-        </p> -->
     </div>
     <div class="modal-footer">
 

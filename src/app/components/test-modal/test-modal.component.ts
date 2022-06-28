@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SimpleModalComponent } from 'ngx-simple-modal';
-import { launchStatus } from 'src/app/shared/helpers/Enums/launchStatusEnum';
+import { launchStatus } from 'src/app/shared/models/launch/enums/launchStatusEnum';
 import { Launch } from 'src/app/shared/models/launch/launch.model';
 
 @Component({

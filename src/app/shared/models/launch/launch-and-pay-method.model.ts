@@ -3,5 +3,5 @@ import { payMethodFromLaunch } from "./pay-method-from-launch.model";
 
 export interface LaunchAndPayMethod {
     launch: Launch,
-    PayMethod: payMethodFromLaunch | null,
+    payMethodFromLaunch: payMethodFromLaunch | null,
 }

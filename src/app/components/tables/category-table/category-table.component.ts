@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faArrowRotateLeft, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { categoryApplicableEnum } from 'src/app/shared/helpers/Enums/categoryApplicableEnum';
-import { CategoryEventTypeEnum } from 'src/app/shared/helpers/Enums/categoryEventTypeEnum';
+import { categoryApplicableEnum } from 'src/app/shared/models/category/enums/categoryApplicableEnum';
+import { CategoryEventTypeEnum } from 'src/app/shared/models/category/enums/categoryEventTypeEnum';
 import { Category } from 'src/app/shared/models/category/category.model';
 
 @Component({
