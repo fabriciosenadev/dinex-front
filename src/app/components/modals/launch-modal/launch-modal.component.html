@@ -79,9 +79,9 @@
             </div>
         </div>
 
-        <hr>
-
-        <div class="row mb-2 justify-content-center">
+        
+        <div class="row mb-2 justify-content-center" *ngIf="!isToDelete">
+            <hr>
             <div class="col-md">
 
                 Marcar como:
@@ -106,9 +106,12 @@
     </div>
     <div class="modal-footer">
 
-        <button type="button" class="btn btn-outline-danger" (click)="close()">Cancel</button>
+        <!-- delete launch -->
+        <button type="button" class="btn btn-primary" (click)="cancel()" *ngIf="isToDelete">Cancel</button>
+        <button type="button" class="btn btn-outline-danger" (click)="confirm()" *ngIf="isToDelete">Deletar</button>
 
-        <button type="button" class="btn btn-primary" (click)="confirm()">OK</button>
+        <!-- view launch -->
+        <button type="button" class="btn btn-primary" (click)="cancel()" *ngIf="!isToDelete">OK</button>
 
     </div>
 </div>

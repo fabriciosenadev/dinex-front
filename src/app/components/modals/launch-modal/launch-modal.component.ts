@@ -1,30 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { SimpleModalComponent } from 'ngx-simple-modal';
-import { launchStatus } from 'src/app/shared/models/launch/enums/launchStatusEnum';
-
-export interface LaunchModal {
-  id: number;
-  date: string;
-  categoryId: number;
-  description: string;
-  amount: number;
-  status: launchStatus;
-  userId: string;
-  createdAt: string;
-  updatedAt: string | null;
-  deletedAt: string | null;
-  applicable: string | null;
-  categoryName: string;
-  payMethod: string;
-  isToDelete: boolean;
-}
+import { Component } from '@angular/core';
+import { SimpleModalComponent, SimpleModalService } from 'ngx-simple-modal';
+import { LaunchModalAction } from 'src/app/shared/interfaces/launch/enums/launchModalActionEnum';
+import { launchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
+import { LaunchModal } from 'src/app/shared/interfaces/launch/modal/launch-modal.interface';
+import { ResultLaunchModal } from 'src/app/shared/interfaces/launch/modal/result-launch-modal.interface';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-launch-modal',
   templateUrl: './launch-modal.component.html',
   styleUrls: ['./launch-modal.component.css']
 })
-export class LaunchModalComponent extends SimpleModalComponent<LaunchModal, boolean> implements LaunchModal {
+export class LaunchModalComponent extends SimpleModalComponent<LaunchModal, ResultLaunchModal> implements LaunchModal {
 
   id = 0;
   date = '';
@@ -41,18 +28,39 @@ export class LaunchModalComponent extends SimpleModalComponent<LaunchModal, bool
   payMethod = '';
   isToDelete = false;
 
-  constructor() {
+  constructor(private simpleModalService: SimpleModalService) {
     super();
   }
 
   confirm() {
-    // we set modal result as true on click on confirm button,
-    // then we can get modal result from caller code
-    this.result = true;
+    // on click on confirm button we set dialog result as true,
+    // ten we can get dialog result from caller code
+
+    this.simpleModalService.addModal(ConfirmModalComponent, {
+      title: 'Aviso de exclusão',
+      message: 'Deseja apagar este lançamento?'
+    }).subscribe((isConfirmed) => {
+      this.result = {
+        action: LaunchModalAction.deleteLaunch,
+        isToActing: isConfirmed
+      };
+      this.close();
+    });
+
+  }
+  cancel() {
+    this.result = {
+      action: LaunchModalAction.none,
+      isToActing: false
+    };
     this.close();
   }
 
   updateStatus() {
-
+    this.result = {
+      action: LaunchModalAction.updateLaunch,
+      isToActing: true
+    };
+    this.close();
   }
 }

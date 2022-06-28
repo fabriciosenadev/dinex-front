@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faEye, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { SimpleModalService } from 'ngx-simple-modal';
-import { Category } from 'src/app/shared/models/category/category.model';
-import { LaunchAndPayMethod } from 'src/app/shared/models/launch/launch-and-pay-method.model';
-import { Launch } from 'src/app/shared/models/launch/launch.model';
+import { Category } from 'src/app/shared/interfaces/category/category.interface';
+import { LaunchModalAction } from 'src/app/shared/interfaces/launch/enums/launchModalActionEnum';
+import { LaunchAndPayMethod } from 'src/app/shared/interfaces/launch/launch-and-pay-method.interface';
+import { Launch } from 'src/app/shared/interfaces/launch/launch.interface';
+import { ResultLaunchModal } from 'src/app/shared/interfaces/launch/modal/result-launch-modal.interface';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { LaunchService } from 'src/app/shared/services/launch/launch.service';
 import { LaunchModalComponent } from '../../modals/launch-modal/launch-modal.component';
@@ -16,7 +18,7 @@ import { LaunchModalComponent } from '../../modals/launch-modal/launch-modal.com
 export class LaunchTableComponent implements OnInit {
 
   @Input() launches: Launch[] = [];
-  @Output() launchToView: EventEmitter<Launch> = new EventEmitter();
+  @Output() updateStatusLaunch: EventEmitter<Launch> = new EventEmitter();
   @Output() launchToDelete: EventEmitter<Launch> = new EventEmitter();
 
   //Icons
@@ -32,7 +34,12 @@ export class LaunchTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  private sendLaunchToModal(launch: Launch, payMethodName: string, categoryName: string) {  
+  private sendLaunchDataToModal(
+    launch: Launch,
+    payMethodName: string,
+    categoryName: string,
+    isToDelete: boolean
+  ) {
     this.simpleModalService.addModal(LaunchModalComponent, {
       id: launch.id,
       date: launch.date,
@@ -47,49 +54,43 @@ export class LaunchTableComponent implements OnInit {
       applicable: launch.applicable,
       categoryName: categoryName,
       payMethod: payMethodName,
-      isToDelete: false
+      isToDelete: isToDelete
     }).subscribe(
-      (isConfirmed) => {
-        //We get modal result
-        if (isConfirmed) {
-          // alert('accepted');
-        }
-        else {
-          // alert('declined');
+      (result: ResultLaunchModal) => {      
+        switch (result.action) {
+          case LaunchModalAction.deleteLaunch:
+            if (result.isToActing)
+              this.launchToDelete.emit(launch);
+            break;
+          case LaunchModalAction.updateLaunch:
+              this.updateStatusLaunch.emit(launch);
+            break;
+          default:
+            break;
         }
       });
   }
 
-  getCategoryName(launch: Launch, payMethodName: string) {
+  getCategoryName(launch: Launch, payMethodName: string, isToDelete: boolean) {
     this.categoryService.get(launch.categoryId).subscribe(
-      async (result: Category) => 
-      {
+      async (result: Category) => {
         let categoryName = result.name;
-        this.sendLaunchToModal(launch, payMethodName, categoryName);
+        this.sendLaunchDataToModal(launch, payMethodName, categoryName, isToDelete);
       }
     );
   }
 
-  getPayMethodName(launch: Launch) {
+  getPayMethodName(launch: Launch, isToDelete: boolean) {
     this.launchService.get(launch.id).subscribe(
       async (result: LaunchAndPayMethod) => {
         let payMethod = result.payMethodFromLaunch?.payMethod ? result.payMethodFromLaunch?.payMethod : '';
 
-        this.getCategoryName(launch, payMethod)
+        this.getCategoryName(launch, payMethod, isToDelete)
       }
     );
   }
 
-  viewLaunch(launch: Launch) {
-    // console.log(launch);
-    this.getPayMethodName(launch);
-    
-    // this.launchToView.emit(launch);
+  viewLaunch(launch: Launch, isToDelete: boolean) {
+    this.getPayMethodName(launch, isToDelete);
   }
-
-  deleteLaunch(launch: Launch) {
-    console.log(launch);
-    // this.launchToDelete.emit(launch);
-  }
-
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
+import { launchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
 import { LaunchAndPayMethod } from 'src/app/shared/interfaces/launch/launch-and-pay-method.interface';
 import { Launch } from 'src/app/shared/interfaces/launch/launch.interface';
 import { LaunchAndPayMethodRegister } from 'src/app/shared/interfaces/launch/register/launch-and-pay-method-register.interface';
@@ -85,11 +86,24 @@ export class NewLaunchComponent implements OnInit {
   }
 
   deleteLaunch(launch: Launch): void {
+    console.log("deleteLaunch");
 
+    console.log(launch);
   }
 
-  viewLaunch(launch: Launch): void {
-    
+  updateStatusLaunch(launch: Launch): void {
+    console.log("updateStatusLaunch");
+
+    if (launch.status === launchStatus.pending) {
+      if (launch.applicable === 'In')
+        launch.status = launchStatus.paid;
+      else
+        launch.status = launchStatus.received;
+    }
+    else {
+      launch.status = launchStatus.pending;
+    }
+    console.log(launch);
   }
- 
+
 }
