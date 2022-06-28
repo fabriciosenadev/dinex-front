@@ -1,4 +1,4 @@
-import { LaunchPayMethod } from "../../../helpers/Enums/launchPayMethodEnum";
+import { LaunchPayMethod } from "../enums/launchPayMethodEnum";
 
 export interface PayMethodRegister {
     payMethod: LaunchPayMethod

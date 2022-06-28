@@ -1,4 +1,4 @@
-import { launchStatus } from "../../helpers/Enums/launchStatusEnum";
+import { launchStatus } from "./enums/launchStatusEnum";
 
 export interface Launch {
     id: number;

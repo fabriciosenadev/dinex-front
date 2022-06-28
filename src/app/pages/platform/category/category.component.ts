@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { categoryApplicableEnum } from 'src/app/shared/helpers/Enums/categoryApplicableEnum';
-import { CategoryEventTypeEnum } from 'src/app/shared/helpers/Enums/categoryEventTypeEnum';
+import { categoryApplicableEnum } from 'src/app/shared/models/category/enums/categoryApplicableEnum';
+import { CategoryEventTypeEnum } from 'src/app/shared/models/category/enums/categoryEventTypeEnum';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { CategoryRegister } from 'src/app/shared/models/category/category-register.model';
 import { Category } from 'src/app/shared/models/category/category.model';
