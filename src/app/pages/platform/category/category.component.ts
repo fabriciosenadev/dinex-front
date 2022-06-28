@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { categoryApplicableEnum } from 'src/app/shared/models/category/enums/categoryApplicableEnum';
-import { CategoryEventTypeEnum } from 'src/app/shared/models/category/enums/categoryEventTypeEnum';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
-import { CategoryRegister } from 'src/app/shared/models/category/category-register.model';
-import { Category } from 'src/app/shared/models/category/category.model';
+import { CategoryRegister } from 'src/app/shared/interfaces/category/category-register.interface';
+import { Category } from 'src/app/shared/interfaces/category/category.interface';
+import { categoryApplicableEnum } from 'src/app/shared/interfaces/category/enums/categoryApplicableEnum';
+import { CategoryEventTypeEnum } from 'src/app/shared/interfaces/category/enums/categoryEventTypeEnum';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';

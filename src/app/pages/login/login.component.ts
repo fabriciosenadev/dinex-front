@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
-import { UserLogin } from 'src/app/shared/models/user/user-login.model';
 import { SessionService } from 'src/app/shared/services/session/session.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { successMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
 import { Router } from '@angular/router';
+import { UserLogin } from 'src/app/shared/interfaces/user/user-login.interface';
 
 @Component({
   selector: 'app-login',

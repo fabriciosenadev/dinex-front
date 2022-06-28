@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CategoryRegister } from '../../models/category/category-register.model';
-import { Category } from '../../models/category/category.model';
+import { CategoryRegister } from '../../interfaces/category/category-register.interface';
+import { Category } from '../../interfaces/category/category.interface';
 import { SessionService } from '../session/session.service';
 
 @Injectable({

@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faInfo } from '@fortawesome/free-solid-svg-icons';
-import { LaunchPayMethod } from 'src/app/shared/models/launch/enums/launchPayMethodEnum';
-import { launchStatus } from 'src/app/shared/models/launch/enums/launchStatusEnum';
-import { Category } from 'src/app/shared/models/category/category.model';
-import { LaunchAndPayMethodRegister } from 'src/app/shared/models/launch/register/launch-and-pay-method-register.model';
-import { launchRegister } from 'src/app/shared/models/launch/register/launch-register.model';
-import { PayMethodRegister } from 'src/app/shared/models/launch/register/pay-method-register.model';
+import { Category } from 'src/app/shared/interfaces/category/category.interface';
+import { LaunchPayMethod } from 'src/app/shared/interfaces/launch/enums/launchPayMethodEnum';
+import { launchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
+import { LaunchAndPayMethodRegister } from 'src/app/shared/interfaces/launch/register/launch-and-pay-method-register.interface';
+import { launchRegister } from 'src/app/shared/interfaces/launch/register/launch-register.interface';
+import { PayMethodRegister } from 'src/app/shared/interfaces/launch/register/pay-method-register.interface';
 
 @Component({
   selector: 'app-launch-form',

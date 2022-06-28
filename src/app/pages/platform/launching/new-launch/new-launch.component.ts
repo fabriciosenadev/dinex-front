@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
-import { Category } from 'src/app/shared/models/category/category.model';
-import { LaunchAndPayMethod } from 'src/app/shared/models/launch/launch-and-pay-method.model';
-import { Launch } from 'src/app/shared/models/launch/launch.model';
-import { LaunchAndPayMethodRegister } from 'src/app/shared/models/launch/register/launch-and-pay-method-register.model';
+import { Category } from 'src/app/shared/interfaces/category/category.interface';
+import { LaunchAndPayMethod } from 'src/app/shared/interfaces/launch/launch-and-pay-method.interface';
+import { Launch } from 'src/app/shared/interfaces/launch/launch.interface';
+import { LaunchAndPayMethodRegister } from 'src/app/shared/interfaces/launch/register/launch-and-pay-method-register.interface';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { LaunchService } from 'src/app/shared/services/launch/launch.service';

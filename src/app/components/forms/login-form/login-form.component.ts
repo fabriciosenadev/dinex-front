@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import BtnAttribute from 'src/app/shared/helpers/btn-attribute';
-import { UserLogin } from 'src/app/shared/models/user/user-login.model';
+import { UserLogin } from 'src/app/shared/interfaces/user/user-login.interface';
 
 @Component({
   selector: 'app-login-form',

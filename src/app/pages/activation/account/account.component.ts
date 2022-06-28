@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { successMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
-import { ActivateAccount } from 'src/app/shared/models/activation/activate-account.model';
-
+import { ActivateAccount } from 'src/app/shared/interfaces/activation/activate-account.interface';
 import { ActivationService } from 'src/app/shared/services/activation/activation.service';
-
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 

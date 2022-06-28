@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { UserLogin } from '../../models/user/user-login.model';
+import { UserLogin } from '../../interfaces/user/user-login.interface';
 import { NotificationService } from '../notification/notification.service';
 
 @Injectable({

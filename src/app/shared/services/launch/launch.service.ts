@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { SessionService } from '../session/session.service';
 import { Observable } from 'rxjs/internal/Observable';
-import { LaunchAndPayMethodRegister } from '../../models/launch/register/launch-and-pay-method-register.model';
-import { LaunchAndPayMethod } from '../../models/launch/launch-and-pay-method.model';
-import { Launch } from '../../models/launch/launch.model';
+import { LaunchAndPayMethodRegister } from '../../interfaces/launch/register/launch-and-pay-method-register.interface';
+import { LaunchAndPayMethod } from '../../interfaces/launch/launch-and-pay-method.interface';
+import { Launch } from '../../interfaces/launch/launch.interface';
 
 @Injectable({
   providedIn: 'root'

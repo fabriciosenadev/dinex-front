@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CategoryRegister } from 'src/app/shared/models/category/category-register.model';
+import { CategoryRegister } from 'src/app/shared/interfaces/category/category-register.interface';
 
 @Component({
   selector: 'app-category-form',

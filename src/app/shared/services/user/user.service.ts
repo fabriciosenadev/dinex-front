@@ -4,8 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
-import { UserRegister } from '../../models/user/user-register.model';
-import { User } from '../../models/user/user.model';
+import { UserRegister } from '../../interfaces/user/user-register.interface';
+import { User } from '../../interfaces/user/user.interface';
 import { SessionService } from '../session/session.service';
 
 @Injectable({

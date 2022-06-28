@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import BtnAttribute from 'src/app/shared/helpers/btn-attribute';
 import Validation from 'src/app/shared/helpers/validator';
-import { UserRegister } from 'src/app/shared/models/user/user-register.model';
+import { UserRegister } from 'src/app/shared/interfaces/user/user-register.interface';
 import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({

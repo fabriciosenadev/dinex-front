@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { successMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
-
-import { ActivateAccount } from 'src/app/shared/models/activation/activate-account.model';
-import { UserRegister } from 'src/app/shared/models/user/user-register.model';
-
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
 import { ActivationService } from 'src/app/shared/services/activation/activation.service';
+import { UserRegister } from 'src/app/shared/interfaces/user/user-register.interface';
+import { ActivateAccount } from 'src/app/shared/interfaces/activation/activate-account.interface';
 
 @Component({
   selector: 'app-register',
