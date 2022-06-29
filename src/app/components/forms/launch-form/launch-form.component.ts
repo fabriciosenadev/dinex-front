@@ -7,6 +7,7 @@ import { launchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatu
 import { LaunchAndPayMethodRegister } from 'src/app/shared/interfaces/launch/register/launch-and-pay-method-register.interface';
 import { launchRegister } from 'src/app/shared/interfaces/launch/register/launch-register.interface';
 import { PayMethodRegister } from 'src/app/shared/interfaces/launch/register/pay-method-register.interface';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-launch-form',
@@ -29,6 +30,8 @@ export class LaunchFormComponent implements OnInit {
 
   launchPayMethod = LaunchPayMethod;
   showPayMethods = false;
+
+  showScheduling = false;
 
   get formData() {
     return this.launchForm.controls;
@@ -105,7 +108,9 @@ export class LaunchFormComponent implements OnInit {
   roleForm(): void {
     this.fillCategories();
 
-    this.showPayMethods = this.launchForm.value.launchType === 'in' ? false : true;
+    this.rolePayMethod();
+
+    this.roleScheduling();
   }
 
   fillCategories(): void {
@@ -114,6 +119,19 @@ export class LaunchFormComponent implements OnInit {
         category =>
           category.applicable.toLowerCase() === this.launchForm.value.launchType
       );
+  }
+
+  rolePayMethod(): void {
+    this.showPayMethods = this.launchForm.value.launchType === 'in' ? false : true;
+  }
+
+  roleScheduling(): void {
+    const date = moment();
+    let today = date.format('YYYY-MM-DD');
+    
+    let formSelectedDate = this.launchForm.value.date; 
+
+    this.showScheduling = moment(formSelectedDate).isSameOrAfter(today);
   }
 
   getLaunchRegister(): launchRegister {
