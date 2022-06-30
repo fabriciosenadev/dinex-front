@@ -131,6 +131,9 @@ export class CategoryComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        let errors = error.error;
+        let errorTitle = "Erro ao deletar categoria";
+        this.handleErrors(errorTitle, errors);
       }
     );
   }
@@ -147,10 +150,16 @@ export class CategoryComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        let errors = error.error;
+        let errorTitle = "Erro ao realativar categoria";
+        this.handleErrors(errorTitle, errors);
       }
     );
   }
 
-
-
+  handleErrors(title: string, errors: any): void {    
+    if (errors?.message) {
+      this.notify.error(title, errors.message);
+    }
+  }
 }
