@@ -139,7 +139,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onReactive(category: Category) {   
-    this.categoryService.reactive(category.id).subscribe(
+    this.categoryService.reactivate(category.id).subscribe(
       (response) => {
         this.listCategories();
         this.listDeletedCategories();
