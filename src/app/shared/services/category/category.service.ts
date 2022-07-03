@@ -84,8 +84,8 @@ export class CategoryService {
     );
   }
 
-  reactive(id: number): Observable<Category> {
-    let route = `${this.apiUrl}/categories/${id}/reactive`;
+  reactivate(id: number): Observable<Category> {
+    let route = `${this.apiUrl}/categories/${id}/re-activate`;
 
     return this.http.put<Category>(
       route,
