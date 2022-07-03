@@ -33,6 +33,9 @@ export class LaunchFormComponent implements OnInit {
 
   showScheduling = false;
 
+  isConfirmedLabel = '';
+  showIsConfirmed = false;
+
   get formData() {
     return this.launchForm.controls;
   }
@@ -111,6 +114,8 @@ export class LaunchFormComponent implements OnInit {
     this.rolePayMethod();
 
     this.roleScheduling();
+
+    this.roleIsConfirmed();
   }
 
   fillCategories(): void {
@@ -132,6 +137,18 @@ export class LaunchFormComponent implements OnInit {
     let formSelectedDate = this.launchForm.value.date; 
 
     this.showScheduling = moment(formSelectedDate).isSameOrAfter(today);
+  }
+
+  roleIsConfirmed() : void {  
+    console.log(this.launchForm.value.launchType, typeof this.launchForm.value.launchType);
+    
+    
+    this.showIsConfirmed = false;
+    if(this.launchForm.value.launchType === 'in' || this.launchForm.value.launchType === 'out')
+      this.showIsConfirmed = true;
+
+
+    this.isConfirmedLabel = this.launchForm.value.launchType === 'in' ? 'recebido': 'pago';
   }
 
   getLaunchRegister(): launchRegister {
