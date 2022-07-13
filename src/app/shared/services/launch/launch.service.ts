@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { LaunchAndPayMethodRegister } from '../../interfaces/launch/register/launch-and-pay-method-register.interface';
 import { LaunchAndPayMethod } from '../../interfaces/launch/launch-and-pay-method.interface';
 import { Launch } from '../../interfaces/launch/launch.interface';
+import { LaunchResumeByYearAndMonth } from '../../interfaces/launch/launch-resume-by-year-and-month.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -84,6 +85,19 @@ export class LaunchService {
         },
         params: {
           isJustStatus
+        }
+      }
+    );
+  }
+
+  getResumeByYearAndMonth(year: number, month: number): Observable<LaunchResumeByYearAndMonth> {
+    let route = `${this.apiUrl}/launches/${year}/${month}`;
+
+    return this.http.get<LaunchResumeByYearAndMonth>(
+      route,
+      {
+        headers: {
+          Authorization: this.session.getToken()
         }
       }
     );
