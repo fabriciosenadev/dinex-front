@@ -91,7 +91,7 @@ export class LaunchService {
   }
 
   getResumeByYearAndMonth(year: number, month: number): Observable<LaunchResumeByYearAndMonth> {
-    let route = `${this.apiUrl}/launches/${year}/${month}`;
+    let route = `${this.apiUrl}/launches/${year}/${month}/resume`;
 
     return this.http.get<LaunchResumeByYearAndMonth>(
       route,
