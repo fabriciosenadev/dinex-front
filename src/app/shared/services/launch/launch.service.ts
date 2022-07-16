@@ -7,6 +7,7 @@ import { LaunchAndPayMethodRegister } from '../../interfaces/launch/register/lau
 import { LaunchAndPayMethod } from '../../interfaces/launch/launch-and-pay-method.interface';
 import { Launch } from '../../interfaces/launch/launch.interface';
 import { LaunchResumeByYearAndMonth } from '../../interfaces/launch/launch-resume-by-year-and-month.interface';
+import { LaunchDetailsByYearAndMonth } from '../../interfaces/launch/launch-details-by-year-and-month.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -94,6 +95,19 @@ export class LaunchService {
     let route = `${this.apiUrl}/launches/${year}/${month}/resume`;
 
     return this.http.get<LaunchResumeByYearAndMonth>(
+      route,
+      {
+        headers: {
+          Authorization: this.session.getToken()
+        }
+      }
+    );
+  }
+
+  getDetailsByYearAndMonth(year: number, month: number): Observable<LaunchDetailsByYearAndMonth> {
+    let route = `${this.apiUrl}/launches/${year}/${month}/details`;
+
+    return this.http.get<LaunchDetailsByYearAndMonth>(
       route,
       {
         headers: {
