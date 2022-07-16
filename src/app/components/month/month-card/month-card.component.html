@@ -1,7 +1,7 @@
 <div class="card">
 
     <div class="card-header text-center">
-        <h3 class="card-title">{{ getMonthNameUsingStartDate(monthResume.startDate) }}</h3>
+        <h3 class="card-title">{{ getMonthNameUsingStartDate() }}</h3>
     </div>
 
     <div class="card-body">
@@ -22,7 +22,7 @@
                     </tr>
                 </tbody>
             </table>
-            <button (click)="showResume()" class="btn btn-sm btn-success" [disabled]="true">
+            <button (click)="showDetailedMonth(monthResume)" class="btn btn-sm btn-success" [disabled]="hasLaunch(monthResume)">
                 Mais detalhes
             </button>
         </div>
