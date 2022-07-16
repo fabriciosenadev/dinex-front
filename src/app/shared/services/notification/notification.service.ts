@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { NgToastService } from 'ng-angular-popup';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +8,47 @@ import { environment } from 'src/environments/environment';
 export class NotificationService {
   durationInSeconds: number = environment.durationShowNotification;
 
-  constructor(private toast: NgToastService) { }
+  constructor(
+    private toastr: ToastrService
+  ) { }
 
   success(title: string, message: string) {
-    this.toast.success({detail: title, summary: message, duration: this.durationInSeconds});
+    this.toastr.success(message, title,
+      {
+        progressBar: true,
+        closeButton: true,
+        tapToDismiss: true
+      }
+    );
   }
 
   error(title: string, message: string) {
-    this.toast.error({detail: title, summary: message, duration: this.durationInSeconds});
+    this.toastr.error(message, title,
+      {
+        progressBar: true,
+        closeButton: true,
+        tapToDismiss: true
+      }
+    );
   }
 
   warning(title: string, message: string) {
-    this.toast.warning({detail: title, summary: message, duration: this.durationInSeconds});
+    this.toastr.warning(message, title,
+      {
+        progressBar: true,
+        closeButton: true,
+        tapToDismiss: true
+      }
+    );
   }
 
   info(title: string, message: string) {
-    this.toast.info({detail: title, summary: message, duration: this.durationInSeconds});
+    this.toastr.info(message, title,
+      {
+        progressBar: true,
+        closeButton: true,
+        tapToDismiss: true
+      }
+    );
   }
 }
