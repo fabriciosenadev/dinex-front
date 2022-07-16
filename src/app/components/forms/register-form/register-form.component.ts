@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import BtnAttribute from 'src/app/shared/helpers/btn-attribute';
 import Validation from 'src/app/shared/helpers/validator';
 import { UserRegister } from 'src/app/shared/interfaces/user/user-register.interface';
@@ -23,7 +23,7 @@ export class RegisterFormComponent implements OnInit {
     confirmPassword: ''
   };
 
-  registerForm: FormGroup = new FormGroup({});
+  registerForm: UntypedFormGroup = new UntypedFormGroup({});
 
   get userEmailRegister() {
     return this.userService.userRegister.email;
@@ -44,8 +44,8 @@ export class RegisterFormComponent implements OnInit {
   }
 
   handleRegisterForm(): void {
-    this.registerForm = new FormGroup({
-      fullName: new FormControl(
+    this.registerForm = new UntypedFormGroup({
+      fullName: new UntypedFormControl(
         this.userRegister.fullName,
         [
           Validators.required,
@@ -53,21 +53,21 @@ export class RegisterFormComponent implements OnInit {
 
         ]
       ),
-      email: new FormControl(
+      email: new UntypedFormControl(
         this.userRegister.email,
         [
           Validators.required,
           Validators.email,
         ]
       ),
-      password: new FormControl(
+      password: new UntypedFormControl(
         this.userRegister.password,
         [
           Validators.required,
           Validators.minLength(8),
         ]
       ),
-      confirmPassword: new FormControl(
+      confirmPassword: new UntypedFormControl(
         this.userRegister.confirmPassword,
         [
           Validators.required,

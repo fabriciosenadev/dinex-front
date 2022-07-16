@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import BtnAttribute from 'src/app/shared/helpers/btn-attribute';
 import { UserLogin } from 'src/app/shared/interfaces/user/user-login.interface';
 
@@ -13,7 +13,7 @@ export class LoginFormComponent implements OnInit {
 
   loading: boolean = false;
 
-  loginForm: FormGroup = new FormGroup({});
+  loginForm: UntypedFormGroup = new UntypedFormGroup({});
 
   get formData() {
     return this.loginForm.controls;
@@ -26,15 +26,15 @@ export class LoginFormComponent implements OnInit {
   }
 
   handleLoginForm(): void {
-    this.loginForm = new FormGroup({
-      email: new FormControl(
+    this.loginForm = new UntypedFormGroup({
+      email: new UntypedFormControl(
         '',
         [
           Validators.required,
           Validators.email,
         ],
       ),
-      password: new FormControl(
+      password: new UntypedFormControl(
         '',
         [
           Validators.required,

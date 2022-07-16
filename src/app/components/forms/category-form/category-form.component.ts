@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { CategoryRegister } from 'src/app/shared/interfaces/category/category-register.interface';
 
 @Component({
@@ -11,7 +11,7 @@ export class CategoryFormComponent implements OnInit {
 
   @Output() newCategory: EventEmitter<CategoryRegister> = new EventEmitter();
 
-  categoryForm: FormGroup = new FormGroup({});
+  categoryForm: UntypedFormGroup = new UntypedFormGroup({});
 
   get formData() {
     return this.categoryForm.controls;
@@ -24,15 +24,15 @@ export class CategoryFormComponent implements OnInit {
   }
 
   handleCategoryForm(): void {
-    this.categoryForm = new FormGroup({
-      name: new FormControl(
+    this.categoryForm = new UntypedFormGroup({
+      name: new UntypedFormControl(
         '',
         [
           Validators.required,
           Validators.minLength(3),
         ],
       ),
-      applicable: new FormControl(
+      applicable: new UntypedFormControl(
         '',
         [
           Validators.required,

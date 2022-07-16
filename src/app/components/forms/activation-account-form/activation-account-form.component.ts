@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import BtnAttribute from 'src/app/shared/helpers/btn-attribute';
 
 @Component({
@@ -12,7 +12,7 @@ export class ActivationAccountFormComponent implements OnInit {
 
   loading: boolean = false;
 
-  activationForm: FormGroup = new FormGroup({});
+  activationForm: UntypedFormGroup = new UntypedFormGroup({});
 
   get formData() {
     return this.activationForm.controls;
@@ -25,7 +25,7 @@ export class ActivationAccountFormComponent implements OnInit {
   }
 
   handleActivationForm(): void {
-    this.activationForm = new FormGroup({
+    this.activationForm = new UntypedFormGroup({
       email: new FormControl(
         '',
         [

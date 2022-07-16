@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { faInfo } from '@fortawesome/free-solid-svg-icons';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
 import { LaunchPayMethod } from 'src/app/shared/interfaces/launch/enums/launchPayMethodEnum';
@@ -24,7 +24,7 @@ export class LaunchFormComponent implements OnInit {
   // Icons
   faInfo = faInfo;
 
-  launchForm: FormGroup = new FormGroup({});
+  launchForm: UntypedFormGroup = new UntypedFormGroup({});
 
   selectedCategories: Category[] = [];
 
@@ -47,45 +47,45 @@ export class LaunchFormComponent implements OnInit {
   }
 
   handleLaunchForm(): void {
-    this.launchForm = new FormGroup({
-      launchType: new FormControl(
+    this.launchForm = new UntypedFormGroup({
+      launchType: new UntypedFormControl(
         '',
         [
           Validators.required,
         ],
       ),
-      date: new FormControl(
+      date: new UntypedFormControl(
         '',
         [
           Validators.required,
         ],
       ),
-      categoryId: new FormControl(
+      categoryId: new UntypedFormControl(
         '',
         [
           Validators.required,
         ],
       ),
-      description: new FormControl(
+      description: new UntypedFormControl(
         '',
         [],
       ),
-      amount: new FormControl(
+      amount: new UntypedFormControl(
         '',
         [
           Validators.required,
           Validators.min(0.01),
         ],
       ),
-      payMethod: new FormControl(
+      payMethod: new UntypedFormControl(
         '',
         []
       ),
-      isConfirmed: new FormControl(
+      isConfirmed: new UntypedFormControl(
         '',
         [],
       ),
-      isScheduled: new FormControl(
+      isScheduled: new UntypedFormControl(
         '',
         [],
       ),
