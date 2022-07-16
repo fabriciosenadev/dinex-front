@@ -43,7 +43,8 @@
                 </div>
                 <ng-template #showGrid>
                     <app-month-grid *ngIf="arrayLaunchResumeByYearAndMonth.length === 12"
-                        [launchesResume]="arrayLaunchResumeByYearAndMonth">
+                        [launchesResume]="arrayLaunchResumeByYearAndMonth"
+                        (selectedMonthDetailPage)="openSelectedMonthDetailPage($event)">
                     </app-month-grid>
                 </ng-template>
 

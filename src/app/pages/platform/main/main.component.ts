@@ -104,4 +104,8 @@ export class MainComponent implements OnInit {
         
     }
   }
+
+  openSelectedMonthDetailPage(selectedMonthDetailPage: string): void {
+    this.router.navigate([`app/launching/${selectedMonthDetailPage}`]);    
+  }
 }
