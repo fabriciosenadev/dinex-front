@@ -3,4 +3,5 @@ export interface LaunchDataToChart {
     categoryName: string;
     amount: number;
     applicable: string;
+    payMethod: string;
 }
