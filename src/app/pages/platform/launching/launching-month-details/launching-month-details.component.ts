@@ -55,8 +55,8 @@ export class LaunchingMonthDetailsComponent implements OnInit {
 
     this.year = selectedYear ? parseFloat(selectedYear) : 0;
     this.month = selectedMonth ? parseFloat(selectedMonth) : 0;
-    let date = new Date(this.year, this.month, 1);
-    this.monthName = date.toLocaleString('pt-br', { month: 'long' });
+    
+    this.getMonthName();
 
     this.getDetailsByYearAndMonth();
   }
@@ -108,6 +108,14 @@ export class LaunchingMonthDetailsComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  getMonthName(): void {
+    let date = new Date();
+    date.setMonth(this.month);
+    date.setFullYear(this.year);
+    
+    this.monthName = date.toLocaleString('pt-br', { month: 'long' });
   }
 
   getChartData(applicable: string, isPayMethod: boolean): number[] {
