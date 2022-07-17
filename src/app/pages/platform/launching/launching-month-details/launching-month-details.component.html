@@ -14,15 +14,47 @@
                 </div>
             </div>
 
-            <div class="row px-3">
-                <div class="rounded bg-white py-3 my-4">
+            <div class="row px-2">
+                <div class="col-sm-4" 
+                    *ngIf="getChartLabels('in', false).length > 0 && getChartData('in', false).length > 0">
+                    
+                    <div class="rounded bg-white py-3 my-4">
 
-                    <!-- <app-launch-form 
-                        [categories]="categories"
-                        (openCategoryPage)="openCategoryPage($event)"
-                        (newLaunch)="createLaunch($event)">
-                    </app-launch-form> -->
+                        <app-pie-chart
+                        [chartTitle]="'Lançamentos de entrada'"
+                          [chartData]="getChartData('in', false)"
+                          [chartLabels]="getChartLabels('in', false)">
+                        </app-pie-chart>
+    
+                    </div>
+                </div>
 
+                <div class="col-sm-4" 
+                    *ngIf="getChartLabels('out', false).length > 0 && getChartData('out', false).length > 0">
+                    
+                    <div class="rounded bg-white py-3 my-4">
+
+                        <app-pie-chart
+                            [chartTitle]="'Lançamentos de saída'"
+                            [chartData]="getChartData('out', false)"
+                            [chartLabels]="getChartLabels('out', false)">
+                        </app-pie-chart>
+    
+                    </div>
+                </div>
+
+                <div class="col-sm-4" 
+                    *ngIf="getChartLabels('', true).length > 0 && getChartData('', true).length > 0">
+                    
+                    <div class="rounded bg-white py-3 my-4">
+
+                        <app-pie-chart
+                            [chartTitle]="'Saídas por tipo de pagamento'"
+                            [chartData]="getChartData('', true)"
+                            [chartLabels]="getChartLabels('', true)">
+                        </app-pie-chart>
+    
+                    </div>
                 </div>
 
             </div>

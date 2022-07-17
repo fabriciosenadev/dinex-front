@@ -62,25 +62,27 @@ export class LaunchingMonthDetailsComponent implements OnInit {
     this.launchService.getDetailsByYearAndMonth(this.year, this.month).subscribe(
       (result: LaunchDetailsByYearAndMonth) => {
         this.launchDetailsByYearAndMonth = result;
-        
-        let allLaunches = this.launchDetailsByYearAndMonth.launches;
-        this.launches = allLaunches.filter(x => x.status.toLowerCase() !== launchStatus.pending);
-        this.pendingLaunches =  allLaunches.filter(x => x.status.toLowerCase() === launchStatus.pending);        
+
+        this.launches = this.launchDetailsByYearAndMonth.launches
+          .filter(x => x.status.toLowerCase() !== launchStatus.pending);
+
+        this.pendingLaunches = this.launchDetailsByYearAndMonth.launches
+          .filter(x => x.status.toLowerCase() === launchStatus.pending);
 
         this.launchDataToChart = this.launchDetailsByYearAndMonth.pieChartData;
       },
       (error) => {
         console.log(error)
       },
-      () => {}
+      () => { }
     );
   }
 
   deleteLaunch(launch: Launch): void {
     this.launchService.delete(launch.id).subscribe(
       () => {
-        this.notify.success('Sucesso', 'Lançamento deleteado!'); 
-        this.getDetailsByYearAndMonth();      
+        this.notify.success('Sucesso', 'Lançamento deleteado!');
+        this.getDetailsByYearAndMonth();
       },
       (error) => {
         console.error(error);
@@ -93,16 +95,57 @@ export class LaunchingMonthDetailsComponent implements OnInit {
       launch,
       payMethodFromLaunch: null
     }
-    
+
     this.launchService.updateStatus(launchAndPayMethod, true).subscribe(
       (result) => {
-        this.notify.success('Sucesso', 'Status atualizado!'); 
-        this.getDetailsByYearAndMonth();      
+        this.notify.success('Sucesso', 'Status atualizado!');
+        this.getDetailsByYearAndMonth();
       },
       (error) => {
         console.error(error);
       }
     );
+  }
+
+  getChartData(applicable: string, isPayMethod: boolean): number[] {
+    let data: number[] = []
+
+    this.launchDataToChart.forEach((value, index) => {
+      if (isPayMethod && value.payMethod !== '')
+        data.push(value.amount);
+      else if (value.applicable.toLocaleLowerCase() === applicable)
+        data.push(value.amount);
+    });
+
+
+    return data;
+  }
+
+  getChartLabels(applicable: string, isPayMethod: boolean): string[] {
+    let labels: string[] = [];
+
+    this.launchDataToChart.forEach((value, index) => {
+      if (isPayMethod && value.payMethod !== '')
+      {
+        switch(value.payMethod)
+        {
+          case 'Debit':
+            labels.push('Débito');
+            break;
+          case 'Credit':
+            labels.push('Crédito');
+            break;
+          case 'Cash':
+            labels.push('Dinheiro');
+            break;
+        }
+
+      }
+      else if (value.applicable.toLocaleLowerCase() === applicable)
+        labels.push(value.categoryName);
+    });
+
+    return labels;
   }
 
 }
