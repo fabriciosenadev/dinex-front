@@ -21,6 +21,7 @@ export class LaunchingMonthDetailsComponent implements OnInit {
 
   year: number = 0;
   month: number = 0;
+  monthName: string = '';
 
   launches: Launch[] = [];
   pendingLaunches: Launch[] = [];
@@ -54,6 +55,8 @@ export class LaunchingMonthDetailsComponent implements OnInit {
 
     this.year = selectedYear ? parseFloat(selectedYear) : 0;
     this.month = selectedMonth ? parseFloat(selectedMonth) : 0;
+    let date = new Date(this.year, this.month, 1);
+    this.monthName = date.toLocaleString('pt-br', { month: 'long' });
 
     this.getDetailsByYearAndMonth();
   }
