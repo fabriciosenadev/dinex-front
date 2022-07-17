@@ -112,7 +112,8 @@ export class LaunchingMonthDetailsComponent implements OnInit {
 
   getMonthName(): void {
     let date = new Date();
-    date.setMonth(this.month);
+    date.setDate(1);
+    date.setMonth(this.month - 1);
     date.setFullYear(this.year);
     
     this.monthName = date.toLocaleString('pt-br', { month: 'long' });
