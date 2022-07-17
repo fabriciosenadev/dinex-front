@@ -64,7 +64,7 @@
                         Selecione primeiro o tipo de lançamento
                     </option>
                     <option *ngIf="selectedCategories.length === 0" value="" disabled>carregando...</option>
-                    <option *ngIf="selectedCategories.length > 0" value="" selected disabled hidden>
+                    <option *ngIf="selectedCategories.length > 0" value="" selected hidden>
                     </option>
                     <option *ngFor="let category of selectedCategories" [ngValue]="category.id">
                         {{category.name}}
