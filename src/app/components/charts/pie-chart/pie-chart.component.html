@@ -1,0 +1,10 @@
+<h4 class="text-center">{{ chartTitle }}</h4>
+
+<div class="chart">
+    <canvas baseChart
+            [data]="pieChartData"
+            [type]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins">
+    </canvas>
+  </div>
