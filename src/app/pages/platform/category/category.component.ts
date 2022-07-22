@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
+import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { CategoryRegister } from 'src/app/shared/interfaces/category/category-register.interface';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
-import { categoryApplicableEnum } from 'src/app/shared/interfaces/category/enums/categoryApplicableEnum';
+import { CategoryApplicableEnum } from 'src/app/shared/interfaces/category/enums/categoryApplicableEnum';
 import { CategoryEventTypeEnum } from 'src/app/shared/interfaces/category/enums/categoryEventTypeEnum';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
@@ -21,9 +21,9 @@ export class CategoryComponent implements OnInit {
   categoriesOut: Category[] = [];
   categoriesDeleted: Category[] = [];
 
-  categoryApplicableEnum = categoryApplicableEnum;
+  categoryApplicableEnum = CategoryApplicableEnum;
 
-  set headerOption(value: headerOptionsEnum) {
+  set headerOption(value: HeaderOptionsEnum) {
     this.headerService.headerOption = value;
   }
 
@@ -34,7 +34,7 @@ export class CategoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.headerOption = headerOptionsEnum.app;
+    this.headerOption = HeaderOptionsEnum.app;
 
     this.listCategories();
     this.listDeletedCategories();
@@ -42,9 +42,11 @@ export class CategoryComponent implements OnInit {
 
   listCategories() {
     this.categoryService.list().subscribe(
-      (categories: Category[]) => {        
-        this.categoriesIn = categories.filter(category => category.applicable.toLowerCase() === categoryApplicableEnum.in);
-        this.categoriesOut = categories.filter(category => category.applicable.toLowerCase() === categoryApplicableEnum.out);        
+      (categories: Category[]) => {
+        this.categoriesIn = categories
+          .filter(category => category.applicable.toLowerCase() === CategoryApplicableEnum.in);
+        this.categoriesOut = categories
+          .filter(category => category.applicable.toLowerCase() === CategoryApplicableEnum.out);
       },
       (error) => {
         console.log(error);
@@ -64,10 +66,10 @@ export class CategoryComponent implements OnInit {
   }
 
   handleEvent(event: any) {
-    if(event.type === CategoryEventTypeEnum.delete) {
+    if (event.type === CategoryEventTypeEnum.delete) {
       this.onDelete(event.category);
     }
-    else if(event.type === CategoryEventTypeEnum.reactive) {
+    else if (event.type === CategoryEventTypeEnum.reactive) {
       this.onReactive(event.category);
     }
   }
@@ -81,10 +83,10 @@ export class CategoryComponent implements OnInit {
     let classIn = btnIn?.getAttribute('class');
     let classOut = btnOut?.getAttribute('class');
 
-    if(!classIn?.includes('active'))
+    if (!classIn?.includes('active'))
       btnIn?.setAttribute('class', classIn + ' active');
 
-    if(classOut?.includes('active'))
+    if (classOut?.includes('active'))
       btnOut?.setAttribute('class', classOut.replace(' active', ''));
   }
 
@@ -97,19 +99,19 @@ export class CategoryComponent implements OnInit {
     let classIn = btnIn?.getAttribute('class');
     let classOut = btnOut?.getAttribute('class');
 
-    if(classIn?.includes('active'))
+    if (classIn?.includes('active'))
       btnIn?.setAttribute('class', classIn.replace(' active', ''));
 
-    if(!classOut?.includes('active'))
+    if (!classOut?.includes('active'))
       btnOut?.setAttribute('class', classOut + ' active');
   }
 
   onCreate(category: CategoryRegister): void {
-   this.categoryService.create(category).subscribe(
+    this.categoryService.create(category).subscribe(
       (category: Category) => {
         this.listCategories();
         this.listDeletedCategories();
-        
+
         let title = 'Sucesso';
         let message = 'Categoria criada com sucesso!';
         this.notify.success(title, message);
@@ -138,7 +140,7 @@ export class CategoryComponent implements OnInit {
     );
   }
 
-  onReactive(category: Category) {   
+  onReactive(category: Category) {
     this.categoryService.reactivate(category.id).subscribe(
       (response) => {
         this.listCategories();
@@ -157,7 +159,7 @@ export class CategoryComponent implements OnInit {
     );
   }
 
-  handleErrors(title: string, errors: any): void {    
+  handleErrors(title: string, errors: any): void {
     if (errors?.message) {
       this.notify.error(title, errors.message);
     }

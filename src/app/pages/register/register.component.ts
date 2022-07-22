@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
-import { successMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
+import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
+import { SuccessMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     return this.userService.userRegister.email;
   }
 
-  set headerOption(value: headerOptionsEnum) {
+  set headerOption(value: HeaderOptionsEnum) {
     this.headerService.headerOption = value;
   }
 
@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.headerOption = headerOptionsEnum.site;
+    this.headerOption = HeaderOptionsEnum.site;
     this.userRegister.email = this.userEmailRegister;
   }
 
@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
           this.pageTitle = 'Ative sua conta';
           this.activateAccount = true;
           let successTitle = 'Sucesso';
-          this.notify.success(successTitle, successMessagesEnum.register);
+          this.notify.success(successTitle, SuccessMessagesEnum.register);
         }
       }, (error) => {
         console.error(error);

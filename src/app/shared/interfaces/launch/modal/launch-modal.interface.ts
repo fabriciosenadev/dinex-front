@@ -1,4 +1,4 @@
-import { launchStatus } from "../enums/launchStatusEnum";
+import { LaunchStatus } from "../enums/launchStatusEnum";
 
 export interface LaunchModal {
     id: number;
@@ -6,7 +6,7 @@ export interface LaunchModal {
     categoryId: number;
     description: string;
     amount: number;
-    status: launchStatus;
+    status: LaunchStatus;
     userId: string;
     createdAt: string;
     updatedAt: string | null;

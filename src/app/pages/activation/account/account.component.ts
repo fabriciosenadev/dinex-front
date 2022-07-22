@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
-import { successMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
+import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
+import { SuccessMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
 import { ActivateAccount } from 'src/app/shared/interfaces/activation/activate-account.interface';
 import { ActivationService } from 'src/app/shared/services/activation/activation.service';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
@@ -19,9 +19,7 @@ export class AccountComponent implements OnInit {
     activationCode: '',
   };
 
-
-
-  set headerOption(value: headerOptionsEnum) {
+  set headerOption(value: HeaderOptionsEnum) {
     this.headerService.headerOption = value;
   }
 
@@ -34,7 +32,7 @@ export class AccountComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.headerOption = headerOptionsEnum.site;
+    this.headerOption = HeaderOptionsEnum.site;
 
     this.activationData.activationCode = this.currentRoute.snapshot.paramMap.get('activationCode');
   }
@@ -44,7 +42,7 @@ export class AccountComponent implements OnInit {
 
     this.activationService.activateAccount(this.activationData).subscribe(
       (response) => {
-        this.notify.success('Conta ativada', successMessagesEnum.accountActivated);
+        this.notify.success('Conta ativada', SuccessMessagesEnum.accountActivated);
         this.router.navigate(['/login']);
       }, (error) => {
         console.error(error);

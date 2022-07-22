@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
+import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
 
@@ -17,7 +17,7 @@ export class SiteComponent implements OnInit {
     this.userService.userRegister.email = email;
   }
 
-  set headerOption(value: headerOptionsEnum) {
+  set headerOption(value: HeaderOptionsEnum) {
     this.headerService.headerOption = value;
   }
 
@@ -28,7 +28,7 @@ export class SiteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.headerOption = headerOptionsEnum.site;
+    this.headerOption = HeaderOptionsEnum.site;
   }
 
   startUserRegister(): void {

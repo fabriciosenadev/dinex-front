@@ -1,4 +1,4 @@
-export interface payMethodFromLaunch {
+export interface PayMethodFromLaunch {
     id: number;
     payMethod: string;
     launchId: number;

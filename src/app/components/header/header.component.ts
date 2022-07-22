@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faHome, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
+import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { SessionService } from 'src/app/shared/services/session/session.service';
 
@@ -16,9 +16,9 @@ export class HeaderComponent implements OnInit {
   faHome = faHome;
   faArrowRightFromBracket = faArrowRightFromBracket;
 
-  headerOptionsEnum = headerOptionsEnum;
+  headerOptionsEnum = HeaderOptionsEnum;
 
-  get headerOption(): headerOptionsEnum{
+  get headerOption(): HeaderOptionsEnum{
     return this.headerService.headerOption;
   }
 

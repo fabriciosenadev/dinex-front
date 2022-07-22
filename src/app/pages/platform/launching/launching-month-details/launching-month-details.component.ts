@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
+import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { LaunchDetailsByYearAndMonth } from 'src/app/shared/interfaces/launch/launch-details-by-year-and-month.interface';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { LaunchService } from 'src/app/shared/services/launch/launch.service';
@@ -8,7 +8,7 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
 import { SessionService } from 'src/app/shared/services/session/session.service';
 
 import { Launch } from 'src/app/shared/interfaces/launch/launch.interface';
-import { launchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
+import { LaunchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
 import { LaunchDataToChart } from 'src/app/shared/interfaces/launch/chart/launch-data-to-chart.interface';
 import { LaunchAndPayMethod } from 'src/app/shared/interfaces/launch/launch-and-pay-method.interface';
 
@@ -33,7 +33,7 @@ export class LaunchingMonthDetailsComponent implements OnInit {
     pieChartData: this.launchDataToChart
   };
 
-  set headerOption(value: headerOptionsEnum) {
+  set headerOption(value: HeaderOptionsEnum) {
     this.headerService.headerOption = value;
   }
 
@@ -48,7 +48,7 @@ export class LaunchingMonthDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.session.validateSession();
 
-    this.headerOption = headerOptionsEnum.app;
+    this.headerOption = HeaderOptionsEnum.app;
 
     let selectedYear = this.currentRoute.snapshot.paramMap.get('year');
     let selectedMonth = this.currentRoute.snapshot.paramMap.get('month');
@@ -67,10 +67,10 @@ export class LaunchingMonthDetailsComponent implements OnInit {
         this.launchDetailsByYearAndMonth = result;
 
         this.launches = this.launchDetailsByYearAndMonth.launches
-          .filter(x => x.status.toLowerCase() !== launchStatus.pending);
+          .filter(x => x.status.toLowerCase() !== LaunchStatus.pending);
 
         this.pendingLaunches = this.launchDetailsByYearAndMonth.launches
-          .filter(x => x.status.toLowerCase() === launchStatus.pending);
+          .filter(x => x.status.toLowerCase() === LaunchStatus.pending);
 
         this.launchDataToChart = this.launchDetailsByYearAndMonth.pieChartData;
       },

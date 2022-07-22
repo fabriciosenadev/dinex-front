@@ -1,9 +1,9 @@
-import { launchStatus } from "../enums/launchStatusEnum";
+import { LaunchStatus } from "../enums/launchStatusEnum";
 
-export interface launchRegister {
+export interface LaunchRegister {
     date: Date;
     categoryId: number;
     description: string;
     amount: number;
-    status : launchStatus;
+    status : LaunchStatus;
 }

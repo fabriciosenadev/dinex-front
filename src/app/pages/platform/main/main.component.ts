@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
+import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { LaunchResumeByYearAndMonth } from 'src/app/shared/interfaces/launch/launch-resume-by-year-and-month.interface';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { LaunchService } from 'src/app/shared/services/launch/launch.service';
@@ -30,7 +30,7 @@ export class MainComponent implements OnInit {
 
   arrayLaunchResumeByYearAndMonth: LaunchResumeByYearAndMonth[] = []
 
-  set headerOption(value: headerOptionsEnum) {
+  set headerOption(value: HeaderOptionsEnum) {
     this.headerService.headerOption = value;
   }
 
@@ -46,7 +46,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.session.validateSession();
 
-    this.headerOption = headerOptionsEnum.app;
+    this.headerOption = HeaderOptionsEnum.app;
     setTimeout(() => {
       this.getUser();
     }, 100);

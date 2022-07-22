@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { headerOptionsEnum } from '../../helpers/Enums/headerOptionsEnum';
+import { HeaderOptionsEnum } from '../../helpers/Enums/headerOptionsEnum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeaderService {
 
-  private _headerOption = new BehaviorSubject<headerOptionsEnum>(headerOptionsEnum.site);
+  private _headerOption = new BehaviorSubject<HeaderOptionsEnum>(HeaderOptionsEnum.site);
 
-  get headerOption(): headerOptionsEnum {
+  get headerOption(): HeaderOptionsEnum {
     return this._headerOption.value;
   }
-  set headerOption(value: headerOptionsEnum) {
+  set headerOption(value: HeaderOptionsEnum) {
     this._headerOption.next(value);
   }
 

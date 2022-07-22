@@ -1,9 +1,9 @@
-import { categoryApplicableEnum } from "./enums/categoryApplicableEnum";
+import { CategoryApplicableEnum } from "./enums/categoryApplicableEnum";
 
 export interface Category {
     id: number;
     name : string;
-    applicable: categoryApplicableEnum;
+    applicable: CategoryApplicableEnum;
     isCustom: boolean;
     createdAt: Date;
 }

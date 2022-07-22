@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
+import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
-import { launchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
 import { LaunchAndPayMethod } from 'src/app/shared/interfaces/launch/launch-and-pay-method.interface';
 import { Launch } from 'src/app/shared/interfaces/launch/launch.interface';
 import { LaunchAndPayMethodRegister } from 'src/app/shared/interfaces/launch/register/launch-and-pay-method-register.interface';
@@ -22,7 +21,7 @@ export class NewLaunchComponent implements OnInit {
   categories: Category[] = [];
   launches: Launch[] = [];
 
-  set headerOption(value: headerOptionsEnum) {
+  set headerOption(value: HeaderOptionsEnum) {
     this.headerService.headerOption = value;
   }
 
@@ -38,7 +37,7 @@ export class NewLaunchComponent implements OnInit {
   ngOnInit(): void {
     this.session.validateSession();
 
-    this.headerOption = headerOptionsEnum.app;
+    this.headerOption = HeaderOptionsEnum.app;
 
     this.listCategories();
     this.listLastLaunches();

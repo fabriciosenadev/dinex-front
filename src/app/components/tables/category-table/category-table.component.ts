@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faArrowRotateLeft, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
-import { categoryApplicableEnum } from 'src/app/shared/interfaces/category/enums/categoryApplicableEnum';
+import { CategoryApplicableEnum } from 'src/app/shared/interfaces/category/enums/categoryApplicableEnum';
 import { CategoryEventTypeEnum } from 'src/app/shared/interfaces/category/enums/categoryEventTypeEnum';
 
 @Component({
@@ -19,7 +19,7 @@ export class CategoryTableComponent implements OnInit {
   faTrashCan = faTrashCan;
   faArrowRotateLeft = faArrowRotateLeft;
 
-  categoryApplicableEnum = categoryApplicableEnum;
+  categoryApplicableEnum = CategoryApplicableEnum;
   categoryEventTypeEnum = CategoryEventTypeEnum;
 
   constructor() { }

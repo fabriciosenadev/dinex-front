@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { headerOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
+import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { SessionService } from 'src/app/shared/services/session/session.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
-import { successMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
+import { SuccessMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/shared/interfaces/user/user-login.interface';
 
@@ -14,7 +14,7 @@ import { UserLogin } from 'src/app/shared/interfaces/user/user-login.interface';
 })
 export class LoginComponent implements OnInit {
 
-  set headerOption(value: headerOptionsEnum) {
+  set headerOption(value: HeaderOptionsEnum) {
     this.headerService.headerOption = value;
   }
 
@@ -26,14 +26,14 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.headerOption = headerOptionsEnum.login;
+    this.headerOption = HeaderOptionsEnum.login;
   }
 
   onSubmit(loginUserFormData: UserLogin): void {
     this.sessionService.login(loginUserFormData).subscribe(
       (response) => {
         this.sessionService.startSession(response.token);
-        this.notify.success("Login realizado", successMessagesEnum.loginSuccess);
+        this.notify.success("Login realizado", SuccessMessagesEnum.loginSuccess);
         this.router.navigate(['/app/main']);
       }, (error) => {
         let errors = error.error;

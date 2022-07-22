@@ -1,6 +1,6 @@
-import { categoryApplicableEnum } from "./enums/categoryApplicableEnum";
+import { CategoryApplicableEnum } from "./enums/categoryApplicableEnum";
 
 export interface CategoryRegister {
     name: string;
-    applicable: categoryApplicableEnum;
+    applicable: CategoryApplicableEnum;
 }

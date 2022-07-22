@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SimpleModalComponent, SimpleModalService } from 'ngx-simple-modal';
 import { LaunchModalAction } from 'src/app/shared/interfaces/launch/enums/launchModalActionEnum';
-import { launchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
+import { LaunchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
 import { LaunchModal } from 'src/app/shared/interfaces/launch/modal/launch-modal.interface';
 import { ResultLaunchModal } from 'src/app/shared/interfaces/launch/modal/result-launch-modal.interface';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
@@ -18,7 +18,7 @@ export class LaunchModalComponent extends SimpleModalComponent<LaunchModal, Resu
   categoryId = 0;
   description = '';
   amount = 0;
-  status = launchStatus.pending;
+  status = LaunchStatus.pending;
   userId = '';
   createdAt = '';
   updatedAt: string | null = '';

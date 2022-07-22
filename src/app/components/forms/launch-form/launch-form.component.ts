@@ -3,9 +3,9 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 import { faInfo } from '@fortawesome/free-solid-svg-icons';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
 import { LaunchPayMethod } from 'src/app/shared/interfaces/launch/enums/launchPayMethodEnum';
-import { launchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
+import { LaunchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
 import { LaunchAndPayMethodRegister } from 'src/app/shared/interfaces/launch/register/launch-and-pay-method-register.interface';
-import { launchRegister } from 'src/app/shared/interfaces/launch/register/launch-register.interface';
+import { LaunchRegister } from 'src/app/shared/interfaces/launch/register/launch-register.interface';
 import { PayMethodRegister } from 'src/app/shared/interfaces/launch/register/pay-method-register.interface';
 import * as moment from 'moment';
 
@@ -151,8 +151,8 @@ export class LaunchFormComponent implements OnInit {
     this.isConfirmedLabel = this.launchForm.value.launchType === 'in' ? 'recebido': 'pago';
   }
 
-  getLaunchRegister(): launchRegister {
-    let newLaunchRegister: launchRegister = {
+  getLaunchRegister(): LaunchRegister {
+    let newLaunchRegister: LaunchRegister = {
       date: this.launchForm.value.date,
       categoryId: this.launchForm.value.categoryId,
       description: this.launchForm.value.description,
@@ -171,16 +171,16 @@ export class LaunchFormComponent implements OnInit {
     return newPayMethodRegister;
   }
 
-  getStatus(): launchStatus {
+  getStatus(): LaunchStatus {
 
     if (this.launchForm.value.isConfirmed && this.launchForm.value.launchType === 'in') {
-      return launchStatus.received;
+      return LaunchStatus.received;
     }
 
     if (this.launchForm.value.isConfirmed && this.launchForm.value.launchType === 'out') {
-      return launchStatus.paid;
+      return LaunchStatus.paid;
     }
 
-    return launchStatus.pending;
+    return LaunchStatus.pending;
   }
 }
