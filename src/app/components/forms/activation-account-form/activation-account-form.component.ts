@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import BtnAttribute from 'src/app/shared/helpers/btn-attribute';
+import BtnAttribute from 'src/app/shared/extensions/btn-attribute';
 
 @Component({
   selector: 'app-activation-account-form',

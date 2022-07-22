@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import BtnAttribute from 'src/app/shared/helpers/btn-attribute';
+import BtnAttribute from 'src/app/shared/extensions/btn-attribute';
 import { UserLogin } from 'src/app/shared/interfaces/user/user-login.interface';
 
 @Component({
