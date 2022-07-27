@@ -6,13 +6,14 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
 import { SuccessMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/shared/interfaces/user/user-login.interface';
+import { Notifications } from 'src/app/shared/extensions/notifications';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends Notifications implements OnInit {
 
   set headerOption(value: HeaderOptionsEnum) {
     this.headerService.headerOption = value;
@@ -21,9 +22,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private headerService: HeaderService,
     private sessionService: SessionService,
-    private notify: NotificationService,
+    public override notify: NotificationService,
     private router: Router,
-  ) { }
+  ) { 
+    super(notify)
+  }
 
   ngOnInit(): void {
     this.headerOption = HeaderOptionsEnum.login;
@@ -33,20 +36,12 @@ export class LoginComponent implements OnInit {
     this.sessionService.login(loginUserFormData).subscribe(
       (response) => {
         this.sessionService.startSession(response.token);
-        this.notify.success("Login realizado", SuccessMessagesEnum.loginSuccess);
+        this.handleSuccess(SuccessMessagesEnum.loginSuccess);
         this.router.navigate(['/app/main']);
       }, (error) => {
-        let errors = error.error;
-        let errorTitle = "Erro ao realizar login";
-        this.handleErrors(errorTitle, errors);
+        // let errorTitle = "Erro ao realizar login";
+        this.handleError(error);
       }
     );
   }
-
-  handleErrors(title: string, errors: any): void {
-    if (errors?.message) {
-      this.notify.error(title, errors.message);
-    }
-  }
-
 }

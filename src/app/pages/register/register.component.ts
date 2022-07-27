@@ -8,13 +8,14 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 import { ActivationService } from 'src/app/shared/services/activation/activation.service';
 import { UserRegister } from 'src/app/shared/interfaces/user/user-register.interface';
 import { ActivateAccount } from 'src/app/shared/interfaces/activation/activate-account.interface';
+import { Notifications } from 'src/app/shared/extensions/notifications';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent extends Notifications implements OnInit {
 
   activateAccount: boolean = false;
 
@@ -39,9 +40,11 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private headerService: HeaderService,
     private router: Router,
-    private notify: NotificationService,
     private activationService: ActivationService,
-  ) { }
+    public override notify: NotificationService,
+  ) {
+    super(notify);
+  }
 
   ngOnInit(): void {
     this.headerOption = HeaderOptionsEnum.site;
@@ -65,16 +68,17 @@ export class RegisterComponent implements OnInit {
 
   requestActivationCode(activation: ActivateAccount) {
     this.activationService.requestActivationCode(activation).subscribe(
-      (response) => {        
+      (response) => {
         if (response?.message) {
+
           this.pageTitle = 'Ative sua conta';
           this.activateAccount = true;
-          let successTitle = 'Sucesso';
-          this.notify.success(successTitle, SuccessMessagesEnum.register);
+
+          this.handleSuccess(SuccessMessagesEnum.register);
         }
       }, (error) => {
         console.error(error);
-        this.notify.error('Erro inesperado', "algo deu errado, tente novamente mais tarde");
+        this.handleError(error);
       }
     );
   }
@@ -83,7 +87,7 @@ export class RegisterComponent implements OnInit {
     this.activateAccount = true;
   }
 
-  handleErrors(title:string, errors: any): void {
+  handleErrors(title: string, errors: any): void {
     if (errors?.Email) {
       errors.Email.forEach((msg: string) => {
         this.notify.error(title, msg);
