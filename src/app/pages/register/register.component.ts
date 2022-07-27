@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
-import { SuccessMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
@@ -9,6 +8,7 @@ import { ActivationService } from 'src/app/shared/services/activation/activation
 import { UserRegister } from 'src/app/shared/interfaces/user/user-register.interface';
 import { ActivateAccount } from 'src/app/shared/interfaces/activation/activate-account.interface';
 import { Notifications } from 'src/app/shared/extensions/notifications';
+import { UserRegisterEnum } from 'src/app/shared/interfaces/user/enums/userEnum';
 
 @Component({
   selector: 'app-register',
@@ -74,7 +74,7 @@ export class RegisterComponent extends Notifications implements OnInit {
           this.pageTitle = 'Ative sua conta';
           this.activateAccount = true;
 
-          this.handleSuccess(SuccessMessagesEnum.register);
+          this.handleSuccess(UserRegisterEnum.successToRegister);
         }
       }, (error) => {
         console.error(error);

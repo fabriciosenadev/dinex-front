@@ -1,4 +1,4 @@
-export enum SuccessMessagesEnum {
+export enum SuccessMessagesEnum2 {
     register = 'Cadastro realizado com sucesso!',
     accountActivated = 'Conta ativada com sucesso',
     loginSuccess = 'Login realizado com sucesso',

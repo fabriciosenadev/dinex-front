@@ -3,10 +3,10 @@ import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnu
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { SessionService } from 'src/app/shared/services/session/session.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
-import { SuccessMessagesEnum } from 'src/app/shared/helpers/Enums/successMessagesEnum';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/shared/interfaces/user/user-login.interface';
 import { Notifications } from 'src/app/shared/extensions/notifications';
+import { UserLoginEnum } from 'src/app/shared/interfaces/user/enums/userEnum';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +36,7 @@ export class LoginComponent extends Notifications implements OnInit {
     this.sessionService.login(loginUserFormData).subscribe(
       (response) => {
         this.sessionService.startSession(response.token);
-        this.handleSuccess(SuccessMessagesEnum.loginSuccess);
+        this.handleSuccess(UserLoginEnum.successToLogin);
         this.router.navigate(['/app/main']);
       }, (error) => {
         // let errorTitle = "Erro ao realizar login";
