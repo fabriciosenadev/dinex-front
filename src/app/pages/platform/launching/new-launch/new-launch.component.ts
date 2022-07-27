@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Notifications } from 'src/app/shared/extensions/notifications';
 import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
 import { LaunchAndPayMethod } from 'src/app/shared/interfaces/launch/launch-and-pay-method.interface';
@@ -16,7 +17,7 @@ import { SessionService } from 'src/app/shared/services/session/session.service'
   templateUrl: './new-launch.component.html',
   styleUrls: ['./new-launch.component.css']
 })
-export class NewLaunchComponent implements OnInit {
+export class NewLaunchComponent extends Notifications implements OnInit {
 
   categories: Category[] = [];
   launches: Launch[] = [];
@@ -27,12 +28,14 @@ export class NewLaunchComponent implements OnInit {
 
   constructor(
     private session: SessionService,
-    private notify: NotificationService,
     private router: Router,
     private headerService: HeaderService,
     private categoryService: CategoryService,
     private launchService: LaunchService,
-  ) { }
+    public override notify: NotificationService,
+  ) {
+    super(notify)
+  }
 
   ngOnInit(): void {
     this.session.validateSession();
@@ -56,6 +59,7 @@ export class NewLaunchComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.handleError(error);
       });
   }
 
@@ -63,12 +67,15 @@ export class NewLaunchComponent implements OnInit {
     this.launchService.create(newLaunch).subscribe(
       (result: LaunchAndPayMethod) => {
         if (result.launch.id) {
-          this.notify.success('Sucesso', 'Lançamento criado!');
+          let message = 'Lançamento criado!';
+          this.handleSuccess(message);
+
           this.listLastLaunches();
         }
       },
       (error) => {
         console.log(error);
+        this.handleError(error);
       }
     );
   }
@@ -80,6 +87,7 @@ export class NewLaunchComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.handleError(error);
       }
     );
   }
@@ -87,11 +95,14 @@ export class NewLaunchComponent implements OnInit {
   deleteLaunch(launch: Launch): void {
     this.launchService.delete(launch.id).subscribe(
       (result) => {
-        this.notify.success('Sucesso', 'Lançamento deleteado!'); 
-        this.listLastLaunches();       
+        let message = 'Lançamento deleteado!';
+        this.handleSuccess(message);
+
+        this.listLastLaunches();
       },
       (error) => {
         console.error(error);
+        this.handleError(error);
       }
     );
   }
@@ -101,14 +112,17 @@ export class NewLaunchComponent implements OnInit {
       launch,
       payMethodFromLaunch: null
     }
-    
+
     this.launchService.updateStatus(launchAndPayMethod, true).subscribe(
       (result) => {
-        this.notify.success('Sucesso', 'Status atualizado!'); 
-        this.listLastLaunches();       
+        let message = 'Status atualizado!';
+        this.handleSuccess(message);
+
+        this.listLastLaunches();
       },
       (error) => {
         console.error(error);
+        this.handleError(error);
       }
     );
   }

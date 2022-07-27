@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Notifications } from 'src/app/shared/extensions/notifications';
 import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { CategoryRegister } from 'src/app/shared/interfaces/category/category-register.interface';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
@@ -13,7 +14,7 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent extends Notifications implements OnInit {
 
   isToShowIn: boolean = true;
 
@@ -29,9 +30,11 @@ export class CategoryComponent implements OnInit {
 
   constructor(
     private headerService: HeaderService,
-    private notify: NotificationService,
     private categoryService: CategoryService,
-  ) { }
+    public override notify: NotificationService,
+  ) { 
+    super(notify)
+  }
 
   ngOnInit(): void {
     this.headerOption = HeaderOptionsEnum.app;
@@ -112,12 +115,12 @@ export class CategoryComponent implements OnInit {
         this.listCategories();
         this.listDeletedCategories();
 
-        let title = 'Sucesso';
         let message = 'Categoria criada com sucesso!';
-        this.notify.success(title, message);
+        this.handleSuccess(message);
       },
       (error) => {
         console.log(error);
+        this.handleError(error);
       });
   }
 
@@ -127,15 +130,12 @@ export class CategoryComponent implements OnInit {
         this.listCategories();
         this.listDeletedCategories();
 
-        let title = 'Sucesso';
         let message = 'Categoria excluída com sucesso!';
-        this.notify.success(title, message);
+        this.handleSuccess(message);
       },
       (error) => {
         console.log(error);
-        let errors = error.error;
-        let errorTitle = "Erro ao deletar categoria";
-        this.handleErrors(errorTitle, errors);
+        this.handleError(error);
       }
     );
   }
@@ -146,22 +146,13 @@ export class CategoryComponent implements OnInit {
         this.listCategories();
         this.listDeletedCategories();
 
-        let title = 'Sucesso';
         let message = 'Categoria reativada com sucesso!';
-        this.notify.success(title, message);
+        this.handleSuccess(message);
       },
       (error) => {
         console.log(error);
-        let errors = error.error;
-        let errorTitle = "Erro ao realativar categoria";
-        this.handleErrors(errorTitle, errors);
+        this.handleError(error);
       }
     );
-  }
-
-  handleErrors(title: string, errors: any): void {
-    if (errors?.message) {
-      this.notify.error(title, errors.message);
-    }
   }
 }

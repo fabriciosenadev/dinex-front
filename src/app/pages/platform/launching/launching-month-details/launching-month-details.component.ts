@@ -11,13 +11,14 @@ import { Launch } from 'src/app/shared/interfaces/launch/launch.interface';
 import { LaunchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
 import { LaunchDataToChart } from 'src/app/shared/interfaces/launch/chart/launch-data-to-chart.interface';
 import { LaunchAndPayMethod } from 'src/app/shared/interfaces/launch/launch-and-pay-method.interface';
+import { Notifications } from 'src/app/shared/extensions/notifications';
 
 @Component({
   selector: 'app-launching-month-details',
   templateUrl: './launching-month-details.component.html',
   styleUrls: ['./launching-month-details.component.css']
 })
-export class LaunchingMonthDetailsComponent implements OnInit {
+export class LaunchingMonthDetailsComponent extends Notifications implements OnInit {
 
   year: number = 0;
   month: number = 0;
@@ -41,9 +42,11 @@ export class LaunchingMonthDetailsComponent implements OnInit {
     private headerService: HeaderService,
     private session: SessionService,
     private currentRoute: ActivatedRoute,
-    private notify: NotificationService,
     private launchService: LaunchService,
-  ) { }
+    public override notify: NotificationService,
+  ) { 
+    super(notify)
+  }
 
   ngOnInit(): void {
     this.session.validateSession();
@@ -76,6 +79,7 @@ export class LaunchingMonthDetailsComponent implements OnInit {
       },
       (error) => {
         console.log(error)
+        this.handleError(error);
       },
       () => { }
     );
@@ -84,11 +88,14 @@ export class LaunchingMonthDetailsComponent implements OnInit {
   deleteLaunch(launch: Launch): void {
     this.launchService.delete(launch.id).subscribe(
       () => {
-        this.notify.success('Sucesso', 'Lançamento deleteado!');
+        let message = 'Lançamento deleteado!';
+        this.handleSuccess(message);
+        
         this.getDetailsByYearAndMonth();
       },
       (error) => {
         console.error(error);
+        this.handleError(error);
       }
     );
   }
@@ -101,11 +108,14 @@ export class LaunchingMonthDetailsComponent implements OnInit {
 
     this.launchService.updateStatus(launchAndPayMethod, true).subscribe(
       (result) => {
-        this.notify.success('Sucesso', 'Status atualizado!');
+        let message = 'Status atualizado!';
+        this.handleSuccess(message);
+
         this.getDetailsByYearAndMonth();
       },
       (error) => {
         console.error(error);
+        this.handleError(error);
       }
     );
   }

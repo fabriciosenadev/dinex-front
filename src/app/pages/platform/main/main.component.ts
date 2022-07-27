@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { Notifications } from 'src/app/shared/extensions/notifications';
 import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { LaunchResumeByYearAndMonth } from 'src/app/shared/interfaces/launch/launch-resume-by-year-and-month.interface';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
@@ -14,7 +15,7 @@ import { UserService } from 'src/app/shared/services/user/user.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainComponent extends Notifications implements OnInit {
 
   //icons
   faChevronLeft = faChevronLeft;
@@ -36,12 +37,14 @@ export class MainComponent implements OnInit {
 
   constructor(
     private session: SessionService,
-    private notify: NotificationService,
     private router: Router,
     private headerService: HeaderService,
     private userService: UserService,
     private launchService: LaunchService,
-  ) { }
+    public override notify: NotificationService,
+  ) {
+    super(notify)
+  }
 
   ngOnInit(): void {
     this.session.validateSession();
@@ -62,9 +65,8 @@ export class MainComponent implements OnInit {
       },
       (err) => {
         console.log(err);
-        let title = 'Error';
         let message = 'Error ao obter usuario';
-        this.notify.error(title, message);
+        this.handleError({ message });
       }
     );
   }
@@ -101,11 +103,11 @@ export class MainComponent implements OnInit {
           this.loadingGrid = false;
         }
       );
-        
+
     }
   }
 
   openSelectedMonthDetailPage(selectedMonthDetailPage: string): void {
-    this.router.navigate([`app/launching/${selectedMonthDetailPage}`]);    
+    this.router.navigate([`app/launching/${selectedMonthDetailPage}`]);
   }
 }
