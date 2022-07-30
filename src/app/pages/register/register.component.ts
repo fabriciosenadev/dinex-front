@@ -58,9 +58,7 @@ export class RegisterComponent extends Notifications implements OnInit {
           this.requestActivationCode({ email: newUser.email });
         }
       }, (error) => {
-        let errors = error.error.errors;
-        let errorTitle = 'Erro ao cadastrar';
-        this.handleErrors(errorTitle, errors);
+        this.handleError(error);
       }
     );
 
@@ -77,21 +75,13 @@ export class RegisterComponent extends Notifications implements OnInit {
           this.handleSuccess(UserRegisterEnum.successToRegister);
         }
       }, (error) => {
-        console.error(error);
         this.handleError(error);
+        
       }
     );
   }
 
   showActivateAccount(): void {
     this.activateAccount = true;
-  }
-
-  handleErrors(title: string, errors: any): void {
-    if (errors?.Email) {
-      errors.Email.forEach((msg: string) => {
-        this.notify.error(title, msg);
-      });
-    }
   }
 }

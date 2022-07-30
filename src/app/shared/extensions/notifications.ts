@@ -13,20 +13,68 @@ export class Notifications {
         public notify: NotificationService
     ) { }
 
-    handleSuccess = (message: string) => {
+    protected handleSuccess(message: string): void {
         this.notify.success(this.successTitle, message);
     }
 
-    handleError(resultErrors: any) {
+    protected handleError(resultErrors: any): void {
         console.log(resultErrors);
 
         let generalError = resultErrors.error;
 
-        // TODO: need to implement error translater from enum
+        if (generalError?.message) {
+            // TODO: need to implement error translater from enum
+            this.showSingleError(generalError.message);
+        }
 
-        if (generalError?.message)
-            this.notify.error(this.errorTitle, generalError.message);
-            
-        // TODO: need to implement specific errors from validations
+        //#region register user
+        if (generalError.errors?.Email) {
+            this.showMultipleErrors(generalError.errors?.Email);
+        }
+        if (generalError.errors?.Password) {
+            this.showMultipleErrors(generalError.errors?.Password);
+        }
+        if (generalError.errors?.ConfirmPassword) {
+            this.showMultipleErrors(generalError.errors?.ConfirmPassword);
+        }
+        if (generalError.errors?.FullName) {
+            this.showMultipleErrors(generalError.errors?.FullName);
+        }
+        if (generalError.errors?.ActivationCode) {
+            this.showMultipleErrors(generalError.errors?.ActivationCode);
+        }
+        //#endregion
+
+        //#region register category
+        if (generalError.errors?.Name) {
+            this.showMultipleErrors(generalError.errors?.Name);
+        }
+        //#endregion
+
+        //#region register launch
+        if (generalError.errors?.PayMethodFromLaunch) {
+            this.showMultipleErrors(generalError.errors?.Launch.PayMethodFromLaunch);
+        }
+
+        if (generalError.errors?.Launch) {
+            this.showMultipleErrors(generalError.errors?.Launch.Date);
+        }
+        if (generalError.errors?.Launch) {
+            this.showMultipleErrors(generalError.errors?.Launch.CategoryId);
+        }
+        if (generalError.errors?.Launch) {
+            this.showMultipleErrors(generalError.errors?.Launch.Amount);
+        }
+        //#endregion
+    }
+
+    private showSingleError(message: string): void {
+        this.notify.error(this.errorTitle, message);
+    }
+
+    private showMultipleErrors(errors: string[]): void {
+        errors.forEach((message: string) => {
+            this.notify.error(this.errorTitle, message);
+        });
     }
 }
