@@ -1,0 +1,76 @@
+<!-- BODY -->
+<div class="container-fluid bg-section-gray pb-3">
+
+    <!-- MAIN SCREEN -->
+    <div class="row py-5 bg-section-gray section-height">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+
+            <app-sub-menu></app-sub-menu>
+
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <h3 class="text-center">Ajustes para o aplicativo</h3>
+                </div>
+            </div>
+
+            <div class="row mb-4 justify-content-between">
+                <div class="col-md text-center">
+
+                    <div class="accordion accordion-flush" id="accordionFlushUserSettings">
+                        <div class="accordion-item rounded">
+                            <h2 class="accordion-header rounded" id="flush-headingOne">
+                                <button class="accordion-button collapsed rounded" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    Dados do usuário
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse show"
+                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushUserSettings">
+                                <div class="accordion-body">
+                                    <h3>Aqui ficarão os dados cadastrais, ainda não é possível visualizá-los.</h3>
+                                    <P>
+                                        No momento esta tela ainda está em construção.
+                                        <br><br>
+                                        Estamos fazendo nosso melhor para entregar uma aplicação bonita e fácil de usar.
+                                        <br><br>
+                                        Fique conosco enquanto evoluímos. 😀
+                                        <br><br>
+                                        Atenciosamente do time Dinheiro Exato! 💚
+                                        <br><br>
+                                    </P>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item rounded">
+                            <h2 class="accordion-header" id="flush-headingTwo">
+                                <button class="accordion-button collapsed rounded" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    Categorias
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushUserSettings">
+                                <div class="accordion-body">
+                                    <app-category></app-category>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row mb-2 px-3">
+
+            </div>
+
+        </div>
+        <div class="col-md"></div>
+    </div>
+    <!-- END MAIN SCREEN -->
+
+</div>
+<!-- END BODY -->

@@ -1,0 +1,80 @@
+<div class="row mb-2">
+    <div class="col-sm-12">
+        <h3 class="text-center">Gerencie suas categorias</h3>
+    </div>
+</div>
+
+<div class="row px-3">
+    <div class="rounded bg-white py-3 my-4">
+
+
+        <h4>Nova categoria</h4>
+        <p class="border rounded p-2">
+            <!-- <br /> -->
+            <strong class="text-danger fs-5">Atenção</strong>
+            <br />
+            Antes de cadastrar, verifique se a categoria que você procura, já existe.
+        </p>
+
+        <app-category-form (newCategory)="onCreate($event)"></app-category-form>
+
+    </div>
+
+</div>
+
+<div class="row px-3">
+    <div class="rounded bg-white py-3 my-4">
+
+        <h4>Minhas categorias</h4>
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active cursor-pointer" id="in" aria-current="page" (click)="showIn()">Entrada</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer" id="out" (click)="showOut()">Saida</a>
+            </li>
+        </ul>
+
+        <div *ngIf="isToShowIn; else isToShowOut">
+            <app-category-table *ngIf="categoriesIn.length > 0; else noCategoriesIn" [categories]="categoriesIn"
+                (categoryEvent)="handleEvent($event)">
+            </app-category-table>
+            <ng-template #noCategoriesIn>
+                <p class="text-center">
+                    Nenhuma categoria por aqui.
+                </p>
+            </ng-template>
+        </div>
+        <ng-template #isToShowOut>
+            <app-category-table *ngIf="categoriesOut.length > 0; else noCategoriesOut" [categories]="categoriesOut"
+                (categoryEvent)="handleEvent($event)">
+            </app-category-table>
+            <ng-template #noCategoriesOut>
+                <p class="text-center">
+                    Nenhuma categoria por aqui.
+                </p>
+            </ng-template>
+        </ng-template>
+
+    </div>
+
+</div>
+
+<div class="row mb-2 px-3">
+    <div class="rounded bg-white py-3 my-4">
+
+        <h4 class="mb-3">Minhas categorias removidas</h4>
+
+        <app-category-table *ngIf="categoriesDeleted.length > 0; else noDeleted" [categories]="categoriesDeleted"
+            [isDeleted]="true" (categoryEvent)="handleEvent($event)">
+        </app-category-table>
+        <ng-template #noDeleted>
+            <p class="text-center">
+                Nenhuma categoria por aqui.
+            </p>
+        </ng-template>
+
+    </div>
+
+</div>

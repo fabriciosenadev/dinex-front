@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'launching',
     loadChildren: () => import('./launching/launching.module').then(m => m.LaunchingModule)
   },
+  {
+    path: 'user-settings',
+    loadChildren: () => import('./user-settings/user-settings.module').then(m => m.UserSettingsModule)
+  },
 ];
 
 @NgModule({

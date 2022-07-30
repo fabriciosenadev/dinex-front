@@ -11,6 +11,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { MainComponent } from './main/main.component';
 import { CategoryComponent } from './category/category.component';
 import { LaunchingModule } from './launching/launching.module';
+import { UserSettingsModule } from './user-settings/user-settings.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,11 @@ import { LaunchingModule } from './launching/launching.module';
     ReactiveFormsModule,
     ComponentsModule,
     FontAwesomeModule,
-    LaunchingModule
+    LaunchingModule,
+    UserSettingsModule
+  ],
+  exports: [
+    CategoryComponent
   ]
 })
 export class PlatformModule { }
