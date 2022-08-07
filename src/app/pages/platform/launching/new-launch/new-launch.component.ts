@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SimpleModalService } from 'ngx-simple-modal';
+import { CategoryModalComponent } from 'src/app/components/modals/category-modal/category-modal.component';
 import { Notifications } from 'src/app/shared/extensions/notifications';
 import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
+import { CategoryRegister } from 'src/app/shared/interfaces/category/category-register.interface';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
 import { LaunchAndPayMethod } from 'src/app/shared/interfaces/launch/launch-and-pay-method.interface';
 import { Launch } from 'src/app/shared/interfaces/launch/launch.interface';
@@ -32,6 +35,7 @@ export class NewLaunchComponent extends Notifications implements OnInit {
     private headerService: HeaderService,
     private categoryService: CategoryService,
     private launchService: LaunchService,
+    private modalService: SimpleModalService,
     public override notify: NotificationService,
   ) {
     super(notify)
@@ -48,8 +52,15 @@ export class NewLaunchComponent extends Notifications implements OnInit {
 
   openCategoryPage(isRequiredOpenPage: boolean): void {
     if (isRequiredOpenPage) {
-      this.router.navigate(['app/category']);
+      // this.router.navigate(['app/category']);
     }
+    this.modalService.addModal(CategoryModalComponent, null)
+      .subscribe(
+        (result) => {
+          if (result.isToCreate)
+            this.createCategory(result.categoryRegister);
+        }
+      );
   }
 
   listCategories(): void {
@@ -125,6 +136,21 @@ export class NewLaunchComponent extends Notifications implements OnInit {
         this.handleError(error);
       }
     );
+  }
+
+  createCategory(category: CategoryRegister): void {
+    this.categoryService.create(category).subscribe(
+      (category: Category) => {
+        this.listCategories();
+        this.listLastLaunches();
+
+        let message = 'Categoria criada com sucesso!';
+        this.handleSuccess(message);
+      },
+      (error) => {
+        console.log(error);
+        this.handleError(error);
+      });
   }
 
 }

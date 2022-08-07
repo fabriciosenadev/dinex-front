@@ -1,0 +1,11 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4>{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <app-category-form (newCategory)="onCreate($event)"></app-category-form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="cancel()">Cancelar</button>
+    </div>
+</div>

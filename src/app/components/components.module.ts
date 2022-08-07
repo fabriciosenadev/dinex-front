@@ -21,6 +21,7 @@ import { LaunchModalComponent } from './modals/launch-modal/launch-modal.compone
 import { ConfirmModalComponent } from './modals/confirm-modal/confirm-modal.component';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { NgChartsModule } from 'ng2-charts';
+import { CategoryModalComponent } from './modals/category-modal/category-modal.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
@@ -48,7 +49,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     MonthCardComponent,
     LaunchModalComponent, 
     ConfirmModalComponent, 
-    PieChartComponent
+    PieChartComponent, CategoryModalComponent
   ],
   exports: [
     HeaderComponent,
