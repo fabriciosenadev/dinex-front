@@ -29,6 +29,8 @@ export class MainComponent extends Notifications implements OnInit {
 
   loadingGrid = true;
 
+  amountAvailable = 0;
+
   arrayLaunchResumeByYearAndMonth: LaunchResumeByYearAndMonth[] = []
 
   set headerOption(value: HeaderOptionsEnum) {
@@ -109,5 +111,16 @@ export class MainComponent extends Notifications implements OnInit {
 
   openSelectedMonthDetailPage(selectedMonthDetailPage: string): void {
     this.router.navigate([`app/launching/${selectedMonthDetailPage}`]);
+  }
+
+  getUserAmount(): void {
+    this.userService.getUserAmountAvailable().subscribe(
+      (result) => {
+        this.amountAvailable = result.amountAvailable;
+      },
+      (error) => {
+        this.handleError(error);
+      }
+    );
   }
 }

@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { UserRegister } from '../../interfaces/user/user-register.interface';
 import { User } from '../../interfaces/user/user.interface';
 import { SessionService } from '../session/session.service';
+import { UserAmountAvailable } from '../../interfaces/user/user-amount-available';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,19 @@ export class UserService {
           } 
         }
       );
+  }
+
+  getUserAmountAvailable(): Observable<UserAmountAvailable> {
+    let route = `${this.apiUrl}/users/amount-available`;
+
+    return this.http.get<UserAmountAvailable>(
+      route, 
+      { 
+        headers: {
+          Authorization: this.session.getToken()
+        } 
+      }
+    );
   }
 
 }
