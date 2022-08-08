@@ -139,14 +139,11 @@ export class LaunchFormComponent implements OnInit {
     this.showScheduling = moment(formSelectedDate).isSameOrAfter(today);
   }
 
-  roleIsConfirmed() : void {  
-    console.log(this.launchForm.value.launchType, typeof this.launchForm.value.launchType);
-    
-    
+  roleIsConfirmed() : void {
     this.showIsConfirmed = false;
+
     if(this.launchForm.value.launchType === 'in' || this.launchForm.value.launchType === 'out')
       this.showIsConfirmed = true;
-
 
     this.isConfirmedLabel = this.launchForm.value.launchType === 'in' ? 'recebido': 'pago';
   }

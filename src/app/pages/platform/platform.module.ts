@@ -9,14 +9,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 import { MainComponent } from './main/main.component';
-import { CategoryComponent } from './category/category.component';
 import { LaunchingModule } from './launching/launching.module';
 import { UserSettingsModule } from './user-settings/user-settings.module';
 
 @NgModule({
   declarations: [
-    MainComponent,
-    CategoryComponent
+    MainComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +28,6 @@ import { UserSettingsModule } from './user-settings/user-settings.module';
     UserSettingsModule
   ],
   exports: [
-    CategoryComponent
   ]
 })
 export class PlatformModule { }

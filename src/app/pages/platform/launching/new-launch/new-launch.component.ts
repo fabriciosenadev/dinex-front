@@ -50,17 +50,16 @@ export class NewLaunchComponent extends Notifications implements OnInit {
     this.listLastLaunches();
   }
 
-  openCategoryPage(isRequiredOpenPage: boolean): void {
-    if (isRequiredOpenPage) {
-      // this.router.navigate(['app/category']);
+  openCategoryPage(isToOpenPage: boolean): void {
+    if (isToOpenPage) {
+      this.modalService.addModal(CategoryModalComponent, null)
+        .subscribe(
+          (result) => {
+            if (result.isToCreate)
+              this.createCategory(result.categoryRegister);
+          }
+        );
     }
-    this.modalService.addModal(CategoryModalComponent, null)
-      .subscribe(
-        (result) => {
-          if (result.isToCreate)
-            this.createCategory(result.categoryRegister);
-        }
-      );
   }
 
   listCategories(): void {
