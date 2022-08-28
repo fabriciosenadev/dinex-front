@@ -11,8 +11,8 @@ import { SessionService } from '../session/session.service';
 export class CategoryService extends BaseService<Category> {
 
   constructor(
-    public override http: HttpClient,
-    public override session: SessionService,
+    http: HttpClient,
+    session: SessionService,
   ) { 
     super(http, session, 'categories')
   }

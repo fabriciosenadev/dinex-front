@@ -14,8 +14,8 @@ import { BaseService } from '../base/base.service';
 export class LaunchService extends BaseService<LaunchAndPayMethod> {
 
   constructor(
-    public override http: HttpClient,
-    public override session: SessionService,
+    http: HttpClient,
+    session: SessionService,
   ) { 
     super(http, session, 'launches');
   }

@@ -13,9 +13,9 @@ export class BaseService<TModel> {
   route: string = '';
 
   constructor(
-    public http: HttpClient,
-    public session: SessionService,
-    @Inject('route') public receivedRoute: string,
+    protected http: HttpClient,
+    protected session: SessionService,
+    @Inject('route') protected receivedRoute: string,
   ) { 
     this.route = receivedRoute;
   }

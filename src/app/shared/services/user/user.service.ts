@@ -27,8 +27,8 @@ export class UserService extends BaseService<User> {
   };
 
   constructor(
-    public override http: HttpClient,
-    public override session: SessionService,
+    http: HttpClient,
+    session: SessionService,
   ) {
     super(http, session, 'users');
   }
