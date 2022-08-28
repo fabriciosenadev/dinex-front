@@ -1,80 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { CategoryRegister } from '../../interfaces/category/category-register.interface';
 import { Category } from '../../interfaces/category/category.interface';
+import { BaseService } from '../base/base.service';
 import { SessionService } from '../session/session.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
-
-  apiUrl = environment.apiUrl;
+export class CategoryService extends BaseService<Category> {
 
   constructor(
-    private http: HttpClient,
-    private session: SessionService,
-  ) { }
-
-  list(): Observable<Category[]> {
-    let route = `${this.apiUrl}/categories`;
-
-    return this.http.get<Category[]>(
-      route,
-      {
-        headers: {
-          Authorization: this.session.getToken()
-        }
-      }
-    );
+    public override http: HttpClient,
+    public override session: SessionService,
+  ) { 
+    super(http, session, 'categories')
   }
 
   listDeleted(): Observable<Category[]> {
     let route = `${this.apiUrl}/categories/deleted`;
 
     return this.http.get<Category[]>(
-      route,
-      {
-        headers: {
-          Authorization: this.session.getToken()
-        }
-      }
-    );
-  }
-
-  get(id: number): Observable<Category> {
-    let route = `${this.apiUrl}/categories/${id}`;
-
-    return this.http.get<Category>(
-      route,
-      {
-        headers: {
-          Authorization: this.session.getToken()
-        }
-      }
-    );
-  }
-
-  create(category: CategoryRegister): Observable<Category> {
-    let route = `${this.apiUrl}/categories`;
-
-    return this.http.post<Category>(
-      route,
-      category,
-      {
-        headers: {
-          Authorization: this.session.getToken()
-        }
-      }
-    );
-  }
-
-  delete(id: number): Observable<Category> {
-    let route = `${this.apiUrl}/categories/${id}`;
-
-    return this.http.delete<Category>(
       route,
       {
         headers: {

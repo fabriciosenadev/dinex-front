@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { CategoryRegister } from 'src/app/shared/interfaces/category/category-register.interface';
+import { Category } from 'src/app/shared/interfaces/category/category.interface';
 
 @Component({
   selector: 'app-category-form',
@@ -9,7 +9,7 @@ import { CategoryRegister } from 'src/app/shared/interfaces/category/category-re
 })
 export class CategoryFormComponent implements OnInit {
 
-  @Output() newCategory: EventEmitter<CategoryRegister> = new EventEmitter();
+  @Output() newCategory: EventEmitter<Category> = new EventEmitter();
 
   categoryForm: UntypedFormGroup = new UntypedFormGroup({});
 

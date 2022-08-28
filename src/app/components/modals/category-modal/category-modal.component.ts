@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { SimpleModalComponent } from 'ngx-simple-modal';
-import { CategoryRegister } from 'src/app/shared/interfaces/category/category-register.interface';
+import { Category } from 'src/app/shared/interfaces/category/category.interface';
 import { CategoryApplicableEnum } from 'src/app/shared/interfaces/category/enums/categoryApplicableEnum';
 
 export interface ResultCategoryRegister {
-  categoryRegister: CategoryRegister,
+  categoryRegister: Category,
   isToCreate: boolean
 }
 
@@ -23,7 +23,7 @@ export class CategoryModalComponent extends SimpleModalComponent<null, ResultCat
     super();
   }
 
-  onCreate(newCategory: CategoryRegister) {
+  onCreate(newCategory: Category) {
     this.result = {
       categoryRegister: newCategory,
       isToCreate: true

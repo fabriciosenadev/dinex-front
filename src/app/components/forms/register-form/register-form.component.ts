@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import BtnAttribute from 'src/app/shared/extensions/btn-attribute';
 import Validation from 'src/app/shared/extensions/validator';
-import { UserRegister } from 'src/app/shared/interfaces/user/user-register.interface';
+import { User } from 'src/app/shared/interfaces/user/user.interface';
 import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
@@ -12,11 +12,11 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 })
 export class RegisterFormComponent implements OnInit {
 
-  @Output() registerNewUser: EventEmitter<UserRegister> = new EventEmitter();
+  @Output() registerNewUser: EventEmitter<User> = new EventEmitter();
 
   loading: boolean = false;
   
-  userRegister: UserRegister = {
+  userRegister: User = {
     fullName: '',
     email: '',
     password: '',

@@ -81,7 +81,8 @@ export class LaunchTableComponent implements OnInit {
   }
 
   getPayMethodName(launch: Launch, isToDelete: boolean) {
-    this.launchService.get(launch.id).subscribe(
+    if(launch?.id)
+    this.launchService.get(launch?.id).subscribe(
       async (result: LaunchAndPayMethod) => {
         let payMethod = result.payMethodFromLaunch?.payMethod ? result.payMethodFromLaunch?.payMethod : '';
 

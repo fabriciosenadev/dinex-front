@@ -1,8 +1,8 @@
 export interface PayMethodFromLaunch {
-    id: number;
+    id?: number;
     payMethod: string;
-    launchId: number;
-    createdAt: Date;
-    updatedAt: Date | null;
-    deletedAt: Date | null;
+    launchId?: number;
+    createdAt?: Date;
+    updatedAt?: Date;
+    deletedAt?: Date;
 }

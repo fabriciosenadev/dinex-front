@@ -1,70 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { SessionService } from '../session/session.service';
 import { Observable } from 'rxjs/internal/Observable';
-import { LaunchAndPayMethodRegister } from '../../interfaces/launch/register/launch-and-pay-method-register.interface';
 import { LaunchAndPayMethod } from '../../interfaces/launch/launch-and-pay-method.interface';
 import { Launch } from '../../interfaces/launch/launch.interface';
 import { LaunchResumeByYearAndMonth } from '../../interfaces/launch/launch-resume-by-year-and-month.interface';
 import { LaunchDetailsByYearAndMonth } from '../../interfaces/launch/launch-details-by-year-and-month.interface';
+import { BaseService } from '../base/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LaunchService {
-
-  apiUrl = environment.apiUrl;
+export class LaunchService extends BaseService<LaunchAndPayMethod> {
 
   constructor(
-    private http: HttpClient,
-    private session: SessionService,
-  ) { }
-
-  create(launchAndPayMethod: LaunchAndPayMethodRegister): Observable<LaunchAndPayMethod> {
-    let route = `${this.apiUrl}/launches`;
-
-    return this.http.post<LaunchAndPayMethod>(
-      route,
-      launchAndPayMethod,
-      {
-        headers: {
-          Authorization: this.session.getToken()
-        }
-      }
-    );
+    public override http: HttpClient,
+    public override session: SessionService,
+  ) { 
+    super(http, session, 'launches');
   }
 
   listLastLaunches(): Observable<Launch[]> {
     let route = `${this.apiUrl}/launches/last`;
 
     return this.http.get<Launch[]>(
-      route,
-      {
-        headers: {
-          Authorization: this.session.getToken()
-        }
-      }
-    );
-  }
-
-  get(id: number): Observable<LaunchAndPayMethod> {
-    let route = `${this.apiUrl}/launches/${id}`;
-
-    return this.http.get<LaunchAndPayMethod>(
-      route,
-      {
-        headers: {
-          Authorization: this.session.getToken()
-        }
-      }
-    );
-  }
-
-  delete(id: number): Observable<null> {
-    let route = `${this.apiUrl}/launches/${id}`;
-
-    return this.http.delete<null>(
       route,
       {
         headers: {

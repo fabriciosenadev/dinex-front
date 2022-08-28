@@ -4,6 +4,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { Notifications } from 'src/app/shared/extensions/notifications';
 import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { LaunchResumeByYearAndMonth } from 'src/app/shared/interfaces/launch/launch-resume-by-year-and-month.interface';
+import { User } from 'src/app/shared/interfaces/user/user.interface';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { LaunchService } from 'src/app/shared/services/launch/launch.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
@@ -61,7 +62,7 @@ export class MainComponent extends Notifications implements OnInit {
   }
 
   getUser(): void {
-    this.userService.get().subscribe(
+    this.userService.getUser().subscribe(
       (user) => {
         this.userFirstName = user.fullName.split(' ')[0];
       },

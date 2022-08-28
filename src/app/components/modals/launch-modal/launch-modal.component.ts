@@ -14,16 +14,16 @@ import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component'
 export class LaunchModalComponent extends SimpleModalComponent<LaunchModal, ResultLaunchModal> implements LaunchModal {
 
   id = 0;
-  date = '';
+  date = new Date();
   categoryId = 0;
   description = '';
   amount = 0;
   status = LaunchStatus.pending;
   userId = '';
   createdAt = '';
-  updatedAt: string | null = '';
-  deletedAt: string | null = '';
-  applicable: string | null = '';
+  updatedAt: string = '';
+  deletedAt: string = '';
+  applicable: string = '';
   categoryName = '';
   payMethod = '';
   isToDelete = false;

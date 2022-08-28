@@ -44,7 +44,7 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
     private currentRoute: ActivatedRoute,
     private launchService: LaunchService,
     public override notify: NotificationService,
-  ) { 
+  ) {
     super(notify)
   }
 
@@ -58,7 +58,7 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
 
     this.year = selectedYear ? parseFloat(selectedYear) : 0;
     this.month = selectedMonth ? parseFloat(selectedMonth) : 0;
-    
+
     this.getMonthName();
 
     this.getDetailsByYearAndMonth();
@@ -86,18 +86,19 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
   }
 
   deleteLaunch(launch: Launch): void {
-    this.launchService.delete(launch.id).subscribe(
-      () => {
-        let message = 'Lançamento deleteado!';
-        this.handleSuccess(message);
-        
-        this.getDetailsByYearAndMonth();
-      },
-      (error) => {
-        console.error(error);
-        this.handleError(error);
-      }
-    );
+    if (launch?.id)
+      this.launchService.delete(launch?.id).subscribe(
+        () => {
+          let message = 'Lançamento deleteado!';
+          this.handleSuccess(message);
+
+          this.getDetailsByYearAndMonth();
+        },
+        (error) => {
+          console.error(error);
+          this.handleError(error);
+        }
+      );
   }
 
   updateStatusLaunch(launch: Launch): void {
@@ -125,7 +126,7 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
     date.setDate(1);
     date.setMonth(this.month - 1);
     date.setFullYear(this.year);
-    
+
     this.monthName = date.toLocaleString('pt-br', { month: 'long' });
   }
 
@@ -147,10 +148,8 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
     let labels: string[] = [];
 
     this.launchDataToChart.forEach((value, index) => {
-      if (isPayMethod && value.payMethod !== '')
-      {
-        switch(value.payMethod)
-        {
+      if (isPayMethod && value.payMethod !== '') {
+        switch (value.payMethod) {
           case 'Debit':
             labels.push('Débito');
             break;

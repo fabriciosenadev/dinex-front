@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Notifications } from 'src/app/shared/extensions/notifications';
 import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
-import { CategoryRegister } from 'src/app/shared/interfaces/category/category-register.interface';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
 import { CategoryApplicableEnum } from 'src/app/shared/interfaces/category/enums/categoryApplicableEnum';
 import { CategoryEventTypeEnum } from 'src/app/shared/interfaces/category/enums/categoryEventTypeEnum';
@@ -32,7 +31,7 @@ export class CategoryComponent extends Notifications implements OnInit {
     private headerService: HeaderService,
     private categoryService: CategoryService,
     public override notify: NotificationService,
-  ) { 
+  ) {
     super(notify)
   }
 
@@ -109,7 +108,7 @@ export class CategoryComponent extends Notifications implements OnInit {
       btnOut?.setAttribute('class', classOut + ' active');
   }
 
-  onCreate(category: CategoryRegister): void {
+  onCreate(category: Category): void {
     this.categoryService.create(category).subscribe(
       (category: Category) => {
         this.listCategories();
@@ -125,23 +124,25 @@ export class CategoryComponent extends Notifications implements OnInit {
   }
 
   onDelete(category: Category) {
-    this.categoryService.delete(category.id).subscribe(
-      (response) => {
-        this.listCategories();
-        this.listDeletedCategories();
+    if (category?.id)
+      this.categoryService.delete(category?.id).subscribe(
+        (response) => {
+          this.listCategories();
+          this.listDeletedCategories();
 
-        let message = 'Categoria excluída com sucesso!';
-        this.handleSuccess(message);
-      },
-      (error) => {
-        console.log(error);
-        this.handleError(error);
-      }
-    );
+          let message = 'Categoria excluída com sucesso!';
+          this.handleSuccess(message);
+        },
+        (error) => {
+          console.log(error);
+          this.handleError(error);
+        }
+      );
   }
 
   onReactive(category: Category) {
-    this.categoryService.reactivate(category.id).subscribe(
+    if (category?.id)
+    this.categoryService.reactivate(category?.id).subscribe(
       (response) => {
         this.listCategories();
         this.listDeletedCategories();

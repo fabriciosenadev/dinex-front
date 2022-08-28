@@ -4,11 +4,9 @@ import { SimpleModalService } from 'ngx-simple-modal';
 import { CategoryModalComponent } from 'src/app/components/modals/category-modal/category-modal.component';
 import { Notifications } from 'src/app/shared/extensions/notifications';
 import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
-import { CategoryRegister } from 'src/app/shared/interfaces/category/category-register.interface';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
 import { LaunchAndPayMethod } from 'src/app/shared/interfaces/launch/launch-and-pay-method.interface';
 import { Launch } from 'src/app/shared/interfaces/launch/launch.interface';
-import { LaunchAndPayMethodRegister } from 'src/app/shared/interfaces/launch/register/launch-and-pay-method-register.interface';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { LaunchService } from 'src/app/shared/services/launch/launch.service';
@@ -73,7 +71,7 @@ export class NewLaunchComponent extends Notifications implements OnInit {
       });
   }
 
-  createLaunch(newLaunch: LaunchAndPayMethodRegister): void {
+  createLaunch(newLaunch: LaunchAndPayMethod): void {
     this.launchService.create(newLaunch).subscribe(
       (result: LaunchAndPayMethod) => {
         if (result.launch.id) {
@@ -103,18 +101,19 @@ export class NewLaunchComponent extends Notifications implements OnInit {
   }
 
   deleteLaunch(launch: Launch): void {
-    this.launchService.delete(launch.id).subscribe(
-      (result) => {
-        let message = 'Lançamento deleteado!';
-        this.handleSuccess(message);
+    if (launch?.id)
+      this.launchService.delete(launch?.id).subscribe(
+        (result) => {
+          let message = 'Lançamento deleteado!';
+          this.handleSuccess(message);
 
-        this.listLastLaunches();
-      },
-      (error) => {
-        console.error(error);
-        this.handleError(error);
-      }
-    );
+          this.listLastLaunches();
+        },
+        (error) => {
+          console.error(error);
+          this.handleError(error);
+        }
+      );
   }
 
   updateStatusLaunch(launch: Launch): void {
@@ -137,7 +136,7 @@ export class NewLaunchComponent extends Notifications implements OnInit {
     );
   }
 
-  createCategory(category: CategoryRegister): void {
+  createCategory(category: Category): void {
     this.categoryService.create(category).subscribe(
       (category: Category) => {
         this.listCategories();

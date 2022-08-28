@@ -4,10 +4,10 @@ import { faInfo } from '@fortawesome/free-solid-svg-icons';
 import { Category } from 'src/app/shared/interfaces/category/category.interface';
 import { LaunchPayMethod } from 'src/app/shared/interfaces/launch/enums/launchPayMethodEnum';
 import { LaunchStatus } from 'src/app/shared/interfaces/launch/enums/launchStatusEnum';
-import { LaunchAndPayMethodRegister } from 'src/app/shared/interfaces/launch/register/launch-and-pay-method-register.interface';
-import { LaunchRegister } from 'src/app/shared/interfaces/launch/register/launch-register.interface';
-import { PayMethodRegister } from 'src/app/shared/interfaces/launch/register/pay-method-register.interface';
 import * as moment from 'moment';
+import { LaunchAndPayMethod } from 'src/app/shared/interfaces/launch/launch-and-pay-method.interface';
+import { Launch } from 'src/app/shared/interfaces/launch/launch.interface';
+import { PayMethodFromLaunch } from 'src/app/shared/interfaces/launch/pay-method-from-launch.interface';
 
 @Component({
   selector: 'app-launch-form',
@@ -18,7 +18,7 @@ export class LaunchFormComponent implements OnInit {
 
   @Input() categories: Category[] = [];
 
-  @Output() newLaunch: EventEmitter<LaunchAndPayMethodRegister> = new EventEmitter();
+  @Output() newLaunch: EventEmitter<LaunchAndPayMethod> = new EventEmitter();
   @Output() openCategoryPage: EventEmitter<boolean> = new EventEmitter(false);
 
   // Icons
@@ -99,7 +99,7 @@ export class LaunchFormComponent implements OnInit {
   onSubmit() {
     let launchTypeIsOut = this.launchForm.value.launchType === 'out';
 
-    let newLaunchRegister: LaunchAndPayMethodRegister = {
+    let newLaunchRegister: LaunchAndPayMethod = {
       launch: this.getLaunchRegister(),
       payMethodFromLaunch: this.launchForm.value.payMethod && launchTypeIsOut ? this.getPayMethod() : null,
     };
@@ -148,8 +148,8 @@ export class LaunchFormComponent implements OnInit {
     this.isConfirmedLabel = this.launchForm.value.launchType === 'in' ? 'recebido': 'pago';
   }
 
-  getLaunchRegister(): LaunchRegister {
-    let newLaunchRegister: LaunchRegister = {
+  getLaunchRegister(): Launch {
+    let newLaunchRegister: Launch = {
       date: this.launchForm.value.date,
       categoryId: this.launchForm.value.categoryId,
       description: this.launchForm.value.description,
@@ -160,8 +160,8 @@ export class LaunchFormComponent implements OnInit {
     return newLaunchRegister;
   }
 
-  getPayMethod(): PayMethodRegister {
-    let newPayMethodRegister: PayMethodRegister = {
+  getPayMethod(): PayMethodFromLaunch {
+    let newPayMethodRegister: PayMethodFromLaunch = {
       payMethod: this.launchForm.value.payMethod,
     };
 
