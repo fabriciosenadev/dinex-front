@@ -21,7 +21,7 @@ export class BaseService<TModel> {
   }
 
   create(creationData: TModel): Observable<TModel> {
-    let route = `${this.apiUrl}${this.route}`;
+    let route = `${this.apiUrl}/${this.route}`;
     
     return this.http.post<TModel>(route, creationData);
   }
