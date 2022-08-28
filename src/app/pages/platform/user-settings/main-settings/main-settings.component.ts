@@ -17,7 +17,7 @@ export class MainSettingsComponent extends Notifications implements OnInit {
 
   constructor(
     private headerService: HeaderService,
-    public override notify: NotificationService,
+    notify: NotificationService,
   ) { 
     super(notify)
   }

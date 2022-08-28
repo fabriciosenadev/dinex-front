@@ -34,7 +34,7 @@ export class NewLaunchComponent extends Notifications implements OnInit {
     private categoryService: CategoryService,
     private launchService: LaunchService,
     private modalService: SimpleModalService,
-    public override notify: NotificationService,
+    notify: NotificationService,
   ) {
     super(notify)
   }

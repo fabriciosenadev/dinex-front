@@ -43,7 +43,7 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
     private session: SessionService,
     private currentRoute: ActivatedRoute,
     private launchService: LaunchService,
-    public override notify: NotificationService,
+    notify: NotificationService,
   ) {
     super(notify)
   }

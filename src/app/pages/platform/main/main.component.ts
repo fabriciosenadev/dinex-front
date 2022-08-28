@@ -44,7 +44,7 @@ export class MainComponent extends Notifications implements OnInit {
     private headerService: HeaderService,
     private userService: UserService,
     private launchService: LaunchService,
-    public override notify: NotificationService,
+    notify: NotificationService,
   ) {
     super(notify)
   }

@@ -22,8 +22,8 @@ export class LoginComponent extends Notifications implements OnInit {
   constructor(
     private headerService: HeaderService,
     private sessionService: SessionService,
-    public override notify: NotificationService,
     private router: Router,
+    notify: NotificationService,
   ) { 
     super(notify)
   }

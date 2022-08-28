@@ -30,7 +30,7 @@ export class CategoryComponent extends Notifications implements OnInit {
   constructor(
     private headerService: HeaderService,
     private categoryService: CategoryService,
-    public override notify: NotificationService,
+    notify: NotificationService,
   ) {
     super(notify)
   }

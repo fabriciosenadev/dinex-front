@@ -42,7 +42,7 @@ export class RegisterComponent extends Notifications implements OnInit {
     private headerService: HeaderService,
     private router: Router,
     private activationService: ActivationService,
-    public override notify: NotificationService,
+    notify: NotificationService,
   ) {
     super(notify);
   }

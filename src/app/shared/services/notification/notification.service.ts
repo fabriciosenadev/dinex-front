@@ -9,7 +9,7 @@ export class NotificationService {
   durationInSeconds: number = environment.durationShowNotification;
 
   constructor(
-    private toastr: ToastrService
+    protected toastr: ToastrService
   ) { }
 
   success(title: string, message: string) {
