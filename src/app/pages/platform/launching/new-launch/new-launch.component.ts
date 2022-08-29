@@ -147,6 +147,7 @@ export class NewLaunchComponent extends Notifications implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.router.navigate(['/app/user-settings']);
         this.handleError(error);
       });
   }
