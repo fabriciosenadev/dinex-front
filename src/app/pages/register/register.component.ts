@@ -53,7 +53,7 @@ export class RegisterComponent extends Notifications implements OnInit {
   }
 
   onSubmit(registerUserFormData: User) {
-    this.userService.create(registerUserFormData).subscribe(
+    this.userService.createUser(registerUserFormData).subscribe(
       (newUser) => {
         if (newUser?.id) {
           this.requestActivationCode({ email: newUser.email });
