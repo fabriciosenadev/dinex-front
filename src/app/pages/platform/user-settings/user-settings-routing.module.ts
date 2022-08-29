@@ -5,7 +5,8 @@ import { MainSettingsComponent } from './main-settings/main-settings.component';
 const routes: Routes = [
   {
     path:'',
-    component: MainSettingsComponent
+    component: MainSettingsComponent,
+    pathMatch: 'full'
   }
 ];
 
