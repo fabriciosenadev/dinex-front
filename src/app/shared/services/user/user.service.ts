@@ -33,6 +33,12 @@ export class UserService extends BaseService<User> {
     super(http, session, 'users');
   }
 
+  createUser(userRegister: User): Observable<User> {
+    let route = `${this.apiUrl}/users`;
+    
+    return this.http.post<User>(route, userRegister);
+  }
+
   getUser(): Observable<User> {
     let route = `${this.apiUrl}/users`;
     return this.http.get<User>(
