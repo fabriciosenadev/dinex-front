@@ -59,6 +59,7 @@ export class MainComponent extends Notifications implements OnInit {
 
     this.year = this.date.getFullYear();
     this.getMonths();
+    this.getUserAmount();
   }
 
   getUser(): void {
@@ -77,11 +78,13 @@ export class MainComponent extends Notifications implements OnInit {
   decreaseYear(): void {
     this.year--;
     this.getMonths();
+    this.getUserAmount();
   }
 
   increaseYear(): void {
     this.year++;
     this.getMonths();
+    this.getUserAmount();
   }
 
   getMonths(): void {
