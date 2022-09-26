@@ -4,11 +4,14 @@
         <a class="navbar-brand text-white hover cursor-pointer" (click)="goHomeAction()"
             *ngIf="headerOption === headerOptionsEnum.site || headerOption === headerOptionsEnum.login">
             <img alt="Brand" src="{{ assets('img/header-logo.png') }}" width="60px">
+            <span class="ms-2 px-3 text-white border rounded-pill">beta test</span>
         </a>
         <a class="navbar-brand text-white hover cursor-pointer" (click)="goMainAction()"
             *ngIf="headerOption === headerOptionsEnum.app">
             <fa-icon [icon]="faHome"></fa-icon>
+            <span class="ms-2 px-3 text-white border rounded-pill">beta test</span>
         </a>
+        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
