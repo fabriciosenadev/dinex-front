@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .bg-success {
-    background-color: #28A745 !important;
+    background-color: #54c76f !important;
   }
 
   /* header */
@@ -8,9 +8,9 @@
   color: #ffffff80 !important;
 }
 .btn-hover:hover {
-  color: #28A745 !important;
+  color: #54c76f !important;
   background-color: #ffffffe2 !important;
-  border: 1px solid #28A745 !important;
+  border: 1px solid #54c76f !important;
 }
 
 .border-hover:hover {
