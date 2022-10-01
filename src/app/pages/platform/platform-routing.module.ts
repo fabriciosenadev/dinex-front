@@ -4,8 +4,17 @@ import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
+  },
+  {
     path: 'main',
     component: MainComponent
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./boards/boards.module').then(m => m.BoardsModule)
   },
   {
     path: 'launching',

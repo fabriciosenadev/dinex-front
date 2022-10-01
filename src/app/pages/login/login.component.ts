@@ -38,7 +38,7 @@ export class LoginComponent extends Notifications implements OnInit {
       (response) => {
         this.sessionService.startSession(response.token);
         this.handleSuccess(UserLoginEnum.successToLogin);
-        this.router.navigate(['/app/main']);
+        this.router.navigate(['/app/']);
       }, (error) => {
         // let errorTitle = "Erro ao realizar login";
         this.handleError(error);

@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goMainAction() {
-    this.router.navigate(['app/main']);
+    this.router.navigate(['app/']);
   }
 
   goUserSettings() {

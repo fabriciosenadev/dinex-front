@@ -8,12 +8,6 @@
 
             <app-sub-menu></app-sub-menu>
 
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <h3 class="text-center">Bem vindo, {{ userFirstName }}</h3>
-                </div>
-            </div>
-
             <div class="row mb-4 justify-content-between">
                 <div class="col-md text-center">
                     <button class="btn btn-sm fs-4 fw-bold mb-3 me-3" (click)="decreaseYear()">
@@ -26,7 +20,7 @@
                 </div>
                 <div class="col-md text-center">
                     <h4>
-                        saldo disp.
+                        saldo
                         {{ amountAvailable | currency:'BRL'}}
                     </h4>
                 </div>
