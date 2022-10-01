@@ -7,6 +7,7 @@ import { CategoryEventTypeEnum } from 'src/app/shared/interfaces/category/enums/
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
+import { SessionService } from 'src/app/shared/services/session/session.service';
 
 @Component({
   selector: 'app-category',
@@ -31,8 +32,9 @@ export class CategoryComponent extends Notifications implements OnInit {
     private headerService: HeaderService,
     private categoryService: CategoryService,
     notify: NotificationService,
+    session: SessionService,
   ) {
-    super(notify)
+    super(notify, session)
   }
 
   ngOnInit(): void {

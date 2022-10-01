@@ -39,14 +39,14 @@ export class MainComponent extends Notifications implements OnInit {
   }
 
   constructor(
-    private session: SessionService,
+    session: SessionService,
     private router: Router,
     private headerService: HeaderService,
     private userService: UserService,
     private launchService: LaunchService,
     notify: NotificationService,
   ) {
-    super(notify)
+    super(notify, session)
   }
 
   ngOnInit(): void {

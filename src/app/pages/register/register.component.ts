@@ -10,6 +10,7 @@ import { ActivateAccount } from 'src/app/shared/interfaces/activation/activate-a
 import { Notifications } from 'src/app/shared/extensions/notifications';
 import { UserRegisterEnum } from 'src/app/shared/interfaces/user/enums/userEnum';
 import { User } from 'src/app/shared/interfaces/user/user.interface';
+import { SessionService } from 'src/app/shared/services/session/session.service';
 
 @Component({
   selector: 'app-register',
@@ -43,8 +44,9 @@ export class RegisterComponent extends Notifications implements OnInit {
     private router: Router,
     private activationService: ActivationService,
     notify: NotificationService,
+    session: SessionService,
   ) {
-    super(notify);
+    super(notify, session);
   }
 
   ngOnInit(): void {

@@ -7,6 +7,7 @@ import { ActivationEnum } from 'src/app/shared/interfaces/activation/enums/activ
 import { ActivationService } from 'src/app/shared/services/activation/activation.service';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
+import { SessionService } from 'src/app/shared/services/session/session.service';
 
 @Component({
   selector: 'app-account',
@@ -30,8 +31,9 @@ export class AccountComponent extends Notifications implements OnInit {
     private router: Router,
     private activationService: ActivationService,
     notify: NotificationService,
+    session: SessionService,
   ) {
-    super(notify)
+    super(notify, session)
   }
 
   ngOnInit(): void {

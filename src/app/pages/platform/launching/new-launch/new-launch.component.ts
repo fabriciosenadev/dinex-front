@@ -28,7 +28,7 @@ export class NewLaunchComponent extends Notifications implements OnInit {
   }
 
   constructor(
-    private session: SessionService,
+    session: SessionService,
     private router: Router,
     private headerService: HeaderService,
     private categoryService: CategoryService,
@@ -36,7 +36,7 @@ export class NewLaunchComponent extends Notifications implements OnInit {
     private modalService: SimpleModalService,
     notify: NotificationService,
   ) {
-    super(notify)
+    super(notify, session)
   }
 
   ngOnInit(): void {

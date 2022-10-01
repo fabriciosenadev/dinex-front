@@ -24,8 +24,9 @@ export class LoginComponent extends Notifications implements OnInit {
     private sessionService: SessionService,
     private router: Router,
     notify: NotificationService,
+    session: SessionService,
   ) { 
-    super(notify)
+    super(notify, session)
   }
 
   ngOnInit(): void {

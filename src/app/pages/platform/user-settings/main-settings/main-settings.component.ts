@@ -3,6 +3,7 @@ import { Notifications } from 'src/app/shared/extensions/notifications';
 import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
+import { SessionService } from 'src/app/shared/services/session/session.service';
 
 @Component({
   selector: 'app-main-settings',
@@ -18,8 +19,9 @@ export class MainSettingsComponent extends Notifications implements OnInit {
   constructor(
     private headerService: HeaderService,
     notify: NotificationService,
+    session: SessionService,
   ) { 
-    super(notify)
+    super(notify, session)
   }
 
   ngOnInit(): void {

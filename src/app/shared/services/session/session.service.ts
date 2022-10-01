@@ -31,7 +31,6 @@ export class SessionService {
 
     private forceLogin(): void {
       this.endSession();
-      this.router.navigate(['/login']);
     }
 
     public startSession(token: string): void {
@@ -40,6 +39,7 @@ export class SessionService {
 
     public endSession(): void {
       localStorage.removeItem('representationData');
+      this.router.navigate(['/login']);
     }
 
     public validateSession(): void {

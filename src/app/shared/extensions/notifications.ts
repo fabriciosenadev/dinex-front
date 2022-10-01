@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { NotificationService } from "../services/notification/notification.service";
+import { SessionService } from "../services/session/session.service";
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +11,8 @@ export class Notifications {
     errorTitle: string = "Erro!";
 
     constructor(
-        public notify: NotificationService
+        public notify: NotificationService,
+        public session: SessionService,
     ) { }
 
     protected handleSuccess(message: string): void {
@@ -23,6 +25,12 @@ export class Notifications {
         let generalError = resultErrors.error;
 
         if (generalError?.message) {
+
+            if(generalError?.message === 'Unauthorized')
+            {
+                this.session.endSession();
+                return;
+            }
             // TODO: need to implement error translater from enum
             this.showSingleError(generalError.message);
         }

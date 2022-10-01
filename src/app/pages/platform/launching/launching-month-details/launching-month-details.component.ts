@@ -40,12 +40,12 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
 
   constructor(
     private headerService: HeaderService,
-    private session: SessionService,
+    session: SessionService,
     private currentRoute: ActivatedRoute,
     private launchService: LaunchService,
     notify: NotificationService,
   ) {
-    super(notify)
+    super(notify, session)
   }
 
   ngOnInit(): void {
