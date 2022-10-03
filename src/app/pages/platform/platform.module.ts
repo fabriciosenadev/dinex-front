@@ -8,7 +8,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { ComponentsModule } from 'src/app/components/components.module';
 
-import { MainComponent } from './main/main.component';
 import { LaunchingModule } from './launching/launching.module';
 import { UserSettingsModule } from './user-settings/user-settings.module';
 import { BoardsModule } from './boards/boards.module';
@@ -16,7 +15,6 @@ import { BoardsModule } from './boards/boards.module';
 
 @NgModule({
   declarations: [
-    MainComponent
   ],
   imports: [
     CommonModule,

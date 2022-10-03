@@ -92,7 +92,6 @@ export class DashboardComponent extends Notifications implements OnInit {
     this.launchService.getResumeByYearAndMonth(currentYear, currentMonth)
     .subscribe(
       (result) => {
-        console.log(result);
         this.launchResumeByYearAndMonth = result
       },
       (error) => {
@@ -109,7 +108,7 @@ export class DashboardComponent extends Notifications implements OnInit {
   }
 
   openAllMonths(): void {
-    this.router.navigate([`app/main`]);
+    this.router.navigate([`app/all-months`]);
   }
 
 }
