@@ -20,51 +20,46 @@
                 </div>
             </div>
 
-            <div class="row mb-2 px-3">
+            <div class="row mb-2">
 
-                <div class="col-sm"></div>
-                <div class="col-sm">
-                    <div *ngIf="loadingMonth; else showMonth" class="text-center">
-                        <div class="spinner-border text-success" style="width: 9rem; height: 9rem;" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
+                <div *ngIf="loadingMonth; else showMonth" class="text-center">
+                    <div class="spinner-border text-success" style="width: 9rem; height: 9rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
                     </div>
-                    <ng-template #showMonth>
-                        <app-month-card [monthResume]="launchResumeByYearAndMonth"
-                            (selectedMonthDetailPage)="openMonthDetailPage($event)">
-                        </app-month-card>
-
-                        <div *ngIf="launchResumeByYearAndMonth.hasPending"
-                            class="mt-2 border border-danger rounded text-white text-center bg-danger">
-                            Existem lançamentos pendentes neste mês
-                        </div>
-                    </ng-template>
                 </div>
-                <div class="col-sm"></div>
+                <ng-template #showMonth>
+                    <app-month-card [monthResume]="launchResumeByYearAndMonth"
+                        (selectedMonthDetailPage)="openMonthDetailPage($event)">
+                    </app-month-card>
+
+                    <div *ngIf="launchResumeByYearAndMonth.hasPending"
+                        class="mt-2 border border-danger rounded text-white text-center bg-danger">
+                        Existem lançamentos pendentes neste mês
+                    </div>
+                </ng-template>
 
             </div>
 
             <div class="row mb-2 px-3">
 
-                <app-bar-chart
-                    *ngIf="chartData.length === chartCountMax"
-                    [chartData]="chartData"
-                ></app-bar-chart>
+                <div class="rounded bg-white py-3 my-4">
+                    <app-bar-chart *ngIf="chartData.length === chartCountMax" 
+                    [chartData]="chartData">
+                    </app-bar-chart>
+                </div>
 
             </div>
 
             <div class="row mb-2">
 
                 <div class="col-sm"></div>
-
                 <div class="col-sm">
                     <div class="row justify-content-center m-2">
                         <button class="btn bg-success text-white btn-hover" (click)="openAllMonths()">
                             Veja todos os meses
                         </button>
                     </div>
-                </div>            
-            
+                </div>
                 <div class="col-sm"></div>
 
             </div>
