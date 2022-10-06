@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { LaunchResumeByYearAndMonth } from 'src/app/shared/interfaces/launch/launch-resume-by-year-and-month.interface';
 
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 
@@ -10,6 +11,8 @@ import DataLabelsPlugin from 'chartjs-plugin-datalabels';
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit {
+  @Input() chartData: LaunchResumeByYearAndMonth[] = [];
+
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   public barChartOptions: ChartConfiguration['options'] = {
@@ -48,6 +51,24 @@ export class BarChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.barChartData.labels = [];
+
+    this.barChartData.datasets[0].label = 'Pago';
+    this.barChartData.datasets[1].label = 'Recebido';
+
+    this.barChartData.datasets[0].data = [];
+    this.barChartData.datasets[1].data = [];
+
+    this.chartData.forEach(
+      (value) => {
+        let date = new Date(value.startDate);
+        let monthName = date.toLocaleString('pt-br', { month: 'long' });
+
+        this.barChartData.labels?.push(monthName);
+        this.barChartData.datasets[0].data.push(value.paid);
+        this.barChartData.datasets[1].data.push(value.received);
+      }
+    );
   }
 
   // events

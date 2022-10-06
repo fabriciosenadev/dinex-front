@@ -46,7 +46,10 @@
 
             <div class="row mb-2 px-3">
 
-                <app-bar-chart></app-bar-chart>
+                <app-bar-chart
+                    *ngIf="chartData.length === chartCountMax"
+                    [chartData]="chartData"
+                ></app-bar-chart>
 
             </div>
 

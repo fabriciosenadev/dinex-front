@@ -32,6 +32,9 @@ export class DashboardComponent extends Notifications implements OnInit {
     hasPending: false
   }
 
+  chartData: LaunchResumeByYearAndMonth[] = [];
+  chartCountMax = 3;
+
   set headerOption(value: HeaderOptionsEnum) {
     this.headerService.headerOption = value;
   }
@@ -43,7 +46,7 @@ export class DashboardComponent extends Notifications implements OnInit {
     private userService: UserService,
     private launchService: LaunchService,
     private router: Router,
-  ) { 
+  ) {
     super(notify, session)
   }
 
@@ -57,6 +60,7 @@ export class DashboardComponent extends Notifications implements OnInit {
 
     this.getUserAmount();
     this.getMonth();
+    this.getBarChartData();
   }
 
   getUser(): void {
@@ -87,20 +91,47 @@ export class DashboardComponent extends Notifications implements OnInit {
     let today = moment();
     let currentYear = today.year();
     let currentMonth = today.month() + 1;
-    
+
     this.loadingMonth = true;
     this.launchService.getResumeByYearAndMonth(currentYear, currentMonth)
-    .subscribe(
-      (result) => {
-        this.launchResumeByYearAndMonth = result
-      },
-      (error) => {
-        this.handleError(error);
-      },
-      () => {
-        this.loadingMonth = false;
-      }
-    );
+      .subscribe(
+        (result) => {
+          this.launchResumeByYearAndMonth = result
+        },
+        (error) => {
+          this.handleError(error);
+        },
+        () => {
+          this.loadingMonth = false;
+        }
+      );
+  }
+
+  getBarChartData(): void {
+    this.chartData = [];
+    
+    let today = moment();
+    let currentYear = today.year();
+    let currentMonth = today.month() - 1;
+    
+    for (let i = 1; i <= this.chartCountMax; i++) {
+
+      // console.log(currentMonth);
+      
+      this.launchService.getResumeByYearAndMonth(currentYear, currentMonth)
+        .subscribe(
+          (result) => {
+            this.chartData.push(result)
+            // console.log(this.chartData)
+          },
+          (error) => {
+            this.handleError(error);
+          }
+        );
+      currentMonth++;
+    }
+    // console.log(this.chartData);
+    
   }
 
   openMonthDetailPage(selectedMonthDetailPage: string): void {
