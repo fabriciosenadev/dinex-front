@@ -58,8 +58,18 @@ export class BarChartComponent implements OnInit {
 
     this.barChartData.datasets[0].data = [];
     this.barChartData.datasets[1].data = [];
+    let sortedChartData = this.chartData.sort((current, next) => {
 
-    this.chartData.forEach(
+      if(current.startDate < next.startDate)
+        return -1;
+      
+      if(current.startDate > next.startDate)
+        return 1;
+
+      return 0;
+    })
+    
+    sortedChartData.forEach(
       (value) => {
         let date = new Date(value.startDate);
         let monthName = date.toLocaleString('pt-br', { month: 'long' });
@@ -69,6 +79,7 @@ export class BarChartComponent implements OnInit {
         this.barChartData.datasets[1].data.push(value.received);
       }
     );
+
   }
 
   // events
