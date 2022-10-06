@@ -28,6 +28,7 @@ export class Notifications {
 
             if(generalError?.message === 'Unauthorized')
             {
+                console.log(generalError);
                 this.session.endSession();
                 return;
             }
