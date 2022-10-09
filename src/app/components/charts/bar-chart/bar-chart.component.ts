@@ -21,7 +21,10 @@ export class BarChartComponent implements OnInit {
     scales: {
       x: {},
       y: {
-        min: 10
+        min: 0,
+        grid: {
+          color: "rgba(0, 0, 0, 0)"
+        }
       }
     },
     plugins: {
@@ -30,9 +33,12 @@ export class BarChartComponent implements OnInit {
       },
       datalabels: {
         anchor: 'end',
-        align: 'end'
-      }
-    }
+        align: 'end',
+        formatter(value, context) {
+          return value.toLocaleString("pt-BR", {style: "currency", currency:"BRL"});
+        },
+      },
+    }, 
   };
 
   public barChartType: ChartType = 'bar';
