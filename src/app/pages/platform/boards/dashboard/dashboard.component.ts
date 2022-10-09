@@ -114,24 +114,18 @@ export class DashboardComponent extends Notifications implements OnInit {
     let currentYear = today.year();
     let currentMonth = today.month() - 1;
     
-    for (let i = 1; i <= this.chartCountMax; i++) {
-
-      // console.log(currentMonth);
-      
+    for (let i = 1; i <= this.chartCountMax; i++) {      
       this.launchService.getResumeByYearAndMonth(currentYear, currentMonth)
         .subscribe(
           (result) => {
             this.chartData.push(result)
-            // console.log(this.chartData)
           },
           (error) => {
             this.handleError(error);
           }
         );
       currentMonth++;
-    }
-    // console.log(this.chartData);
-    
+    }    
   }
 
   openMonthDetailPage(selectedMonthDetailPage: string): void {

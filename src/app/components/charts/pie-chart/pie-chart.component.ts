@@ -52,8 +52,6 @@ export class PieChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.launchDataToChart, this.launchStatus === LaunchStatus.paid, this.isPayMethod);
-
     this.fillChart();
   }
 
