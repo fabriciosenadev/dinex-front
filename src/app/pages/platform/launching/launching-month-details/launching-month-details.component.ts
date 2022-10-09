@@ -129,44 +129,4 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
 
     this.monthName = date.toLocaleString('pt-br', { month: 'long' });
   }
-
-  getChartData(applicable: string, isPayMethod: boolean): number[] {
-    let data: number[] = []
-
-    this.launchDataToChart.forEach((value, index) => {
-      if (isPayMethod && value.payMethod !== '')
-        data.push(value.amount);
-      else if (value.applicable.toLocaleLowerCase() === applicable)
-        data.push(value.amount);
-    });
-
-
-    return data;
-  }
-
-  getChartLabels(applicable: string, isPayMethod: boolean): string[] {
-    let labels: string[] = [];
-
-    this.launchDataToChart.forEach((value, index) => {
-      if (isPayMethod && value.payMethod !== '') {
-        switch (value.payMethod) {
-          case 'Debit':
-            labels.push('Débito');
-            break;
-          case 'Credit':
-            labels.push('Crédito');
-            break;
-          case 'Cash':
-            labels.push('Dinheiro');
-            break;
-        }
-
-      }
-      else if (value.applicable.toLocaleLowerCase() === applicable)
-        labels.push(value.categoryName);
-    });
-
-    return labels;
-  }
-
 }

@@ -16,42 +16,45 @@
 
             <div class="row px-2">
                 <div class="col-sm-4" 
-                    *ngIf="getChartLabels('in', false).length > 0 && getChartData('in', false).length > 0">
+                    *ngIf="launchDataToChart.length > 0">
                     
                     <div class="rounded bg-white py-3 my-4">
 
                         <app-pie-chart
-                        [chartTitle]="'Lançamentos de entrada'"
-                          [chartData]="getChartData('in', false)"
-                          [chartLabels]="getChartLabels('in', false)">
+                            [chartTitle]="'Lançamentos de entrada'"
+                            [launchDataToChart]="launchDataToChart"
+                            [launchStatus]="'received'"
+                            [isPayMethod]="false">
                         </app-pie-chart>
     
                     </div>
                 </div>
 
                 <div class="col-sm-4" 
-                    *ngIf="getChartLabels('out', false).length > 0 && getChartData('out', false).length > 0">
+                    *ngIf="launchDataToChart.length > 0">
                     
                     <div class="rounded bg-white py-3 my-4">
 
                         <app-pie-chart
                             [chartTitle]="'Lançamentos de saída'"
-                            [chartData]="getChartData('out', false)"
-                            [chartLabels]="getChartLabels('out', false)">
+                            [launchDataToChart]="launchDataToChart"
+                            [launchStatus]="'paid'"
+                            [isPayMethod]="false">
                         </app-pie-chart>
     
                     </div>
                 </div>
 
                 <div class="col-sm-4" 
-                    *ngIf="getChartLabels('', true).length > 0 && getChartData('', true).length > 0">
+                    *ngIf="launchDataToChart.length > 0">
                     
                     <div class="rounded bg-white py-3 my-4">
 
                         <app-pie-chart
                             [chartTitle]="'Saídas por tipo de pagamento'"
-                            [chartData]="getChartData('', true)"
-                            [chartLabels]="getChartLabels('', true)">
+                            [launchDataToChart]="launchDataToChart"
+                            [launchStatus]="'paid'"
+                            [isPayMethod]="true">
                         </app-pie-chart>
     
                     </div>
