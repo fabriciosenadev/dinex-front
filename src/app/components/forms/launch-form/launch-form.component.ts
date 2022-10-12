@@ -35,6 +35,7 @@ export class LaunchFormComponent implements OnInit {
 
   isConfirmedLabel = '';
   showIsConfirmed = false;
+  isConfirmedField = false;
 
   get formData() {
     return this.launchForm.controls;
@@ -133,19 +134,28 @@ export class LaunchFormComponent implements OnInit {
   roleScheduling(): void {
     const date = moment();
     let today = date.format('YYYY-MM-DD');
-    
-    let formSelectedDate = this.launchForm.value.date; 
+
+    let formSelectedDate = this.launchForm.value.date;
 
     this.showScheduling = moment(formSelectedDate).isSameOrAfter(today);
   }
 
-  roleIsConfirmed() : void {
+  roleIsConfirmed(): void {
     this.showIsConfirmed = false;
+    this.launchForm.value.isConfirmed = false;
+    this.isConfirmedField = false;
 
-    if(this.launchForm.value.launchType === 'in' || this.launchForm.value.launchType === 'out')
+    if (this.launchForm.value.launchType === 'in' || this.launchForm.value.launchType === 'out')
       this.showIsConfirmed = true;
 
-    this.isConfirmedLabel = this.launchForm.value.launchType === 'in' ? 'recebido': 'pago';
+    this.isConfirmedLabel = this.launchForm.value.launchType === 'in' ? 'recebido' : 'pago';
+
+    var isConfirmedByPaymethod = this.launchForm.value.payMethod === this.launchPayMethod.cash || 
+      this.launchForm.value.payMethod === this.launchPayMethod.debit;
+    if (this.launchForm.value.launchType === 'out' && isConfirmedByPaymethod) {
+      this.launchForm.value.isConfirmed = true;
+      this.isConfirmedField = true;
+    }
   }
 
   getLaunchRegister(): Launch {

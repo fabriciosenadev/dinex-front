@@ -138,7 +138,8 @@
                     Tipo de pagamento
                 </label>
 
-                <select id="dropLaunchType" name="payMethod" class="form-control" formControlName="payMethod">
+                <select id="dropLaunchType" name="payMethod" class="form-control" formControlName="payMethod"
+                    (change)="roleForm()">
                     <option *ngIf="!showPayMethods" class="bg-success" value="" selected disabled hidden>
                         Selecione o tipo de lançamento saída
                     </option>
@@ -181,7 +182,7 @@
                 <div class="form-check form-switch mr-1">
 
                     <input class="form-check-input" type="checkbox" role="switch" id="btn-check-confirmed"
-                        formControlName="isConfirmed">
+                        formControlName="isConfirmed" [checked]="isConfirmedField">
                     <label class="form-check-label" for="btn-check-confirmed">
                         Marcar como {{ isConfirmedLabel }}
                     </label>
