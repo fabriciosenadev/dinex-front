@@ -63,7 +63,8 @@ export class NewLaunchComponent extends Notifications implements OnInit {
   listCategories(): void {
     this.categoryService.list().subscribe(
       (categories: Category[]) => {
-        this.categories = categories;
+        let sortedCategories = categories.sort((a, b) => (a.name < b.name) ? -1 : 1)
+        this.categories = sortedCategories;
       },
       (error) => {
         console.log(error);
