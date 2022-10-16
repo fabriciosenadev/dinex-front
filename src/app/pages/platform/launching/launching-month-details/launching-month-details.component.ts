@@ -24,6 +24,9 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
   month: number = 0;
   monthName: string = '';
 
+  showLaunchIn = false;
+  showLaunchOut = false;
+
   launches: Launch[] = [];
   pendingLaunches: Launch[] = [];
 
@@ -65,8 +68,10 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
   }
 
   getDetailsByYearAndMonth(): void {
-    this.launchService.getDetailsByYearAndMonth(this.year, this.month).subscribe(
-      (result: LaunchDetailsByYearAndMonth) => {
+    this.showLaunchIn = this.showLaunchOut = false;
+
+    this.launchService.getDetailsByYearAndMonth(this.year, this.month).subscribe({
+      next: (result: LaunchDetailsByYearAndMonth) => {
         this.launchDetailsByYearAndMonth = result;
 
         this.launches = this.launchDetailsByYearAndMonth.launches
@@ -75,14 +80,17 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
         this.pendingLaunches = this.launchDetailsByYearAndMonth.launches
           .filter(x => x.status.toLowerCase() === LaunchStatus.pending);
 
-        this.launchDataToChart = this.launchDetailsByYearAndMonth.pieChartData;
+        this.launchDataToChart = this.launchDetailsByYearAndMonth.pieChartData;         
       },
-      (error) => {
-        console.log(error)
-        this.handleError(error);
+      error: (err) => {
+        console.log(err)
+        this.handleError(err);        
       },
-      () => { }
-    );
+      complete: () => {
+        this.showLaunchIn = this.launchDataToChart.some((obj) => obj.applicable === 'In');
+        this.showLaunchOut = this.launchDataToChart.some((obj) => obj.applicable === 'Out');
+      }
+    });
   }
 
   deleteLaunch(launch: Launch): void {
