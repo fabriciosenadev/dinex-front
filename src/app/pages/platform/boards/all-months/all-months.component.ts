@@ -46,7 +46,7 @@ export class AllMonthsComponent extends Notifications implements OnInit {
     private launchService: LaunchService,
   ) {
     super(notify, session);
-   }
+  }
 
   ngOnInit(): void {
     this.session.validateSession();
@@ -62,16 +62,16 @@ export class AllMonthsComponent extends Notifications implements OnInit {
   }
 
   getUser(): void {
-    this.userService.getUser().subscribe(
-      (user) => {
+    this.userService.getUser().subscribe({
+      next: (user) => {
         this.userFirstName = user.fullName.split(' ')[0];
       },
-      (err) => {
+      error: (err) => {
         console.log(err);
         let message = 'Error ao obter usuario';
         this.handleError({ message });
       }
-    );
+    });
   }
 
   decreaseYear(): void {
@@ -96,34 +96,34 @@ export class AllMonthsComponent extends Notifications implements OnInit {
 
     for (let month = firstMonth; month <= lastMonth; month++) {
 
-      this.launchService.getResumeByYearAndMonth(this.year, month).subscribe(
-        async (result) => {
+      this.launchService.getResumeByYearAndMonth(this.year, month).subscribe({
+        next: async (result) => {
           await this.arrayLaunchResumeByYearAndMonth.push(result);
         },
-        (error) => {
+        error: (error) => {
           console.log(error);
 
         },
-        () => {
+        complete: () => {
           this.loadingGrid = false;
         }
-      );
+      });
 
     }
   }
 
-  openSelectedMonthDetailPage(selectedMonthDetailPage: string): void {
-    this.router.navigate([`app/launching/${selectedMonthDetailPage}`]);
-  }
-
   getUserAmount(): void {
-    this.userService.getUserAmountAvailable().subscribe(
-      (result) => {
+    this.userService.getUserAmountAvailable().subscribe({
+      next: (result) => {
         this.amountAvailable = result.amountAvailable;
       },
-      (error) => {
+      error: (error) => {
         this.handleError(error);
       }
-    );
+    });
+  }
+
+  openSelectedMonthDetailPage(selectedMonthDetailPage: string): void {
+    this.router.navigate([`app/launching/${selectedMonthDetailPage}`]);
   }
 }

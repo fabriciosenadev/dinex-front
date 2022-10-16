@@ -45,15 +45,17 @@ export class AccountComponent extends Notifications implements OnInit {
   activateAccount(event: any) {
     this.activationData.email = event;
 
-    this.activationService.activateAccount(this.activationData).subscribe(
-      (response) => {
+    this.activationService.activateAccount(this.activationData).subscribe({
+      next: (response) => {
         this.handleSuccess(ActivationEnum.successToActivateAccount)
         this.router.navigate(['/login']);
-      }, (error) => {
+      }, 
+      error: (error) => {
         console.error(error);
         this.router.navigate(['/']);
         this.notify.error('Erro para ativar', "link incorreto ou invalido.");
-      });
+      }
+    });
   }
 
 }

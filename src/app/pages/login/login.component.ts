@@ -34,15 +34,16 @@ export class LoginComponent extends Notifications implements OnInit {
   }
 
   onSubmit(loginUserFormData: UserLogin): void {
-    this.sessionService.login(loginUserFormData).subscribe(
-      (response) => {
+    this.sessionService.login(loginUserFormData).subscribe({
+      next: (response) => {
         this.sessionService.startSession(response.token);
         this.handleSuccess(UserLoginEnum.successToLogin);
         this.router.navigate(['/app/']);
-      }, (error) => {
+      }, 
+      error: (error) => {
         // let errorTitle = "Erro ao realizar login";
         this.handleError(error);
       }
-    );
+    });
   }
 }

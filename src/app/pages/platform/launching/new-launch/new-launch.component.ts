@@ -61,20 +61,21 @@ export class NewLaunchComponent extends Notifications implements OnInit {
   }
 
   listCategories(): void {
-    this.categoryService.list().subscribe(
-      (categories: Category[]) => {
+    this.categoryService.list().subscribe({
+      next: (categories: Category[]) => {
         let sortedCategories = categories.sort((a, b) => (a.name < b.name) ? -1 : 1)
         this.categories = sortedCategories;
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
         this.handleError(error);
-      });
+      }
+    });
   }
 
   createLaunch(newLaunch: LaunchAndPayMethod): void {
-    this.launchService.create(newLaunch).subscribe(
-      (result: LaunchAndPayMethod) => {
+    this.launchService.create(newLaunch).subscribe({
+      next: (result: LaunchAndPayMethod) => {
         if (result.launch.id) {
           let message = 'Lançamento criado!';
           this.handleSuccess(message);
@@ -82,39 +83,39 @@ export class NewLaunchComponent extends Notifications implements OnInit {
           this.listLastLaunches();
         }
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
         this.handleError(error);
       }
-    );
+    });
   }
 
   listLastLaunches(): void {
-    this.launchService.listLastLaunches().subscribe(
-      (launches: Launch[]) => {
+    this.launchService.listLastLaunches().subscribe({
+      next: (launches: Launch[]) => {
         this.launches = launches;
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
         this.handleError(error);
       }
-    );
+    });
   }
 
   deleteLaunch(launch: Launch): void {
     if (launch?.id)
-      this.launchService.delete(launch?.id).subscribe(
-        (result) => {
+      this.launchService.delete(launch?.id).subscribe({
+        next: (result) => {
           let message = 'Lançamento deleteado!';
           this.handleSuccess(message);
 
           this.listLastLaunches();
         },
-        (error) => {
+        error: (error) => {
           console.error(error);
           this.handleError(error);
         }
-      );
+      });
   }
 
   updateStatusLaunch(launch: Launch): void {
@@ -123,34 +124,35 @@ export class NewLaunchComponent extends Notifications implements OnInit {
       payMethodFromLaunch: null
     }
 
-    this.launchService.updateStatus(launchAndPayMethod, true).subscribe(
-      (result) => {
+    this.launchService.updateStatus(launchAndPayMethod, true).subscribe({
+      next: (result) => {
         let message = 'Status atualizado!';
         this.handleSuccess(message);
 
         this.listLastLaunches();
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
         this.handleError(error);
       }
-    );
+    });
   }
 
   createCategory(category: Category): void {
-    this.categoryService.create(category).subscribe(
-      (category: Category) => {
+    this.categoryService.create(category).subscribe({
+      next: (category: Category) => {
         this.listCategories();
         this.listLastLaunches();
 
         let message = 'Categoria criada com sucesso!';
         this.handleSuccess(message);
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
         this.router.navigate(['/app/user-settings']);
         this.handleError(error);
-      });
+      }
+    });
   }
 
 }

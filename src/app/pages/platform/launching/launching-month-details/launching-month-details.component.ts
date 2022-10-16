@@ -95,18 +95,18 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
 
   deleteLaunch(launch: Launch): void {
     if (launch?.id)
-      this.launchService.delete(launch?.id).subscribe(
-        () => {
+      this.launchService.delete(launch?.id).subscribe({
+        next: () => {
           let message = 'Lançamento deleteado!';
           this.handleSuccess(message);
 
           this.getDetailsByYearAndMonth();
         },
-        (error) => {
+        error: (error) => {
           console.error(error);
           this.handleError(error);
         }
-      );
+      });
   }
 
   updateStatusLaunch(launch: Launch): void {
@@ -115,18 +115,18 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
       payMethodFromLaunch: null
     }
 
-    this.launchService.updateStatus(launchAndPayMethod, true).subscribe(
-      (result) => {
+    this.launchService.updateStatus(launchAndPayMethod, true).subscribe({
+      next: (result) => {
         let message = 'Status atualizado!';
         this.handleSuccess(message);
 
         this.getDetailsByYearAndMonth();
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
         this.handleError(error);
       }
-    );
+    });
   }
 
   getMonthName(): void {

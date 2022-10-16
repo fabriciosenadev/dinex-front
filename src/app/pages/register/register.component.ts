@@ -55,21 +55,22 @@ export class RegisterComponent extends Notifications implements OnInit {
   }
 
   onSubmit(registerUserFormData: User) {
-    this.userService.createUser(registerUserFormData).subscribe(
-      (newUser) => {
+    this.userService.createUser(registerUserFormData).subscribe({
+      next: (newUser) => {
         if (newUser?.id) {
           this.requestActivationCode({ email: newUser.email });
         }
-      }, (error) => {
+      },
+      error: (error) => {
         this.handleError(error);
       }
-    );
+    });
 
   }
 
   requestActivationCode(activation: ActivateAccount) {
-    this.activationService.requestActivationCode(activation).subscribe(
-      (response) => {
+    this.activationService.requestActivationCode(activation).subscribe({
+      next: (response) => {
         if (response?.message) {
 
           this.pageTitle = 'Ative sua conta';
@@ -77,11 +78,12 @@ export class RegisterComponent extends Notifications implements OnInit {
 
           this.handleSuccess(UserRegisterEnum.successToRegister);
         }
-      }, (error) => {
+      },
+      error: (error) => {
         this.handleError(error);
-        
+
       }
-    );
+    });
   }
 
   showActivateAccount(): void {

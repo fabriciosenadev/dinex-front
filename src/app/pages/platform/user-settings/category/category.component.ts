@@ -44,32 +44,82 @@ export class CategoryComponent extends Notifications implements OnInit {
     this.listDeletedCategories();
   }
 
-  listCategories() {
-    this.categoryService.list().subscribe(
-      (categories: Category[]) => {
+  listCategories(): void {
+    this.categoryService.list().subscribe({
+      next: (categories: Category[]) => {
         this.categoriesIn = categories
           .filter(category => category.applicable.toLowerCase() === CategoryApplicableEnum.in);
         this.categoriesOut = categories
           .filter(category => category.applicable.toLowerCase() === CategoryApplicableEnum.out);
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
       }
-    );
+    });
   }
 
-  listDeletedCategories() {
-    this.categoryService.listDeleted().subscribe(
-      (categories: Category[]) => {
+  listDeletedCategories(): void {
+    this.categoryService.listDeleted().subscribe({
+      next: (categories: Category[]) => {
         this.categoriesDeleted = categories;
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
       }
-    );
+    });
   }
 
-  handleEvent(event: any) {
+  onCreate(category: Category): void {
+    this.categoryService.create(category).subscribe({
+      next: (category: Category) => {
+        this.listCategories();
+        this.listDeletedCategories();
+
+        let message = 'Categoria criada com sucesso!';
+        this.handleSuccess(message);
+      },
+      error: (error) => {
+        console.log(error);
+        this.handleError(error);
+      }
+    });
+  }
+
+  onDelete(category: Category): void {
+    if (category?.id)
+      this.categoryService.delete(category?.id).subscribe({
+        next: (response) => {
+          this.listCategories();
+          this.listDeletedCategories();
+
+          let message = 'Categoria excluída com sucesso!';
+          this.handleSuccess(message);
+        },
+        error: (error) => {
+          console.log(error);
+          this.handleError(error);
+        }
+      });
+  }
+
+  onReactive(category: Category): void {
+    if (category?.id)
+    this.categoryService.reactivate(category?.id).subscribe({
+      next: (response) => {
+        this.listCategories();
+        this.listDeletedCategories();
+
+        let message = 'Categoria reativada com sucesso!';
+        this.handleSuccess(message);
+      },
+      error: (error) => {
+        console.log(error);
+        this.handleError(error);
+      }
+    });
+  }
+
+  handleEvent(event: any): void {
     if (event.type === CategoryEventTypeEnum.delete) {
       this.onDelete(event.category);
     }
@@ -78,7 +128,7 @@ export class CategoryComponent extends Notifications implements OnInit {
     }
   }
 
-  showIn() {
+  showIn(): void {
     this.isToShowIn = true;
 
     let btnIn = document.querySelector('#in');
@@ -94,7 +144,7 @@ export class CategoryComponent extends Notifications implements OnInit {
       btnOut?.setAttribute('class', classOut.replace(' active', ''));
   }
 
-  showOut() {
+  showOut(): void {
     this.isToShowIn = false;
 
     let btnIn = document.querySelector('#in');
@@ -108,54 +158,5 @@ export class CategoryComponent extends Notifications implements OnInit {
 
     if (!classOut?.includes('active'))
       btnOut?.setAttribute('class', classOut + ' active');
-  }
-
-  onCreate(category: Category): void {
-    this.categoryService.create(category).subscribe(
-      (category: Category) => {
-        this.listCategories();
-        this.listDeletedCategories();
-
-        let message = 'Categoria criada com sucesso!';
-        this.handleSuccess(message);
-      },
-      (error) => {
-        console.log(error);
-        this.handleError(error);
-      });
-  }
-
-  onDelete(category: Category) {
-    if (category?.id)
-      this.categoryService.delete(category?.id).subscribe(
-        (response) => {
-          this.listCategories();
-          this.listDeletedCategories();
-
-          let message = 'Categoria excluída com sucesso!';
-          this.handleSuccess(message);
-        },
-        (error) => {
-          console.log(error);
-          this.handleError(error);
-        }
-      );
-  }
-
-  onReactive(category: Category) {
-    if (category?.id)
-    this.categoryService.reactivate(category?.id).subscribe(
-      (response) => {
-        this.listCategories();
-        this.listDeletedCategories();
-
-        let message = 'Categoria reativada com sucesso!';
-        this.handleSuccess(message);
-      },
-      (error) => {
-        console.log(error);
-        this.handleError(error);
-      }
-    );
   }
 }
