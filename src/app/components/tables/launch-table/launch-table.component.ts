@@ -18,7 +18,7 @@ import { LaunchModalComponent } from '../../modals/launch-modal/launch-modal.com
 export class LaunchTableComponent implements OnInit {
 
   @Input() launches: Launch[] = [];
-  @Output() updateStatusLaunch: EventEmitter<Launch> = new EventEmitter();
+  @Output() updateLaunchStatus: EventEmitter<Launch> = new EventEmitter();
   @Output() launchToDelete: EventEmitter<Launch> = new EventEmitter();
 
   //Icons
@@ -62,8 +62,8 @@ export class LaunchTableComponent implements OnInit {
             if (result.isToActing)
               this.launchToDelete.emit(launch);
             break;
-          case LaunchModalAction.updateLaunch:
-              this.updateStatusLaunch.emit(launch);
+          case LaunchModalAction.updateLaunchStatus:
+              this.updateLaunchStatus.emit(launch);
             break;
           default:
             break;

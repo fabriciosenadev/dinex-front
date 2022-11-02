@@ -118,7 +118,7 @@ export class NewLaunchComponent extends Notifications implements OnInit {
       });
   }
 
-  updateStatusLaunch(launch: Launch): void {
+  updateLaunchStatus(launch: Launch): void {
     let launchAndPayMethod: LaunchAndPayMethod = {
       launch,
       payMethodFromLaunch: null

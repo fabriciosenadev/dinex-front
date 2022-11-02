@@ -109,7 +109,7 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
       });
   }
 
-  updateStatusLaunch(launch: Launch): void {
+  updateLaunchStatus(launch: Launch): void {
     let launchAndPayMethod: LaunchAndPayMethod = {
       launch,
       payMethodFromLaunch: null

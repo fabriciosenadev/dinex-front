@@ -58,7 +58,7 @@ export class LaunchModalComponent extends SimpleModalComponent<LaunchModal, Resu
 
   updateStatus() {
     this.result = {
-      action: LaunchModalAction.updateLaunch,
+      action: LaunchModalAction.updateLaunchStatus,
       isToActing: true
     };
     this.close();

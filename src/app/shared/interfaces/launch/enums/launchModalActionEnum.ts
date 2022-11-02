@@ -1,5 +1,5 @@
 export enum LaunchModalAction {
-    updateLaunch,
+    updateLaunchStatus,
     deleteLaunch,
     none
   }
