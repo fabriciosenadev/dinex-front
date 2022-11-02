@@ -48,7 +48,7 @@ export class LaunchModalComponent extends SimpleModalComponent<LaunchModal, Resu
     });
 
   }
-  cancel() {
+  dismiss() {
     this.result = {
       action: LaunchModalAction.none,
       isToActing: false
