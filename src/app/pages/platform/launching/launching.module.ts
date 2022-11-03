@@ -8,12 +8,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { NewLaunchComponent } from './new-launch/new-launch.component';
 import { LaunchingMonthDetailsComponent } from './launching-month-details/launching-month-details.component';
+import { EditLaunchComponent } from './edit-launch/edit-launch.component';
 
 
 @NgModule({
   declarations: [
     NewLaunchComponent,
-    LaunchingMonthDetailsComponent
+    LaunchingMonthDetailsComponent,
+    EditLaunchComponent
   ],
   imports: [
     CommonModule,

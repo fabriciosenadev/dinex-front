@@ -124,7 +124,7 @@ export class NewLaunchComponent extends Notifications implements OnInit {
       payMethodFromLaunch: null
     }
 
-    this.launchService.updateStatus(launchAndPayMethod, true).subscribe({
+    this.launchService.update(launchAndPayMethod, true).subscribe({
       next: (result) => {
         let message = 'Status atualizado!';
         this.handleSuccess(message);
@@ -153,6 +153,10 @@ export class NewLaunchComponent extends Notifications implements OnInit {
         this.handleError(error);
       }
     });
+  }
+
+  openEditing(launch: Launch) {
+    this.router.navigate([`/app/launching/edit/${launch.id}`]);
   }
 
 }

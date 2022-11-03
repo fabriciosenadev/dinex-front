@@ -70,6 +70,7 @@
                     <app-launch-table 
                     [launches]="pendingLaunches"
                     (updateLaunchStatus)="updateLaunchStatus($event)"
+                    (editLaunch)="openEditing($event)"
                     (launchToDelete)="deleteLaunch($event)" >
                     </app-launch-table>
 
@@ -84,6 +85,7 @@
                     <app-launch-table 
                     [launches]="launches"
                     (updateLaunchStatus)="updateLaunchStatus($event)"
+                    (editLaunch)="openEditing($event)"
                     (launchToDelete)="deleteLaunch($event)" >
                     </app-launch-table>
 

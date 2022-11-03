@@ -139,7 +139,7 @@
                 </label>
 
                 <select id="dropLaunchType" name="payMethod" class="form-control" formControlName="payMethod"
-                    (change)="roleForm()">
+                    (change)="roleForm()" title="payMethod">
                     <option *ngIf="!showPayMethods" class="bg-success" value="" selected disabled hidden>
                         Selecione o tipo de lançamento saída
                     </option>
@@ -217,8 +217,8 @@
             <div class="col-sm">
 
                 <button [disabled]="!launchForm.valid || showPayMethods && formData['payMethod'].value === ''"
-                    type="submit" class="btn bg-success text-white btn-hover" id="btnCreateLaunch">
-                    Criar lançamento
+                    type="submit" class="btn bg-success text-white btn-hover" id="btnCreateUpdateLaunch">
+                    {{ btnCreateUpdateLaunchLabel }}
                 </button>
 
             </div>

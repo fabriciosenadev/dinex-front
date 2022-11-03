@@ -35,6 +35,7 @@
                     <app-launch-table 
                     [launches]="launches"
                     (updateLaunchStatus)="updateLaunchStatus($event)"
+                    (editLaunch)="openEditing($event)"
                     (launchToDelete)="deleteLaunch($event)" >
                     </app-launch-table>
 

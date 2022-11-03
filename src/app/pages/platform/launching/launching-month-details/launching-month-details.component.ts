@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HeaderOptionsEnum } from 'src/app/shared/helpers/Enums/headerOptionsEnum';
 import { LaunchDetailsByYearAndMonth } from 'src/app/shared/interfaces/launch/launch-details-by-year-and-month.interface';
 import { HeaderService } from 'src/app/shared/services/header/header.service';
@@ -47,6 +47,7 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
     private currentRoute: ActivatedRoute,
     private launchService: LaunchService,
     notify: NotificationService,
+    private router: Router,
   ) {
     super(notify, session)
   }
@@ -115,7 +116,7 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
       payMethodFromLaunch: null
     }
 
-    this.launchService.updateStatus(launchAndPayMethod, true).subscribe({
+    this.launchService.update(launchAndPayMethod, true).subscribe({
       next: (result) => {
         let message = 'Status atualizado!';
         this.handleSuccess(message);
@@ -136,5 +137,9 @@ export class LaunchingMonthDetailsComponent extends Notifications implements OnI
     date.setFullYear(this.year);
 
     this.monthName = date.toLocaleString('pt-br', { month: 'long' });
+  }
+
+  openEditing(launch: Launch) {
+    this.router.navigate([`/app/launching/edit/${launch.id}`]);
   }
 }

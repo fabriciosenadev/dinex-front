@@ -19,6 +19,7 @@ export class LaunchTableComponent implements OnInit {
 
   @Input() launches: Launch[] = [];
   @Output() updateLaunchStatus: EventEmitter<Launch> = new EventEmitter();
+  @Output() editLaunch: EventEmitter<Launch> = new EventEmitter();
   @Output() launchToDelete: EventEmitter<Launch> = new EventEmitter();
 
   //Icons
@@ -65,7 +66,8 @@ export class LaunchTableComponent implements OnInit {
           case LaunchModalAction.updateLaunchStatus:
               this.updateLaunchStatus.emit(launch);
             break;
-          default:
+          case LaunchModalAction.editLaunch:
+              this.editLaunch.emit(launch);
             break;
         }
       });

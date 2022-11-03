@@ -63,4 +63,12 @@ export class LaunchModalComponent extends SimpleModalComponent<LaunchModal, Resu
     };
     this.close();
   }
+
+  openEditing() {
+    this.result = {
+      action: LaunchModalAction.editLaunch,
+      isToActing: true
+    };
+    this.close();
+  }
 }

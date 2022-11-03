@@ -1,0 +1,62 @@
+<!-- BODY -->
+<div class="container-fluid bg-section-gray pb-3">
+
+    <!-- MAIN SCREEN -->
+    <div class="row py-5 bg-section-gray section-height">
+        <div class="col-sm"></div>
+        <div class="col-md-8">
+
+            <app-sub-menu></app-sub-menu>
+
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <h3 class="text-center">Editar lançamento</h3>
+                </div>
+            </div>
+
+            <div class="row px-3">
+                <div class="rounded bg-white py-3 my-4">
+
+                    <div *ngIf="loading && categories.length <= 0; else showLaunch" class="text-center">
+                        <div class="spinner-border text-success" style="width: 9rem; height: 9rem;" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <ng-template #showLaunch>
+                        <app-launch-form 
+                        [categories]="categories"
+                        [launchToEdit]="launchAndPayMethod"
+                        (openCategoryPage)="openCategoryPage($event)"
+                        (editLaunch)="editLaunch($event)">
+                        </app-launch-form>
+                    </ng-template>
+
+
+
+                </div>
+
+            </div>
+
+            <div class="row mb-2 px-3">
+                <!-- <div *ngIf="launches.length > 0" class="rounded bg-white py-3 my-4"> -->
+
+                    <!-- <h4>Ultimos lançamentos</h4> -->
+
+                    <!-- <app-launch-table 
+                    [launches]="launches"
+                    (updateLaunchStatus)="updateLaunchStatus($event)"
+                    (editLaunch)="openEditing($event)"
+                    (launchToDelete)="deleteLaunch($event)" >
+                    </app-launch-table> -->
+
+                <!-- </div> -->
+
+            </div>
+
+        </div>
+        <div class="col-sm"></div>
+    </div>
+    <!-- END MAIN SCREEN -->
+
+</div>
+<!-- END BODY -->

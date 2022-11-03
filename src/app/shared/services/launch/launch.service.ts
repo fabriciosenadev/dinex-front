@@ -33,7 +33,7 @@ export class LaunchService extends BaseService<LaunchAndPayMethod> {
     );
   }
 
-  updateStatus(launchAndPayMethod: LaunchAndPayMethod, isJustStatus: boolean): Observable<Launch> {
+  update(launchAndPayMethod: LaunchAndPayMethod, isJustStatus: boolean): Observable<Launch> {
     let route = `${this.apiUrl}/launches/${launchAndPayMethod.launch.id}`;
 
     return this.http.put<Launch>(

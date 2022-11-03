@@ -107,10 +107,11 @@
     <div class="modal-footer">
 
         <!-- delete launch -->
-        <button type="button" class="btn btn-primary" (click)="dismiss()" *ngIf="isToDelete">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="dismiss()" *ngIf="isToDelete">Cancelar</button>
         <button type="button" class="btn btn-outline-danger" (click)="confirm()" *ngIf="isToDelete">Deletar</button>
 
         <!-- view launch -->
+        <button type="button" class="btn btn-secondary" (click)="openEditing()" *ngIf="!isToDelete">Editar</button>
         <button type="button" class="btn btn-primary" (click)="dismiss()" *ngIf="!isToDelete">OK</button>
 
     </div>
