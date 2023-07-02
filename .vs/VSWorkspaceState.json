@@ -2,7 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\app"
+    "\\src\\app",
+    "\\src\\app\\shared",
+    "\\src\\app\\shared\\helpers",
+    "\\src\\app\\shared\\helpers\\Enums",
+    "\\src\\app\\shared\\services",
+    "\\src\\app\\shared\\services\\activation"
   ],
   "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
